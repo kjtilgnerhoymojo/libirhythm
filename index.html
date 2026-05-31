@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LibiRhythm — Muy pronto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: #0e0a12;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Ambient orbs */
+  .orb { position: fixed; border-radius: 50%; pointer-events: none; filter: blur(80px); }
+  .orb1 { width: 500px; height: 500px; top: -150px; left: -100px; background: radial-gradient(circle, rgba(212,88,122,0.18), transparent 70%); }
+  .orb2 { width: 400px; height: 400px; bottom: -100px; right: -80px; background: radial-gradient(circle, rgba(183,148,200,0.15), transparent 70%); }
+  .orb3 { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(201,169,110,0.08), transparent 70%); animation: pulse 4s ease-in-out infinite; }
+
+  @keyframes pulse { 0%,100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.2); } }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes shimmer { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+
+  /* Grain */
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+
+  .container { text-align: center; max-width: 560px; position: relative; z-index: 10; }
+
+  /* Moon animation */
+  .moon { font-size: 64px; margin-bottom: 24px; display: block; animation: fadeUp 0.8s ease 0.1s both; filter: drop-shadow(0 0 20px rgba(183,148,200,0.5)); }
+
+  /* Logo */
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 10vw, 80px);
+    font-weight: 300;
+    letter-spacing: 6px;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #d4587a, #c9a96e, #b794c8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 3vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 48px;
+    line-height: 1.6;
+    animation: fadeUp 0.8s ease 0.35s both;
+  }
+  .tagline em { color: #d4587a; font-style: normal; }
+
+  /* Divider */
+  .divider { width: 60px; height: 1px; background: linear-gradient(to right, #d4587a, #c9a96e); margin: 0 auto 40px; animation: fadeUp 0.8s ease 0.45s both; }
+
+  /* Teaser pills */
+  .features {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s ease 0.55s both;
+  }
+  .feature-pill {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    display: flex; align-items: center; gap: 7px;
+  }
+
+  /* Email form */
+  .notify-title {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    animation: fadeUp 0.8s ease 0.65s both;
+  }
+  .email-form {
+    display: flex; gap: 10px; max-width: 420px; margin: 0 auto 16px;
+    animation: fadeUp 0.8s ease 0.7s both;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .email-input {
+    flex: 1; min-width: 200px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50px;
+    padding: 14px 22px;
+    color: #fff; font-size: 14px;
+    font-family: 'Outfit', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .email-input:focus { border-color: rgba(212,88,122,0.6); }
+  .email-input::placeholder { color: rgba(255,255,255,0.3); }
+  .notify-btn {
+    background: linear-gradient(135deg, #d4587a, #b794c8);
+    border: none; border-radius: 50px;
+    padding: 14px 28px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 500;
+    color: #fff; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(212,88,122,0.3);
+    white-space: nowrap;
+  }
+  .notify-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,88,122,0.4); }
+
+  .notify-note {
+    font-size: 11px; color: rgba(255,255,255,0.25);
+    animation: fadeUp 0.8s ease 0.8s both;
+  }
+
+  /* Success message */
+  .success {
+    display: none;
+    background: rgba(212,88,122,0.1);
+    border: 1px solid rgba(212,88,122,0.3);
+    border-radius: 16px;
+    padding: 14px 20px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  /* Sister app link */
+  .sister {
+    margin-top: 56px;
+    animation: fadeUp 0.8s ease 0.9s both;
+  }
+  .sister p { font-size: 12px; color: rgba(255,255,255,0.25); margin-bottom: 10px; letter-spacing: 1px; }
+  .sister a {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 30px; padding: 10px 22px;
+    font-size: 13px; font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .sister a:hover { border-color: rgba(255,107,53,0.4); color: #fff; }
+
+  /* Countdown */
+  .countdown {
+    display: flex; gap: 20px; justify-content: center; margin-bottom: 48px;
+    animation: fadeUp 0.8s ease 0.5s both;
+  }
+  .count-block { text-align: center; }
+  .count-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 600; line-height: 1;
+    background: linear-gradient(135deg, #d4587a, #c9a96e);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .count-label { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .count-sep { font-size: 36px; color: rgba(255,255,255,0.15); line-height: 1; padding-top: 4px; }
+</style>
+</head>
+<body>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="container">
+
+    <span class="moon">🌙</span>
+
+    <div class="logo">LibiRhythm</div>
+    <p class="tagline">Tu cuerpo tiene un ritmo.<br><em>Pronto podrás escucharlo.</em></p>
+
+    <div class="divider"></div>
+
+    <!-- Teaser features -->
+    <div class="features">
+      <div class="feature-pill">🌸 Tu ciclo menstrual</div>
+      <div class="feature-pill">💜 Bioritmo emocional</div>
+      <div class="feature-pill">⚡ Bioritmo físico</div>
+      <div class="feature-pill">💛 Bioritmo intelectual</div>
+      <div class="feature-pill">📅 Predicción 30 días</div>
+      <div class="feature-pill">💑 Modo pareja</div>
+      <div class="feature-pill">🔒 100% privado</div>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown" id="countdown">
+      <div class="count-block"><div class="count-num" id="days">--</div><div class="count-label">Días</div></div>
+      <div class="count-sep">·</div>
+      <div class="count-block"><div class="count-num" id="hours">--</div><div class="count-label">Horas</div></div>
+      <div class="count-sep">·</div>
+      <div class="count-block"><div class="count-num" id="mins">--</div><div class="count-label">Minutos</div></div>
+    </div>
+
+    <!-- Email notify -->
+    <p class="notify-title">Avísame cuando esté lista</p>
+    <div class="email-form" id="emailForm">
+      <input type="email" class="email-input" id="emailInput" placeholder="tu@email.com">
+      <button class="notify-btn" onclick="subscribe()">Quiero saber →</button>
+    </div>
+    <div class="success" id="successMsg">
+      💜 ¡Apuntada! Serás la primera en saberlo.
+    </div>
+    <p class="notify-note">Sin spam. Solo un email cuando lancemos.</p>
+
+    <!-- Sister app -->
+    <div class="sister">
+      <p>MIENTRAS TANTO</p>
+      <a href="https://hoy-mojo.com" target="_blank">
+        🔥 Prueba ¿Hoy Mojo? — la versión para parejas
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    // Countdown — set launch date (30 days from now)
+    const launch = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+    function updateCountdown() {
+      const now  = Date.now();
+      const diff = Math.max(0, launch - now);
+      const d    = Math.floor(diff / 86400000);
+      const h    = Math.floor((diff % 86400000) / 3600000);
+      const m    = Math.floor((diff % 3600000) / 60000);
+      document.getElementById('days').textContent  = String(d).padStart(2,'0');
+      document.getElementById('hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('mins').textContent  = String(m).padStart(2,'0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+
+    // Email subscribe — stores locally, in production connect to Mailchimp/Resend
+    function subscribe() {
+      const email = document.getElementById('emailInput').value.trim();
+      if (!email || !email.includes('@')) {
+        document.getElementById('emailInput').style.borderColor = 'rgba(212,88,122,0.8)';
+        return;
+      }
+      // Save locally
+      const list = JSON.parse(localStorage.getItem('libi_waitlist') || '[]');
+      if (!list.includes(email)) list.push(email);
+      localStorage.setItem('libi_waitlist', JSON.stringify(list));
+      // Show success
+      document.getElementById('emailForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    }
+
+    // Enter key on email
+    document.getElementById('emailInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') subscribe();
+    });
+  </script>
+
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
