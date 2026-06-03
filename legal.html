@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aviso Legal & Privacidad — LibiRhythm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fire: #ff6b35;
+    --gold: #f5c842;
+    --dark: #0d0d0d;
+    --border: rgba(255,255,255,0.09);
+    --muted: rgba(255,255,255,0.5);
+    --text:  rgba(255,255,255,0.82);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--text); font-family: 'Outfit', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    padding: 16px 32px; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(13,13,13,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Bebas Neue', cursive; font-size: 22px; letter-spacing: 3px; background: linear-gradient(135deg, var(--fire), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+  .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: #fff; }
+
+  .hero { padding: 60px 24px 40px; text-align: center; border-bottom: 1px solid var(--border); }
+  .hero h1 { font-family: 'Bebas Neue', cursive; font-size: clamp(36px, 6vw, 64px); letter-spacing: 4px; background: linear-gradient(135deg, var(--fire), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+  .hero p { color: var(--muted); font-size: 14px; }
+  .updated { display: inline-block; margin-top: 10px; background: rgba(255,107,53,0.1); border: 1px solid rgba(255,107,53,0.25); border-radius: 20px; padding: 4px 14px; font-size: 12px; color: var(--fire); }
+
+  /* SIDEBAR NAV */
+  .layout { display: flex; max-width: 1100px; margin: 0 auto; gap: 40px; padding: 40px 24px 80px; }
+  .sidebar { width: 220px; flex-shrink: 0; position: sticky; top: 80px; align-self: flex-start; }
+  .sidebar-title { font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.25); text-transform: uppercase; margin-bottom: 14px; }
+  .sidebar a { display: block; font-size: 13px; color: var(--muted); text-decoration: none; padding: 6px 0; border-left: 2px solid transparent; padding-left: 12px; transition: all 0.2s; }
+  .sidebar a:hover { color: #fff; border-color: var(--fire); }
+  .sidebar a.active { color: var(--fire); border-color: var(--fire); }
+
+  /* CONTENT */
+  .content { flex: 1; min-width: 0; }
+  .section { margin-bottom: 56px; scroll-margin-top: 90px; }
+  .section-tag { font-size: 10px; letter-spacing: 4px; color: var(--fire); text-transform: uppercase; margin-bottom: 8px; }
+  .section h2 { font-family: 'Bebas Neue', cursive; font-size: 32px; letter-spacing: 3px; color: #fff; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .section h3 { font-size: 16px; font-weight: 600; color: #fff; margin: 24px 0 10px; }
+  .section p { font-size: 14px; color: var(--text); margin-bottom: 14px; }
+  .section ul { list-style: none; margin-bottom: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .section ul li { font-size: 14px; color: var(--text); padding-left: 18px; position: relative; }
+  .section ul li::before { content: '·'; position: absolute; left: 4px; color: var(--fire); }
+  .section a { color: var(--fire); text-decoration: none; }
+  .section a:hover { text-decoration: underline; }
+
+  .highlight-box { background: rgba(255,107,53,0.06); border: 1px solid rgba(255,107,53,0.18); border-radius: 14px; padding: 18px 20px; margin: 20px 0; }
+  .highlight-box p { margin: 0; font-size: 13px; color: rgba(255,255,255,0.7); }
+  .highlight-box strong { color: var(--fire); }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; }
+  .data-table th { padding: 10px 14px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.4); text-align: left; border-bottom: 1px solid var(--border); }
+  .data-table td { padding: 12px 14px; font-size: 13px; color: var(--text); border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .cookie-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+  .cookie-card { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+  .cookie-card-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .cookie-card-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .cookie-status { display: inline-block; margin-top: 8px; font-size: 10px; border-radius: 10px; padding: 2px 10px; font-weight: 600; }
+  .status-required { background: rgba(255,107,53,0.15); color: var(--fire); }
+  .status-optional { background: rgba(126,200,160,0.15); color: #7ec8a0; }
+  .status-none { background: rgba(255,255,255,0.08); color: var(--muted); }
+
+  footer { border-top: 1px solid var(--border); padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-logo { font-family: 'Bebas Neue', cursive; font-size: 18px; letter-spacing: 3px; background: linear-gradient(135deg, var(--fire), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; }
+
+  @media(max-width: 768px) {
+    .sidebar { display: none; }
+    .layout { padding: 24px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">¿HOY MOJO?</a>
+  <a href="/" class="nav-back">← Volver a la calculadora</a>
+</nav>
+
+<div class="hero">
+  <h1>AVISO LEGAL & PRIVACIDAD</h1>
+  <p>Toda la información legal de libirhythm.com en un solo lugar</p>
+  <span class="updated">Última actualización: Mayo 2026</span>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Contenido</div>
+    <a href="#aviso-legal">1. Aviso Legal</a>
+    <a href="#privacidad">2. Política de Privacidad</a>
+    <a href="#cookies">3. Política de Cookies</a>
+    <a href="#terminos">4. Términos de Uso</a>
+    <a href="#afiliados">5. Afiliados</a>
+    <a href="#contacto">6. Contacto</a>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- 1. AVISO LEGAL -->
+    <div class="section" id="aviso-legal">
+      <div class="section-tag">Sección 1</div>
+      <h2>AVISO LEGAL</h2>
+
+      <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y Comercio Electrónico (LSSI-CE), se informa al usuario de los siguientes datos identificativos del titular de este sitio web:</p>
+
+      <table class="data-table">
+        <thead><tr><th>Dato</th><th>Información</th></tr></thead>
+        <tbody>
+          <tr><td>Titular</td><td>Klaus Tilgner</td></tr>
+          <tr><td>NIF</td><td>X1144225K</td></tr>
+          <tr><td>Condición</td><td>Persona física — Autónomo</td></tr>
+          <tr><td>Dominio web</td><td>libirhythm.com</td></tr>
+          <tr><td>Email de contacto</td><td>legal@libirhythm.com</td></tr>
+          <tr><td>País</td><td>España</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Propiedad intelectual</h3>
+      <p>Todos los contenidos del sitio web libirhythm.com, incluyendo textos, diseño, código fuente, logotipos y elementos gráficos, son propiedad de Klaus Tilgner o cuenta con licencia para su uso. Queda prohibida su reproducción total o parcial sin autorización expresa por escrito.</p>
+
+      <h3>Responsabilidad</h3>
+      <p>La información proporcionada por libirhythm.com tiene carácter meramente recreativo y orientativo. Los resultados de la calculadora de bioritmo no constituyen consejo médico, psicológico ni de ninguna otra índole profesional. El titular no se responsabiliza del uso que el usuario haga de dicha información.</p>
+      <p>Los enlaces a sitios web de terceros (tiendas, servicios) se facilitan a título informativo. El titular no controla ni se responsabiliza de los contenidos, productos o servicios de dichos terceros.</p>
+
+      <h3>Legislación aplicable</h3>
+      <p>Este aviso legal se rige por la legislación española vigente. Para cualquier controversia derivada del uso de este sitio web, las partes se someten a los Juzgados y Tribunales de España.</p>
+    </div>
+
+    <!-- 2. PRIVACIDAD -->
+    <div class="section" id="privacidad">
+      <div class="section-tag">Sección 2</div>
+      <h2>POLÍTICA DE PRIVACIDAD</h2>
+
+      <div class="highlight-box">
+        <p><strong>Resumen en una frase:</strong> libirhythm.com no recoge, almacena ni transmite ningún dato personal. Todo se procesa localmente en tu dispositivo y desaparece cuando cierras la página.</p>
+      </div>
+
+      <h3>Responsable del tratamiento</h3>
+      <p>Klaus Tilgner (NIF: X1144225K) — <a href="mailto:legal@libirhythm.com">legal@libirhythm.com</a></p>
+
+      <h3>¿Qué datos tratamos?</h3>
+      <p>libirhythm.com es una herramienta web que funciona íntegramente en el navegador del usuario. Los datos introducidos (fecha de nacimiento, datos del ciclo menstrual y bioritmos personales) se utilizan exclusivamente para el cálculo matemático del bioritmo y <strong>nunca abandonan el dispositivo del usuario</strong>:</p>
+      <ul>
+        <li>No se envían a ningún servidor</li>
+        <li>No se almacenan en bases de datos</li>
+        <li>No se comparten con terceros</li>
+        <li>No se utilizan para publicidad personalizada</li>
+        <li>Se eliminan automáticamente al cerrar o recargar la página</li>
+      </ul>
+
+      <h3>Datos de navegación (analítica)</h3>
+      <p>Con tu consentimiento podemos recoger datos anónimos de uso mediante herramientas de analítica web (como Google Analytics o Plausible) para entender cómo se usa la web. Estos datos son completamente anónimos y no permiten identificar a ningún usuario.</p>
+
+      <h3>Datos de salud — categoría especial</h3>
+      <p>LibiRhythm procesa datos relacionados con el ciclo menstrual que pueden considerarse datos de salud bajo el RGPD (Art. 9). Dado que estos datos se procesan exclusivamente en el dispositivo del usuario y nunca se transmiten a servidores externos, no existe tratamiento de datos de salud por parte del responsable. El usuario mantiene control absoluto sobre sus datos en todo momento.</p>
+      <h3>Base legal del tratamiento</h3>
+      <p>Dado que no se recogen datos personales identificables, no existe tratamiento sujeto al RGPD. En el caso de analítica web, la base legal es el consentimiento explícito del usuario (Art. 6.1.a RGPD).</p>
+
+      <h3>Derechos del usuario</h3>
+      <p>En virtud del RGPD (Reglamento UE 2016/679), tienes derecho a acceder, rectificar, suprimir, portar y oponerte al tratamiento de tus datos. Para ejercer estos derechos, contacta en <a href="mailto:legal@libirhythm.com">legal@libirhythm.com</a>. También puedes presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank">aepd.es</a>).</p>
+
+      <h3>Transferencias internacionales</h3>
+      <p>No se realizan transferencias internacionales de datos personales. Los servicios de hosting (Vercel) están acogidos al marco de adecuación UE-EE.UU. y cumplen con el RGPD.</p>
+    </div>
+
+    <!-- 3. COOKIES -->
+    <div class="section" id="cookies">
+      <div class="section-tag">Sección 3</div>
+      <h2>POLÍTICA DE COOKIES</h2>
+
+      <p>Una cookie es un pequeño archivo de texto que un sitio web deposita en tu dispositivo. A continuación detallamos las cookies utilizadas en libirhythm.com:</p>
+
+      <div class="cookie-types">
+        <div class="cookie-card">
+          <div class="cookie-card-title">🔧 Técnicas</div>
+          <div class="cookie-card-desc">Necesarias para el funcionamiento básico de la web. No recogen información personal.</div>
+          <span class="cookie-status status-required">Siempre activas</span>
+        </div>
+        <div class="cookie-card">
+          <div class="cookie-card-title">📊 Analíticas</div>
+          <div class="cookie-card-desc">Nos ayudan a entender cómo se usa la web de forma anónima y agregada.</div>
+          <span class="cookie-status status-optional">Con consentimiento</span>
+        </div>
+        <div class="cookie-card">
+          <div class="cookie-card-title">🎯 Publicidad</div>
+          <div class="cookie-card-desc">libirhythm.com no utiliza cookies de publicidad comportamental ni perfiles de usuario.</div>
+          <span class="cookie-status status-none">No se usan</span>
+        </div>
+        <div class="cookie-card">
+          <div class="cookie-card-title">🛒 Afiliados</div>
+          <div class="cookie-card-desc">Al hacer click en un enlace de afiliado, la tienda de destino puede depositar su propia cookie de seguimiento.</div>
+          <span class="cookie-status status-optional">Terceros</span>
+        </div>
+      </div>
+
+      <h3>Cookies de terceros (afiliados)</h3>
+      <p>Los enlaces a Amazon, Lovehoney, El Corte Inglés, Interflora y otras tiendas son enlaces de afiliado. Al hacer click, el sitio de destino puede depositar sus propias cookies de seguimiento de sesión para identificar que la visita provino de libirhythm.com. Dichas cookies están sujetas a las políticas de privacidad de cada tienda. libirhythm.com no controla ni accede a estas cookies.</p>
+
+      <h3>Cómo gestionar las cookies</h3>
+      <p>Puedes configurar tu navegador para rechazar, bloquear o eliminar cookies en cualquier momento. Ten en cuenta que deshabilitar ciertas cookies puede afectar al funcionamiento de la web:</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies" target="_blank">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank">Safari</a></li>
+        <li><a href="https://support.microsoft.com/es-es/topic/eliminar-y-administrar-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank">Microsoft Edge</a></li>
+      </ul>
+    </div>
+
+    <!-- 4. TÉRMINOS DE USO -->
+    <div class="section" id="terminos">
+      <div class="section-tag">Sección 4</div>
+      <h2>TÉRMINOS DE USO</h2>
+
+      <h3>Uso permitido</h3>
+      <p>libirhythm.com es una herramienta de entretenimiento y uso personal. Al utilizar esta web, el usuario acepta que:</p>
+      <ul>
+        <li>Los resultados de la calculadora son meramente orientativos y recreativos</li>
+        <li>No sustituyen ningún tipo de consejo médico, psicológico o profesional</li>
+        <li>El titular no garantiza la precisión ni exactitud de los cálculos</li>
+        <li>El usuario es el único responsable del uso que haga de los resultados</li>
+      </ul>
+
+      <h3>Uso prohibido</h3>
+      <p>Queda expresamente prohibido:</p>
+      <ul>
+        <li>Usar la web para fines ilícitos o contrarios a la moral</li>
+        <li>Reproducir, distribuir o modificar el contenido sin autorización</li>
+        <li>Utilizar sistemas automatizados (bots, scrapers) para acceder a la web</li>
+        <li>Intentar vulnerar la seguridad o integridad del sitio</li>
+      </ul>
+
+      <h3>Modificaciones</h3>
+      <p>El titular se reserva el derecho a modificar, suspender o discontinuar el servicio en cualquier momento y sin previo aviso. También podrá actualizar estos términos, siendo la versión publicada en la web la siempre vigente.</p>
+
+      <h3>Edad mínima</h3>
+      <p>El uso de libirhythm.com está destinado a mayores de 18 años. Al acceder a la web, el usuario declara tener la edad requerida.</p>
+    </div>
+
+    <!-- 5. AFILIADOS -->
+    <div class="section" id="afiliados">
+      <div class="section-tag">Sección 5</div>
+      <h2>PROGRAMA DE AFILIADOS</h2>
+
+      <div class="highlight-box">
+        <p><strong>Transparencia total:</strong> Algunos enlaces de esta web son enlaces de afiliado. Si realizas una compra a través de ellos, podemos recibir una comisión sin ningún coste adicional para ti.</p>
+      </div>
+
+      <p>libirhythm.com participa en programas de afiliación con diversas tiendas y servicios. Esto significa que cuando haces click en ciertos enlaces y realizas una compra, recibimos una pequeña comisión como compensación por el tráfico referido.</p>
+
+      <h3>Programas en los que participamos</h3>
+      <table class="data-table">
+        <thead><tr><th>Tienda / Servicio</th><th>Programa</th><th>Categoría</th></tr></thead>
+        <tbody>
+          <tr><td>Amazon España</td><td>Amazon Associates (tag: libirhythm-21)</td><td>General — regalos</td></tr>
+          <tr><td>Lovehoney</td><td>Programa de afiliados Lovehoney</td><td>Bienestar íntimo</td></tr>
+          <tr><td>Interflora</td><td>Programa de afiliados Interflora</td><td>Flores y regalos</td></tr>
+          <tr><td>El Corte Inglés</td><td>Programa de afiliados ECI</td><td>General</td></tr>
+          <tr><td>Meetic</td><td>Awin — Meetic ES</td><td>Citas y relaciones</td></tr>
+          <tr><td>TheFork</td><td>Programa de afiliados TheFork</td><td>Restaurantes</td></tr>
+          <tr><td>Zalando</td><td>Programa de afiliados Zalando</td><td>Moda</td></tr>
+          <tr><td>Sephora</td><td>Programa de afiliados Sephora</td><td>Cosmética y perfumería</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Principio editorial</h3>
+      <p>Las recomendaciones de productos y servicios mostradas en libirhythm.com están determinadas exclusivamente por su relevancia para el resultado de la calculadora. Las relaciones de afiliación no influyen en qué productos se muestran ni en qué orden aparecen. Nunca recomendamos un producto únicamente por motivos comerciales.</p>
+
+      <p>Esta declaración cumple con los requisitos de transparencia exigidos por Amazon Associates, la Directiva 2005/29/CE sobre prácticas comerciales desleales y las directrices de la FTC (para tráfico internacional).</p>
+    </div>
+
+    <!-- 6. CONTACTO -->
+    <div class="section" id="contacto">
+      <div class="section-tag">Sección 6</div>
+      <h2>CONTACTO</h2>
+
+      <p>Para cualquier consulta legal, ejercicio de derechos o cuestión relacionada con la privacidad, puedes contactarnos en:</p>
+
+      <table class="data-table">
+        <thead><tr><th>Canal</th><th>Datos</th></tr></thead>
+        <tbody>
+          <tr><td>Email legal</td><td><a href="mailto:legal@libirhythm.com">legal@libirhythm.com</a></td></tr>
+          <tr><td>Email general</td><td><a href="mailto:hola@libirhythm.com">hola@libirhythm.com</a></td></tr>
+          <tr><td>Web</td><td><a href="https://libirhythm.com">libirhythm.com</a></td></tr>
+          <tr><td>Titular</td><td>Klaus Tilgner — NIF X1144225K</td></tr>
+        </tbody>
+      </table>
+
+      <p>Nos comprometemos a responder en un plazo máximo de <strong>30 días hábiles</strong> a cualquier solicitud relacionada con el ejercicio de derechos RGPD.</p>
+
+      <div class="highlight-box">
+        <p>Si tienes alguna queja sobre el tratamiento de tus datos, también puedes acudir a la <strong>Agencia Española de Protección de Datos</strong>: <a href="https://www.aepd.es" target="_blank">www.aepd.es</a></p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="footer-logo">¿HOY MOJO?</div>
+  <div class="footer-links">
+    <a href="/">Calculadora</a>
+    <a href="https://libirhythm.com">LibiRhythm 💜</a>
+  </div>
+  <div class="footer-copy">© 2026 libirhythm.com · Klaus Tilgner</div>
+</footer>
+
+<script>
+  // Highlight active sidebar link on scroll
+  const sections = document.querySelectorAll('.section');
+  const links = document.querySelectorAll('.sidebar a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    links.forEach(l => {
+      l.classList.remove('active');
+      if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+    });
+  });
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
