@@ -3,278 +3,1169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LibiRhythm — Muy pronto</title>
+<title>LibiRhythm — Tu cuerpo sabe más de lo que crees</title>
+<meta name="description" content="Descubre tu ciclo, tus bioritmos y tu energía personal. Predicción 30 días, modo pareja 180 días. Para mujeres que quieren entenderse de verdad.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; }
-  body {
-    background: #0e0a12;
-    color: #fff;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 24px;
-    overflow: hidden;
-    position: relative;
-  }
+:root{
+  --ink:    #16101f;
+  --rose:   #c8556f;
+  --rose2:  #e8849a;
+  --gold:   #c9a96e;
+  --lilac:  #9b7fc8;
+  --lilac2: #c4addf;
+  --teal:   #7abfbf;
+  --cream:  #faf7f3;
+  --muted:  rgba(255,255,255,0.55);
+  --soft:   rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:#fff;
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  line-height:1.6;
+}
 
-  /* Ambient orbs */
-  .orb { position: fixed; border-radius: 50%; pointer-events: none; filter: blur(80px); }
-  .orb1 { width: 500px; height: 500px; top: -150px; left: -100px; background: radial-gradient(circle, rgba(212,88,122,0.18), transparent 70%); }
-  .orb2 { width: 400px; height: 400px; bottom: -100px; right: -80px; background: radial-gradient(circle, rgba(183,148,200,0.15), transparent 70%); }
-  .orb3 { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(201,169,110,0.08), transparent 70%); animation: pulse 4s ease-in-out infinite; }
+/* ── GRAIN ── */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:999;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:0.5;
+}
 
-  @keyframes pulse { 0%,100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.2); } }
-  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes shimmer { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:18px 32px;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(22,16,31,0.85);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  transition:all 0.3s;
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;letter-spacing:4px;
+  background:linear-gradient(135deg,var(--rose2),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{
+  background:linear-gradient(135deg,var(--rose),var(--lilac));
+  border:none;border-radius:30px;padding:10px 24px;
+  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;
+  color:#fff;cursor:pointer;text-decoration:none;
+  box-shadow:0 4px 20px rgba(200,85,111,0.3);transition:all 0.2s;
+}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 7px 28px rgba(200,85,111,0.4);}
 
-  /* Grain */
-  body::before {
-    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 100;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    opacity: 0.4;
-  }
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:120px 24px 80px;
+  position:relative;overflow:hidden;
+}
+/* Mesh background */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 20% 30%, rgba(200,85,111,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(155,127,200,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(201,169,110,0.06) 0%, transparent 70%);
+}
+.hero-moon{
+  font-size:56px;margin-bottom:28px;display:block;
+  filter:drop-shadow(0 0 30px rgba(201,169,110,0.5));
+  animation:moonFloat 7s ease-in-out infinite;
+  position:relative;z-index:1;
+}
+@keyframes moonFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-12px) rotate(5deg)}}
 
-  .container { text-align: center; max-width: 560px; position: relative; z-index: 10; }
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,85,111,0.1);border:1px solid rgba(200,85,111,0.3);
+  border-radius:30px;padding:6px 18px;
+  font-size:11px;color:var(--rose2);letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:28px;position:relative;z-index:1;
+  animation:fadeUp 0.8s ease 0.1s both;
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(52px,9vw,100px);
+  font-weight:300;line-height:1;
+  letter-spacing:-1px;margin-bottom:12px;
+  position:relative;z-index:1;
+  animation:fadeUp 0.8s ease 0.25s both;
+}
+.hero-title em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--rose2),var(--gold),var(--lilac2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-size:clamp(16px,2.5vw,20px);color:rgba(255,255,255,0.65);
+  max-width:480px;line-height:1.8;margin:0 auto 44px;
+  position:relative;z-index:1;
+  animation:fadeUp 0.8s ease 0.4s both;
+}
+.hero-btns{
+  display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+  position:relative;z-index:1;
+  animation:fadeUp 0.8s ease 0.55s both;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--rose),var(--lilac));
+  border:none;border-radius:50px;padding:17px 40px;
+  font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;
+  color:#fff;cursor:pointer;text-decoration:none;
+  box-shadow:0 8px 32px rgba(200,85,111,0.35);
+  transition:all 0.25s;display:inline-block;
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(200,85,111,0.45);}
+.btn-ghost{
+  background:transparent;border:1px solid rgba(255,255,255,0.2);
+  border-radius:50px;padding:17px 40px;
+  font-size:15px;color:rgba(255,255,255,0.7);cursor:pointer;
+  text-decoration:none;transition:all 0.2s;display:inline-block;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.5);color:#fff;}
+.hero-note{
+  margin-top:20px;font-size:12px;color:rgba(255,255,255,0.25);
+  letter-spacing:1px;position:relative;z-index:1;
+  animation:fadeUp 0.8s ease 0.7s both;
+}
 
-  /* Moon animation */
-  .moon { font-size: 64px; margin-bottom: 24px; display: block; animation: fadeUp 0.8s ease 0.1s both; filter: drop-shadow(0 0 20px rgba(183,148,200,0.5)); }
+/* ── SCROLL INDICATOR ── */
+.scroll-hint{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:rgba(255,255,255,0.25);font-size:11px;letter-spacing:2px;
+  animation:fadeUp 0.8s ease 0.9s both;
+}
+.scroll-line{
+  width:1px;height:48px;
+  background:linear-gradient(to bottom,rgba(200,85,111,0.6),transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse{0%,100%{opacity:0.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.1)}}
 
-  /* Logo */
-  .logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(48px, 10vw, 80px);
-    font-weight: 300;
-    letter-spacing: 6px;
-    margin-bottom: 8px;
-    background: linear-gradient(135deg, #d4587a, #c9a96e, #b794c8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: fadeUp 0.8s ease 0.2s both;
-  }
+/* ── SECTION BASE ── */
+section{padding:100px 24px;}
+.container{max-width:1100px;margin:0 auto;}
+.container-sm{max-width:700px;margin:0 auto;}
+.eyebrow{
+  font-size:10px;letter-spacing:5px;color:var(--gold);
+  text-transform:uppercase;margin-bottom:14px;display:block;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,58px);font-weight:300;line-height:1.1;
+  margin-bottom:16px;
+}
+.section-title em{font-style:italic;color:var(--rose2);}
+.section-sub{font-size:16px;color:rgba(255,255,255,0.6);line-height:1.8;max-width:480px;}
+.divider{
+  width:48px;height:1px;
+  background:linear-gradient(to right,var(--rose),var(--gold));
+  margin:0 0 24px;
+}
 
-  .tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(16px, 3vw, 22px);
-    font-weight: 300;
-    font-style: italic;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 48px;
-    line-height: 1.6;
-    animation: fadeUp 0.8s ease 0.35s both;
-  }
-  .tagline em { color: #d4587a; font-style: normal; }
+/* ── PHASES SECTION ── */
+.phases-section{background:rgba(255,255,255,0.02);}
+.phases-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:64px;}
+.phases-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.phase-card{
+  border-radius:24px;padding:28px 22px;
+  border:1px solid transparent;
+  transition:transform 0.3s,border-color 0.3s;
+  cursor:default;
+}
+.phase-card:hover{transform:translateY(-6px);}
+.phase-card.menstrual{background:rgba(200,85,111,0.08);border-color:rgba(200,85,111,0.2);}
+.phase-card.folicular{background:rgba(122,191,191,0.08);border-color:rgba(122,191,191,0.2);}
+.phase-card.ovulacion{background:rgba(201,169,110,0.1);border-color:rgba(201,169,110,0.25);}
+.phase-card.lutea{background:rgba(155,127,200,0.08);border-color:rgba(155,127,200,0.2);}
+.phase-emoji{font-size:36px;margin-bottom:14px;display:block;}
+.phase-days{font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;opacity:0.6;}
+.phase-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;margin-bottom:10px;
+}
+.phase-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:14px;}
+.phase-tips{display:flex;flex-direction:column;gap:5px;}
+.phase-tip{
+  font-size:11px;color:rgba(255,255,255,0.45);
+  padding-left:14px;position:relative;
+}
+.phase-tip::before{content:'✦';position:absolute;left:0;font-size:8px;top:1px;}
+.phase-card.menstrual .phase-name{color:var(--rose2);}
+.phase-card.folicular .phase-name{color:var(--teal);}
+.phase-card.ovulacion .phase-name{color:var(--gold);}
+.phase-card.lutea .phase-name{color:var(--lilac2);}
 
-  /* Divider */
-  .divider { width: 60px; height: 1px; background: linear-gradient(to right, #d4587a, #c9a96e); margin: 0 auto 40px; animation: fadeUp 0.8s ease 0.45s both; }
+/* ── PREVIEW SECTION ── */
+.preview-section{}
+.preview-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:center;
+}
+.preview-text{}
+.preview-features{display:flex;flex-direction:column;gap:20px;margin-top:36px;}
+.feat-row{display:flex;align-items:flex-start;gap:16px;}
+.feat-icon{
+  width:44px;height:44px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.feat-icon.rose{background:rgba(200,85,111,0.12);}
+.feat-icon.gold{background:rgba(201,169,110,0.12);}
+.feat-icon.lilac{background:rgba(155,127,200,0.12);}
+.feat-icon.teal{background:rgba(122,191,191,0.12);}
+.feat-content h4{font-size:15px;font-weight:500;margin-bottom:4px;}
+.feat-content p{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;}
 
-  /* Teaser pills */
-  .features {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-    margin-bottom: 48px;
-    animation: fadeUp 0.8s ease 0.55s both;
-  }
-  .feature-pill {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 30px;
-    padding: 8px 18px;
-    font-size: 13px;
-    color: rgba(255,255,255,0.7);
-    display: flex; align-items: center; gap: 7px;
-  }
+/* Mock app screen */
+.mock-screen{
+  background:linear-gradient(160deg,rgba(200,85,111,0.08),rgba(22,16,31,0.95));
+  border:1px solid rgba(200,85,111,0.2);
+  border-radius:32px;padding:32px 24px;
+  position:relative;overflow:hidden;
+}
+.mock-screen::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--rose2),var(--gold),transparent);
+  opacity:0.5;
+}
+.mock-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:24px;
+}
+.mock-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-weight:600;letter-spacing:3px;
+  background:linear-gradient(135deg,var(--rose2),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.mock-badge{
+  background:linear-gradient(135deg,var(--rose),var(--lilac));
+  border-radius:20px;padding:3px 12px;font-size:10px;font-weight:500;
+}
+.mock-gauge-wrap{display:flex;justify-content:center;margin:8px 0 20px;}
+.mock-gauge{position:relative;width:130px;height:130px;}
+.mock-gauge-num{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.mock-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;font-weight:600;color:var(--rose2);line-height:1;
+}
+.mock-of{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:2px;}
+.mock-phase{
+  text-align:center;font-size:13px;font-weight:500;
+  background:rgba(255,255,255,0.07);border-radius:20px;
+  padding:7px 16px;display:inline-flex;align-items:center;
+  gap:7px;margin:0 auto 16px;display:flex;justify-content:center;
+}
+.mock-bars{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.mock-bar-row{display:grid;grid-template-columns:80px 1fr 36px;align-items:center;gap:10px;}
+.mock-bar-label{font-size:10px;color:rgba(255,255,255,0.4);text-align:right;}
+.mock-track{height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.mock-fill{height:100%;border-radius:2px;}
+.mock-bar-val{font-size:10px;font-family:monospace;color:rgba(255,255,255,0.4);}
 
-  /* Email form */
-  .notify-title {
-    font-size: 13px;
-    letter-spacing: 3px;
-    color: rgba(255,255,255,0.4);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    animation: fadeUp 0.8s ease 0.65s both;
-  }
-  .email-form {
-    display: flex; gap: 10px; max-width: 420px; margin: 0 auto 16px;
-    animation: fadeUp 0.8s ease 0.7s both;
-    flex-wrap: wrap; justify-content: center;
-  }
-  .email-input {
-    flex: 1; min-width: 200px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 50px;
-    padding: 14px 22px;
-    color: #fff; font-size: 14px;
-    font-family: 'Outfit', sans-serif;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .email-input:focus { border-color: rgba(212,88,122,0.6); }
-  .email-input::placeholder { color: rgba(255,255,255,0.3); }
-  .notify-btn {
-    background: linear-gradient(135deg, #d4587a, #b794c8);
-    border: none; border-radius: 50px;
-    padding: 14px 28px;
-    font-family: 'Outfit', sans-serif;
-    font-size: 14px; font-weight: 500;
-    color: #fff; cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(212,88,122,0.3);
-    white-space: nowrap;
-  }
-  .notify-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,88,122,0.4); }
+/* ── COUPLE SECTION ── */
+.couple-section{
+  background:linear-gradient(160deg,rgba(155,127,200,0.06),rgba(22,16,31,0.8),rgba(200,85,111,0.06));
+  position:relative;overflow:hidden;
+}
+.couple-section::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(155,127,200,0.08),transparent 70%);
+  top:-200px;right:-200px;pointer-events:none;
+}
+.couple-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.couple-visual{
+  background:linear-gradient(135deg,rgba(155,127,200,0.1),rgba(200,85,111,0.06));
+  border:1px solid rgba(155,127,200,0.2);
+  border-radius:32px;padding:36px 28px;
+}
+.couple-title-block{margin-bottom:28px;}
+.couple-compat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:80px;font-weight:600;line-height:1;
+  background:linear-gradient(135deg,var(--rose2),var(--lilac2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.couple-compat-label{
+  font-size:10px;letter-spacing:4px;color:var(--lilac2);
+  text-transform:uppercase;margin-top:4px;
+}
+.couple-top-days{display:flex;flex-direction:column;gap:8px;margin-top:20px;}
+.couple-day{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:10px 14px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.couple-day-date{font-size:13px;color:rgba(255,255,255,0.8);}
+.couple-day-score{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:600;
+}
+.couple-heatmap{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:4px;
+  margin-top:16px;
+}
+.hm-day{
+  aspect-ratio:1;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:8px;font-family:monospace;
+}
+.hm-high{background:rgba(200,85,111,0.45);color:var(--rose2);}
+.hm-mid{background:rgba(201,169,110,0.3);color:var(--gold);}
+.hm-low{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.3);}
 
-  .notify-note {
-    font-size: 11px; color: rgba(255,255,255,0.25);
-    animation: fadeUp 0.8s ease 0.8s both;
-  }
+/* ── TESTIMONIALS ── */
+.testimonials-section{}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px;}
+.testimonial{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+  border-radius:24px;padding:28px 24px;
+  transition:border-color 0.3s;
+}
+.testimonial:hover{border-color:rgba(200,85,111,0.25);}
+.test-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-style:italic;font-weight:300;
+  color:rgba(255,255,255,0.85);line-height:1.7;
+  margin-bottom:20px;
+}
+.test-author{display:flex;align-items:center;gap:12px;}
+.test-avatar{
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+}
+.test-name{font-size:13px;font-weight:500;}
+.test-detail{font-size:11px;color:rgba(255,255,255,0.35);margin-top:1px;}
 
-  /* Success message */
-  .success {
-    display: none;
-    background: rgba(212,88,122,0.1);
-    border: 1px solid rgba(212,88,122,0.3);
-    border-radius: 16px;
-    padding: 14px 20px;
-    font-size: 14px;
-    color: rgba(255,255,255,0.8);
-    max-width: 380px;
-    margin: 0 auto;
-  }
+/* ── CALCULATOR ── */
+.calc-section{}
+.calc-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:start;
+}
+.calc-form{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:32px;padding:36px 28px;
+  position:relative;overflow:hidden;
+}
+.calc-form::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--rose),var(--gold),transparent);
+  opacity:0.4;
+}
+.field{margin-bottom:20px;}
+.field-label{
+  font-size:10px;letter-spacing:3px;color:var(--gold);
+  text-transform:uppercase;display:block;margin-bottom:8px;
+}
+.field-input{
+  width:100%;background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:14px;padding:13px 16px;color:#fff;font-size:14px;
+  font-family:'DM Sans',sans-serif;outline:none;
+  transition:border-color 0.2s;color-scheme:dark;
+}
+.field-input:focus{border-color:rgba(200,85,111,0.5);}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:30px;padding:8px 16px;font-size:13px;
+  color:rgba(255,255,255,0.6);cursor:pointer;transition:all 0.2s;
+}
+.chip:hover{border-color:rgba(200,85,111,0.4);color:#fff;}
+.chip.active{border-color:var(--rose);background:rgba(200,85,111,0.1);color:var(--rose2);}
+.btn-full{
+  width:100%;background:linear-gradient(135deg,var(--rose),var(--lilac));
+  border:none;border-radius:16px;padding:17px;
+  font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;
+  letter-spacing:2px;color:#fff;cursor:pointer;
+  box-shadow:0 6px 28px rgba(200,85,111,0.28);transition:all 0.25s;margin-top:8px;
+}
+.btn-full:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(200,85,111,0.38);}
+.btn-full:disabled{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.3);
+  cursor:not-allowed;box-shadow:none;transform:none;}
 
-  /* Sister app link */
-  .sister {
-    margin-top: 56px;
-    animation: fadeUp 0.8s ease 0.9s both;
-  }
-  .sister p { font-size: 12px; color: rgba(255,255,255,0.25); margin-bottom: 10px; letter-spacing: 1px; }
-  .sister a {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 30px; padding: 10px 22px;
-    font-size: 13px; font-weight: 500;
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .sister a:hover { border-color: rgba(255,107,53,0.4); color: #fff; }
+/* ── PRICING ── */
+.pricing-section{
+  background:rgba(255,255,255,0.02);
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px;max-width:700px;margin-left:auto;margin-right:auto;}
+.price-card{border-radius:28px;padding:36px 30px;position:relative;overflow:hidden;}
+.price-card.free{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.price-card.pro{
+  background:linear-gradient(160deg,rgba(200,85,111,0.1),rgba(155,127,200,0.08));
+  border:1px solid rgba(200,85,111,0.3);
+}
+.price-card.pro::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--rose),var(--gold),var(--lilac));
+}
+.price-badge{
+  display:inline-block;background:linear-gradient(135deg,var(--rose),var(--lilac));
+  border-radius:20px;padding:3px 14px;font-size:10px;font-weight:600;
+  color:#fff;letter-spacing:2px;margin-bottom:16px;
+}
+.price-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:400;margin-bottom:8px;
+}
+.price-amount{
+  font-family:'Cormorant Garamond',serif;
+  font-size:52px;font-weight:600;line-height:1;
+  color:var(--rose2);margin-bottom:4px;
+}
+.price-per{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:24px;}
+.price-features{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.price-feat{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;color:rgba(255,255,255,0.7);
+}
+.price-feat::before{content:'✦';font-size:8px;color:var(--rose2);}
+.price-feat.muted{color:rgba(255,255,255,0.3);}
+.price-feat.muted::before{color:rgba(255,255,255,0.2);}
+.price-btn{
+  width:100%;border-radius:14px;padding:14px;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;
+  cursor:pointer;transition:all 0.2s;text-decoration:none;display:block;text-align:center;
+}
+.price-btn.free-btn{
+  background:transparent;border:1px solid rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.6);
+}
+.price-btn.free-btn:hover{border-color:rgba(255,255,255,0.4);color:#fff;}
+.price-btn.pro-btn{
+  background:linear-gradient(135deg,var(--rose),var(--lilac));
+  border:none;color:#fff;
+  box-shadow:0 4px 20px rgba(200,85,111,0.3);
+}
+.price-btn.pro-btn:hover{transform:translateY(-1px);box-shadow:0 7px 28px rgba(200,85,111,0.4);}
 
-  /* Countdown */
-  .countdown {
-    display: flex; gap: 20px; justify-content: center; margin-bottom: 48px;
-    animation: fadeUp 0.8s ease 0.5s both;
-  }
-  .count-block { text-align: center; }
-  .count-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 42px; font-weight: 600; line-height: 1;
-    background: linear-gradient(135deg, #d4587a, #c9a96e);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .count-label { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
-  .count-sep { font-size: 36px; color: rgba(255,255,255,0.15); line-height: 1; padding-top: 4px; }
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid rgba(255,255,255,0.07);
+  padding:32px 32px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;letter-spacing:4px;
+  background:linear-gradient(135deg,var(--rose2),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:#fff;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.2);}
+
+/* ── RESULT (hidden initially) ── */
+#resultWrap{display:none;margin-top:28px;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-d1{transition-delay:0.1s;}
+.reveal-d2{transition-delay:0.2s;}
+.reveal-d3{transition-delay:0.3s;}
+.reveal-d4{transition-delay:0.4s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav .nav-links{display:none;}
+  .phases-intro{grid-template-columns:1fr;}
+  .phases-grid{grid-template-columns:1fr 1fr;}
+  .preview-wrap,.couple-wrap,.calc-wrap{grid-template-columns:1fr;}
+  .testimonials-grid{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr;}
+}
+
+  /* ── WHEEL DATE PICKER ─────────────────────────── */
+  .wheel-date { display: flex; gap: 6px; margin-bottom: 4px; }
+  .wheel-col { flex: 1; display: flex; flex-direction: column; align-items: center; }
+  .wheel-col.w-year { flex: 1.6; }
+  .wheel-col-label { font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.28);
+    text-transform: uppercase; margin-top: 6px; }
+  .wheel-wrap { position: relative; height: 150px; width: 100%;
+    overflow: hidden; border-radius: 14px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); }
+  .wheel-scroll { height: 100%; overflow-y: scroll; scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .wheel-scroll::-webkit-scrollbar { display: none; }
+  .wheel-pad { height: 55px; flex-shrink: 0; }
+  .wheel-item { height: 40px; scroll-snap-align: center;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; color: rgba(255,255,255,0.25);
+    transition: color 0.15s, font-size 0.12s;
+    cursor: pointer; user-select: none; }
+  .wheel-item.sel { color: #fff; font-size: 17px; font-weight: 500; }
+  .wheel-fade-top { position: absolute; top: 0; left: 0; right: 0; height: 58px;
+    pointer-events: none; z-index: 2; }
+  .wheel-fade-bot { position: absolute; bottom: 0; left: 0; right: 0; height: 58px;
+    pointer-events: none; z-index: 2; }
+  .wheel-line { position: absolute; top: 50%; left: 8px; right: 8px; height: 40px;
+    transform: translateY(-50%);
+    border-top: 1px solid rgba(200,85,111,0.25);
+    border-bottom: 1px solid rgba(200,85,111,0.25);
+    pointer-events: none; z-index: 1; }
+
 </style>
 </head>
 <body>
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
 
-  <div class="container">
-
-    <span class="moon">🌙</span>
-
-    <div class="logo">LibiRhythm</div>
-    <p class="tagline">Tu cuerpo tiene un ritmo.<br><em>Pronto podrás escucharlo.</em></p>
-
-    <div class="divider"></div>
-
-    <!-- Teaser features -->
-    <div class="features">
-      <div class="feature-pill">🌸 Tu ciclo menstrual</div>
-      <div class="feature-pill">💜 Bioritmo emocional</div>
-      <div class="feature-pill">⚡ Bioritmo físico</div>
-      <div class="feature-pill">💛 Bioritmo intelectual</div>
-      <div class="feature-pill">📅 Predicción 30 días</div>
-      <div class="feature-pill">💑 Modo pareja</div>
-      <div class="feature-pill">🔒 100% privado</div>
-    </div>
-
-    <!-- Countdown -->
-    <div class="countdown" id="countdown">
-      <div class="count-block"><div class="count-num" id="days">--</div><div class="count-label">Días</div></div>
-      <div class="count-sep">·</div>
-      <div class="count-block"><div class="count-num" id="hours">--</div><div class="count-label">Horas</div></div>
-      <div class="count-sep">·</div>
-      <div class="count-block"><div class="count-num" id="mins">--</div><div class="count-label">Minutos</div></div>
-    </div>
-
-    <!-- Email notify -->
-    <p class="notify-title">Avísame cuando esté lista</p>
-    <div class="email-form" id="emailForm">
-      <input type="email" class="email-input" id="emailInput" placeholder="tu@email.com">
-      <button class="notify-btn" onclick="subscribe()">Quiero saber →</button>
-    </div>
-    <div class="success" id="successMsg">
-      💜 ¡Apuntada! Serás la primera en saberlo.
-    </div>
-    <p class="notify-note">Sin spam. Solo un email cuando lancemos.</p>
-
-    <!-- Sister app -->
-    <div class="sister">
-      <p>MIENTRAS TANTO</p>
-      <a href="https://hoy-mojo.com" target="_blank">
-        🔥 Prueba ¿Hoy Mojo? — la versión para parejas
-      </a>
-    </div>
-
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">LibiRhythm</div>
+  <div class="nav-links">
+    <a href="#ciclo">Tu ciclo</a>
+    <a href="#pareja">Modo pareja</a>
+    <a href="#calcular">Calcular</a>
+    <a href="#precios">Pro</a>
   </div>
+  <a href="#calcular" class="nav-cta">Empezar gratis →</a>
+</nav>
 
-  <script>
-    // Countdown — set launch date (30 days from now)
-    const launch = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
-    function updateCountdown() {
-      const now  = Date.now();
-      const diff = Math.max(0, launch - now);
-      const d    = Math.floor(diff / 86400000);
-      const h    = Math.floor((diff % 86400000) / 3600000);
-      const m    = Math.floor((diff % 3600000) / 60000);
-      document.getElementById('days').textContent  = String(d).padStart(2,'0');
-      document.getElementById('hours').textContent = String(h).padStart(2,'0');
-      document.getElementById('mins').textContent  = String(m).padStart(2,'0');
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 60000);
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-moon">🌙</span>
+  <div class="hero-tag">✦ Bioritmos · Ciclo · Bienestar</div>
+  <h1 class="hero-title">
+    Tu cuerpo sabe<br>más de lo que <em>crees</em>
+  </h1>
+  <p class="hero-sub">
+    Descubre tu energía, tu ciclo y tu estado emocional cada día del mes. Con previsión de 30 días y modo pareja de 180 días.
+  </p>
+  <div class="hero-btns">
+    <a href="#calcular" class="btn-primary">Descubrir mi ritmo 🌙</a>
+    <a href="#pareja" class="btn-ghost">Ver modo pareja →</a>
+  </div>
+  <p class="hero-note">Sin registro · Sin datos guardados · Para siempre gratis en lo esencial</p>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>DESCUBRE</span>
+  </div>
+</div>
 
-    // Email subscribe — stores locally, in production connect to Mailchimp/Resend
-    function subscribe() {
-      const email = document.getElementById('emailInput').value.trim();
-      if (!email || !email.includes('@')) {
-        document.getElementById('emailInput').style.borderColor = 'rgba(212,88,122,0.8)';
-        return;
-      }
-      // Save locally
-      const list = JSON.parse(localStorage.getItem('libi_waitlist') || '[]');
-      if (!list.includes(email)) list.push(email);
-      localStorage.setItem('libi_waitlist', JSON.stringify(list));
-      // Show success
-      document.getElementById('emailForm').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    }
+<!-- PHASES SECTION -->
+<section class="phases-section" id="ciclo">
+  <div class="container">
+    <div class="phases-intro">
+      <div class="reveal">
+        <span class="eyebrow">Tu ciclo tiene 4 fases</span>
+        <div class="divider"></div>
+        <h2 class="section-title">No eres la misma<br><em>cada semana</em></h2>
+        <p class="section-sub">Tu ciclo menstrual no es solo la menstruación. Es un viaje de 28 días con cuatro fases distintas, cada una con su propia energía, humor y deseos. LibiRhythm te ayuda a entenderlas y aprovecharlas.</p>
+      </div>
+      <div class="reveal reveal-d2">
+        <div style="background:rgba(200,85,111,0.06);border:1px solid rgba(200,85,111,0.15);border-radius:24px;padding:28px;">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:16px;">
+            "Por fin entiendo por qué hay semanas que conquisto el mundo y semanas en que solo quiero una manta y silencio. No es humor — es mi ciclo."
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(200,85,111,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;">🌸</div>
+            <div>
+              <div style="font-size:13px;font-weight:500;">María, 32 años</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.35);">Barcelona · Usuaria Pro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    // Enter key on email
-    document.getElementById('emailInput').addEventListener('keydown', e => {
-      if (e.key === 'Enter') subscribe();
+    <div class="phases-grid">
+      <div class="phase-card menstrual reveal">
+        <span class="phase-emoji">🔴</span>
+        <div class="phase-days">Días 1 – 5</div>
+        <div class="phase-name">Menstruación</div>
+        <p class="phase-desc">Tu cuerpo pide descanso. Es momento de soltar, reflexionar y cuidarte.</p>
+        <div class="phase-tips">
+          <div class="phase-tip">Yoga restaurativo</div>
+          <div class="phase-tip">Alimentación rica en hierro</div>
+          <div class="phase-tip">Tiempo de introspección</div>
+        </div>
+      </div>
+      <div class="phase-card folicular reveal reveal-d1">
+        <span class="phase-emoji">🌱</span>
+        <div class="phase-days">Días 6 – 13</div>
+        <div class="phase-name">Folicular</div>
+        <p class="phase-desc">El estrógeno sube. Tu energía despierta. Ideal para proyectos nuevos.</p>
+        <div class="phase-tips">
+          <div class="phase-tip">Entrenamientos intensos</div>
+          <div class="phase-tip">Socializar y conectar</div>
+          <div class="phase-tip">Tomar decisiones</div>
+        </div>
+      </div>
+      <div class="phase-card ovulacion reveal reveal-d2">
+        <span class="phase-emoji">✨</span>
+        <div class="phase-days">Días 14 – 16</div>
+        <div class="phase-name">Ovulación</div>
+        <p class="phase-desc">Tu pico de energía, magnetismo y deseo. Aprovecha este momento cumbre.</p>
+        <div class="phase-tips">
+          <div class="phase-tip">Presentaciones importantes</div>
+          <div class="phase-tip">Citas especiales</div>
+          <div class="phase-tip">Mayor deseo íntimo</div>
+        </div>
+      </div>
+      <div class="phase-card lutea reveal reveal-d3">
+        <span class="phase-emoji">🌕</span>
+        <div class="phase-days">Días 17 – 28</div>
+        <div class="phase-name">Lútea</div>
+        <p class="phase-desc">Progesterona dominante. Energía serena. Profundidad emocional alta.</p>
+        <div class="phase-tips">
+          <div class="phase-tip">Completar proyectos</div>
+          <div class="phase-tip">Conexión íntima profunda</div>
+          <div class="phase-tip">Magnesio y descanso</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW SECTION -->
+<section style="padding:100px 24px;" id="app">
+  <div class="container">
+    <div class="preview-wrap">
+      <div class="reveal">
+        <span class="eyebrow">Tu dashboard personal</span>
+        <div class="divider"></div>
+        <h2 class="section-title">Tu energía,<br><em>en tiempo real</em></h2>
+        <p class="section-sub">Un índice personalizado que combina tu fase del ciclo con tus tres bioritmos personales. Cada día diferente, cada día tuyo.</p>
+        <div class="preview-features">
+          <div class="feat-row">
+            <div class="feat-icon rose">🌸</div>
+            <div class="feat-content">
+              <h4>Índice diario personalizado</h4>
+              <p>Combina ciclo menstrual + bioritmo emocional, físico e intelectual en una puntuación de 0 a 100.</p>
+            </div>
+          </div>
+          <div class="feat-row">
+            <div class="feat-icon gold">📅</div>
+            <div class="feat-content">
+              <h4>Calendario de 30 días</h4>
+              <p>Visualiza el mes completo con código de colores. Planifica con antelación tus mejores momentos.</p>
+            </div>
+          </div>
+          <div class="feat-row">
+            <div class="feat-icon lilac">📄</div>
+            <div class="feat-content">
+              <h4>Informe PDF mensual</h4>
+              <p>Descarga tu previsión completa con análisis semanal, guía de autocuidado y curvas de energía.</p>
+            </div>
+          </div>
+          <div class="feat-row">
+            <div class="feat-icon teal">🔒</div>
+            <div class="feat-content">
+              <h4>100% privada</h4>
+              <p>Tus datos nunca salen de tu dispositivo. Sin cuenta, sin servidor, sin rastreo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mock app screen -->
+      <div class="mock-screen reveal reveal-d2">
+        <div class="mock-header">
+          <div class="mock-logo">LibiRhythm</div>
+          <div class="mock-badge">PRO ✦</div>
+        </div>
+        <div style="font-size:10px;letter-spacing:3px;color:rgba(200,85,111,0.7);text-transform:uppercase;text-align:center;margin-bottom:12px">HOY · DÍA 14 DEL CICLO</div>
+        <div class="mock-gauge-wrap">
+          <div class="mock-gauge">
+            <svg width="130" height="130" style="transform:rotate(-90deg)">
+              <circle cx="65" cy="65" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+              <circle cx="65" cy="65" r="52" fill="none" stroke="#e8849a" stroke-width="8"
+                stroke-linecap="round" stroke-dasharray="262 327"
+                style="filter:drop-shadow(0 0 8px rgba(232,132,154,0.6))"/>
+            </svg>
+            <div class="mock-gauge-num">
+              <div class="mock-num">80</div>
+              <div class="mock-of">DE 100</div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-phase">✨ Ovulación · Tu momento cumbre</div>
+        <div class="mock-bars">
+          <div class="mock-bar-row">
+            <div class="mock-bar-label">Emocional</div>
+            <div class="mock-track"><div class="mock-fill" style="background:var(--rose);width:78%"></div></div>
+            <div class="mock-bar-val">78%</div>
+          </div>
+          <div class="mock-bar-row">
+            <div class="mock-bar-label">Físico</div>
+            <div class="mock-track"><div class="mock-fill" style="background:var(--teal);width:65%"></div></div>
+            <div class="mock-bar-val">65%</div>
+          </div>
+          <div class="mock-bar-row">
+            <div class="mock-bar-label">Intelectual</div>
+            <div class="mock-track"><div class="mock-fill" style="background:var(--gold);width:82%"></div></div>
+            <div class="mock-bar-val">82%</div>
+          </div>
+        </div>
+        <div style="background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.2);border-radius:12px;padding:12px 14px;font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;font-style:italic;">
+          "Tu magnetismo personal está en su punto más alto. Confía en tu intuición hoy. ✨"
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUPLE SECTION -->
+<section class="couple-section" id="pareja">
+  <div class="container">
+    <div class="couple-wrap">
+      <div class="reveal">
+        <span class="eyebrow">Modo pareja exclusivo</span>
+        <div class="divider"></div>
+        <h2 class="section-title">¿Y si él también<br>pudiera <em>entenderte</em>?</h2>
+        <p class="section-sub" style="margin-bottom:32px;">El modo pareja calcula los momentos de máxima sincronía entre vosotros en los próximos 180 días. Planifica vacaciones, escapadas y momentos especiales cuando el universo os dice que sí.</p>
+        <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:36px;">
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <div style="width:40px;height:40px;border-radius:12px;background:rgba(155,127,200,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">💞</div>
+            <div>
+              <div style="font-size:14px;font-weight:500;margin-bottom:3px;">Previsión de 180 días</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.5);">Los 10 mejores momentos del semestre para planificar juntos.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <div style="width:40px;height:40px;border-radius:12px;background:rgba(201,169,110,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">🗓️</div>
+            <div>
+              <div style="font-size:14px;font-weight:500;margin-bottom:3px;">Mapa de calor visual</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.5);">Calendario mes a mes con la sincronía de los dos en un vistazo.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <div style="width:40px;height:40px;border-radius:12px;background:rgba(200,85,111,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">✈️</div>
+            <div>
+              <div style="font-size:14px;font-weight:500;margin-bottom:3px;">Ideal para planificar</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.5);">Vacaciones, escapadas románticas, aniversarios o simplemente el mejor fin de semana del trimestre.</div>
+            </div>
+          </div>
+        </div>
+        <a href="#calcular" class="btn-primary">Probar modo pareja 💑</a>
+      </div>
+
+      <div class="couple-visual reveal reveal-d2">
+        <div style="font-size:10px;letter-spacing:3px;color:var(--lilac2);text-transform:uppercase;margin-bottom:16px;">COMPATIBILIDAD · 180 DÍAS</div>
+        <div class="couple-title-block">
+          <div class="couple-compat-num">78</div>
+          <div class="couple-compat-label">Índice de sincronía</div>
+        </div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:16px;">
+          Vuestra energía se alinea de forma especial 23 veces en los próximos 6 meses.
+        </div>
+        <div style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:10px;">🏆 Mejores momentos</div>
+        <div class="couple-top-days">
+          <div class="couple-day">
+            <div class="couple-day-date">💞 Sáb 14 jun · Sincronía total</div>
+            <div class="couple-day-score" style="color:var(--rose2)">96</div>
+          </div>
+          <div class="couple-day">
+            <div class="couple-day-date">✨ Dom 22 jun · Muy favorable</div>
+            <div class="couple-day-score" style="color:var(--gold)">91</div>
+          </div>
+          <div class="couple-day">
+            <div class="couple-day-date">💜 Vie 4 jul · Conexión profunda</div>
+            <div class="couple-day-score" style="color:var(--lilac2)">88</div>
+          </div>
+        </div>
+        <div style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin:16px 0 10px;">MAPA DE SINCRONÍA · JUNIO</div>
+        <div class="couple-heatmap" id="demoHeatmap"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="container">
+    <div style="text-align:center;">
+      <span class="eyebrow reveal">Lo que dicen ellas</span>
+      <div class="divider" style="margin:0 auto 16px;"></div>
+      <h2 class="section-title reveal"><em>Reconocerse</em> cambia todo</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial reveal">
+        <div class="test-quote">"Llevo 3 meses usando LibiRhythm y por primera vez entiendo mis propios cambios de humor. Ya no me siento rara — me siento cíclica."</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:rgba(200,85,111,0.15)">🌸</div>
+          <div>
+            <div class="test-name">Laura M.</div>
+            <div class="test-detail">Madrid · 28 años</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-d2">
+        <div class="test-quote">"El modo pareja fue una revelación. Mi novio lo usa también y por primera vez planificamos bien nuestros fines de semana. Parece una tontería pero funciona."</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:rgba(155,127,200,0.15)">💜</div>
+          <div>
+            <div class="test-name">Ana G.</div>
+            <div class="test-detail">Valencia · 34 años</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-d3">
+        <div class="test-quote">"El PDF mensual lo imprimo y lo tengo en la nevera. Mi jefa piensa que soy una máquina de productividad. La realidad es que trabajo más en fase folicular. 😂"</div>
+        <div class="test-author">
+          <div class="test-avatar" style="background:rgba(201,169,110,0.15)">✨</div>
+          <div>
+            <div class="test-name">Sofía R.</div>
+            <div class="test-detail">Sevilla · 31 años</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc-section" id="calcular">
+  <div class="container">
+    <div class="calc-wrap">
+      <div class="reveal">
+        <span class="eyebrow">Empieza ahora</span>
+        <div class="divider"></div>
+        <h2 class="section-title">Calcula tu<br><em>ritmo personal</em></h2>
+        <p class="section-sub" style="margin-bottom:32px;">Solo dos datos. Resultado inmediato. Sin registro, sin datos guardados.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(255,255,255,0.03);border-radius:16px;border:1px solid rgba(255,255,255,0.07);">
+            <span style="font-size:22px">🔒</span>
+            <div>
+              <div style="font-size:13px;font-weight:500;">100% privado</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.4);">Tus datos nunca salen de tu dispositivo</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(255,255,255,0.03);border-radius:16px;border:1px solid rgba(255,255,255,0.07);">
+            <span style="font-size:22px">⚡</span>
+            <div>
+              <div style="font-size:13px;font-weight:500;">Resultado en segundos</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.4);">Sin esperas, sin registro</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(255,255,255,0.03);border-radius:16px;border:1px solid rgba(255,255,255,0.07);">
+            <span style="font-size:22px">🌙</span>
+            <div>
+              <div style="font-size:13px;font-weight:500;">Gratis para siempre</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.4);">Hoy + 14 días sin coste</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-form reveal reveal-d2">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;margin-bottom:6px;">Tu calculadora</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:28px;">Dos datos. Resultado inmediato.</div>
+
+        <div class="field">
+          <label class="field-label">Tu perfil</label>
+          <div class="chips" id="profileChips">
+            <div class="chip" onclick="setProfile('cycle')" id="chip_cycle">🌸 Con ciclo</div>
+            <div class="chip" onclick="setProfile('no_cycle')" id="chip_nocycle">🌙 Sin ciclo</div>
+            <div class="chip" onclick="setProfile('other')" id="chip_other">✨ Otro</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Fecha de nacimiento</label>
+          <div id="birthDateCont"></div>
+        </div>
+
+        <div class="field" id="periodField" style="display:none">
+          <label class="field-label">Días desde tu última regla</label>
+          <input type="number" class="field-input" id="periodDays" min="1" max="999" placeholder="Ej: 14" oninput="checkForm()">
+        </div>
+
+        <button class="btn-full" id="calcBtn" onclick="doCalc()" disabled>Calcular mi ritmo ✦</button>
+
+        <div id="resultWrap">
+          <div style="height:1px;background:rgba(255,255,255,0.07);margin:24px 0;"></div>
+          <div style="text-align:center;margin-bottom:16px;">
+            <div style="font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;" id="resPhaseEyebrow">HOY</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:600;line-height:1;" id="resScore" style="color:var(--rose2)">--</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:2px;">DE 100</div>
+          </div>
+          <div id="resPhaseBadge" style="text-align:center;margin-bottom:12px;"></div>
+          <div id="resInsight" style="background:rgba(201,169,110,0.07);border:1px solid rgba(201,169,110,0.18);border-radius:12px;padding:14px;font-size:13px;color:rgba(255,255,255,0.75);line-height:1.7;font-style:italic;margin-bottom:20px;"></div>
+          <a href="libirhythm-app.html" class="btn-full" style="display:block;text-align:center;text-decoration:none;font-size:16px;">
+            Ver calendario completo →
+          </a>
+          <button onclick="resetCalc()" style="width:100%;margin-top:10px;background:transparent;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px;font-size:13px;color:rgba(255,255,255,0.4);cursor:pointer;">← Calcular de nuevo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="precios">
+  <div class="container" style="text-align:center;">
+    <span class="eyebrow reveal">Simple y transparente</span>
+    <div class="divider" style="margin:0 auto 16px;"></div>
+    <h2 class="section-title reveal">Elige tu <em>plan</em></h2>
+    <p style="color:rgba(255,255,255,0.5);font-size:15px;max-width:400px;margin:0 auto;" class="reveal">Empieza gratis. Desbloquea lo mejor cuando quieras.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card free reveal">
+        <div class="price-name" style="color:rgba(255,255,255,0.7);">Gratis</div>
+        <div class="price-amount" style="color:rgba(255,255,255,0.5);">€0</div>
+        <div class="price-per">Para siempre</div>
+        <div class="price-features">
+          <div class="price-feat">Tu índice de hoy</div>
+          <div class="price-feat">Las 4 fases del ciclo</div>
+          <div class="price-feat">Calendario 14 días</div>
+          <div class="price-feat">3 bioritmos personales</div>
+          <div class="price-feat muted">Calendario 30 días</div>
+          <div class="price-feat muted">Modo pareja 180 días</div>
+          <div class="price-feat muted">Informe PDF mensual</div>
+        </div>
+        <a href="#calcular" class="price-btn free-btn">Empezar gratis</a>
+      </div>
+
+      <div class="price-card pro reveal reveal-d2">
+        <div class="price-badge">✦ RECOMENDADO</div>
+        <div class="price-name">Pro</div>
+        <div class="price-amount">€3.99</div>
+        <div class="price-per">/ mes · Cancela cuando quieras</div>
+        <div class="price-features">
+          <div class="price-feat">Todo lo gratuito</div>
+          <div class="price-feat">📅 Calendario 30 días completo</div>
+          <div class="price-feat">💑 Modo pareja 180 días</div>
+          <div class="price-feat">📄 Informe PDF mensual</div>
+          <div class="price-feat">🚫 Sin publicidad</div>
+          <div class="price-feat">✦ Acceso anticipado a novedades</div>
+        </div>
+        <a href="https://buy.stripe.com/bJe3cu4QNgje5GB2bk0Ba00" class="price-btn pro-btn">Desbloquear Pro ✦</a>
+        <div style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:10px;">Pago seguro con Stripe · GDPR compliant</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">LibiRhythm</div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:4px;">libirhythm.com</div>
+  </div>
+  <div class="footer-links">
+    <a href="legal.html">Privacidad</a>
+    <a href="legal.html">Aviso legal</a>
+    <a href="pareja.html">Modo Pareja</a>
+  </div>
+  <div class="footer-copy">© 2026 LibiRhythm · Hecho con 🌙</div>
+</footer>
+
+<script>
+// ── WHEEL DATE PICKER (bulletproof onclick version) ───────────────────────────
+const MONTHS_NAMES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+  'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const _wVals = {}; // {prefix_d: value, prefix_m: value, prefix_y: value}
+
+function buildWheelDate(containerId, prefix) {
+  var c = document.getElementById(containerId);
+  if (!c) return;
+  var days   = Array.from({length:31}, function(_,i){ return {v:String(i+1).padStart(2,'0'), l:String(i+1)}; });
+  var months = MONTHS_NAMES.map(function(m,i){ return {v:String(i+1).padStart(2,'0'), l:m}; });
+  var years  = Array.from({length:69}, function(_,i){ return {v:String(2008-i), l:String(2008-i)}; });
+  c.innerHTML =
+    '<div class="wheel-date">' +
+    mkWheelCol(prefix+'_d', days,   'w-day',  'Día') +
+    mkWheelCol(prefix+'_m', months, 'w-mon',  'Mes') +
+    mkWheelCol(prefix+'_y', years,  'w-year', 'Año') +
+    '</div>';
+  _wVals[prefix+'_d'] = '';
+  _wVals[prefix+'_m'] = '';
+  _wVals[prefix+'_y'] = '';
+}
+
+function mkWheelCol(wid, items, cls, label) {
+  var opts = items.map(function(it, i) {
+    return '<div class="wheel-item" onclick="pickWheel(this,\''+wid+'\',\''+it.v+'\')" data-v="'+it.v+'">'+it.l+'</div>';
+  }).join('');
+  return '<div class="wheel-col '+cls+'">' +
+    '<div class="wheel-wrap">' +
+    '<div class="wheel-fade-top"></div>' +
+    '<div class="wheel-line"></div>' +
+    '<div class="wheel-scroll" id="'+wid+'_sc">'+
+    '<div class="wheel-pad"></div>'+opts+'<div class="wheel-pad"></div>'+
+    '</div>' +
+    '<div class="wheel-fade-bot"></div>' +
+    '</div>' +
+    '<div class="wheel-col-label">'+label+'</div>' +
+    '</div>';
+}
+
+function pickWheel(el, wid, val) {
+  _wVals[wid] = val;
+  var sc = document.getElementById(wid+'_sc');
+  if (sc) sc.querySelectorAll('.wheel-item').forEach(function(e){ e.classList.remove('sel'); });
+  el.classList.add('sel');
+  // Smooth scroll selected item to center
+  if (sc) {
+    var itemH = 40;
+    var idx = Array.from(sc.querySelectorAll('.wheel-item')).indexOf(el);
+    sc.scrollTo({top: idx * itemH, behavior: 'smooth'});
+  }
+  updateCalcBtn();
+}
+
+function getWheelDateVal(prefix) {
+  var d = _wVals[prefix+'_d'] || '';
+  var m = _wVals[prefix+'_m'] || '';
+  var y = _wVals[prefix+'_y'] || '';
+  if (!d || !m || !y) return '';
+  return y+'-'+m+'-'+d;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  buildWheelDate('birthDateCont', 'bd');
+});
+
+
+// ── ENGINE ───────────────────────────────────────────────────────────────────
+function daysSince(d){ return Math.floor((Date.now()-new Date(d).getTime())/86400000); }
+function bio(days,p){ return Math.sin(2*Math.PI*days/p); }
+
+function getCyclePhase(d){
+  if(d<=5)  return{name:'Menstruación',   emoji:'🔴', score:0.15, hint:'Momento de descanso y cuidado.'};
+  if(d<=13) return{name:'Fase folicular', emoji:'🌱', score:0.55, hint:'Tu energía empieza a despertar.'};
+  if(d<=16) return{name:'Ovulación',      emoji:'✨', score:1.00, hint:'Tu punto de mayor energía vital.'};
+  if(d<=24) return{name:'Fase lútea',     emoji:'🌕', score:0.50, hint:'Energía serena, conexión profunda.'};
+  return          {name:'Premenstrual',   emoji:'🌧', score:0.20, hint:'Escucha lo que tu cuerpo necesita.'};
+}
+
+function getCeiling(hasCycle){ return hasCycle ? 98 : 95; }
+function normalizeIdx(raw, hasCycle){ return Math.min(100, Math.round(raw/getCeiling(hasCycle)*100)); }
+
+const INSIGHTS = [
+  'Tu bioritmo intelectual está elevado. Día ideal para tomar decisiones importantes. ✨',
+  'La energía emocional acompaña. Un momento para conectar de verdad con quienes importan. 💜',
+  'Tu cuerpo y tu mente están en sintonía. Confía en tu intuición hoy. 🌙',
+  'Excelente día para proyectos creativos. La inspiración fluye con naturalidad. 🌸',
+  'Tu magnetismo personal está alto. Las conexiones que hagas hoy serán significativas. 💫',
+];
+
+// ── PROFILE & FORM ───────────────────────────────────────────────────────────
+let userProfile = '';
+
+function setProfile(p){
+  userProfile = p;
+  ['cycle','nocycle','other'].forEach(v=>{
+    const el = document.getElementById('chip_'+v);
+    if(el) el.className = 'chip' + (v===p?' active':'');
+  });
+  const pf = document.getElementById('periodField');
+  if(pf) pf.style.display = p==='cycle' ? 'block' : 'none';
+  checkForm();
+}
+
+function checkForm(){
+  const bd = getWheelDateVal('bd');
+  const hasCycle = userProfile === 'cycle';
+  const pd = parseInt(document.getElementById('periodDays')?.value)||0;
+  const ok = bd && userProfile && (!hasCycle || pd >= 1);
+  document.getElementById('calcBtn').disabled = !ok;
+}
+
+function doCalc(){
+  const bd = getWheelDateVal('bd');
+  const pd = parseInt(document.getElementById('periodDays')?.value)||0;
+  const hasCycle = userProfile === 'cycle';
+  if(!bd || !userProfile) return;
+
+  const days = daysSince(bd);
+  const emo = bio(days,28), fis = bio(days,23), int_ = bio(days,33);
+  const cDay = hasCycle ? ((pd%28+28)%28||28) : null;
+  const phase = hasCycle ? getCyclePhase(cDay)
+    : {name:'Bioritmos personales',emoji:'🌙',score:0,hint:'Guiada por tu energía interior.'};
+  const raw = hasCycle
+    ? phase.score*0.50 + ((emo+1)/2)*0.25 + ((fis+1)/2)*0.15 + ((int_+1)/2)*0.10
+    : ((emo+1)/2)*0.45 + ((fis+1)/2)*0.30 + ((int_+1)/2)*0.25;
+  const idx = normalizeIdx(Math.round(raw*100), hasCycle);
+
+  const colors = idx>=78?'#e8849a':idx>=60?'#c9a96e':idx>=42?'#7abfbf':'#9b7fc8';
+  const scoreEl = document.getElementById('resScore');
+  scoreEl.textContent = idx;
+  scoreEl.style.color = colors;
+
+  document.getElementById('resPhaseEyebrow').textContent =
+    hasCycle ? `DÍA ${cDay} DEL CICLO` : 'HOY';
+  document.getElementById('resPhaseBadge').innerHTML =
+    `<span style="background:rgba(255,255,255,0.07);border-radius:20px;padding:7px 16px;font-size:13px;">${phase.emoji} ${phase.name}</span>`;
+  document.getElementById('resInsight').textContent =
+    `"${phase.hint} ${INSIGHTS[Math.floor(Math.random()*INSIGHTS.length)]}"`;
+
+  document.getElementById('resultWrap').style.display = 'block';
+  document.getElementById('calcBtn').style.display = 'none';
+  document.getElementById('resultWrap').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function resetCalc(){
+  document.getElementById('resultWrap').style.display = 'none';
+  document.getElementById('calcBtn').style.display = 'block';
+  if(document.getElementById('birthDateCont')) buildWheelDate('birthDateCont','bd');
+  if(document.getElementById('periodDays')) document.getElementById('periodDays').value = '';
+  document.getElementById('calcBtn').disabled = true;
+  userProfile = '';
+  ['cycle','nocycle','other'].forEach(v=>{
+    const el = document.getElementById('chip_'+v);
+    if(el) el.className = 'chip';
+  });
+}
+
+// ── DEMO HEATMAP ─────────────────────────────────────────────────────────────
+(function(){
+  const scores = [
+    42,55,68,72,85,91,96,
+    88,74,65,58,52,60,71,
+    78,82,79,65,54,48,55,
+    63,70,76,80,86,92,95,
+    88,76
+  ];
+  const hm = document.getElementById('demoHeatmap');
+  if(!hm) return;
+  scores.forEach(s=>{
+    const d = document.createElement('div');
+    d.className = 'hm-day ' + (s>=78?'hm-high':s>=55?'hm-mid':'hm-low');
+    d.textContent = s;
+    hm.appendChild(d);
+  });
+})();
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function(){
+  const obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting) e.target.classList.add('visible');
     });
-  </script>
+  }, {threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+});
+</script>
 
-  <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
