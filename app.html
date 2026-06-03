@@ -453,7 +453,7 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
         <span class="pro-feat">🚫 Sin anuncios</span>
       </div>
       <button class="btn-gold" onclick="window.location.href='https://buy.stripe.com/bJe4gybfbc2Y0mhg2a0Ba01'">
-        ✦ DESBLOQUEAR POR €1.99/MES
+        ✦ DESBLOQUEAR POR €3.99/MES
       </button>
       <p class="pro-price">Cancela cuando quieras · Pago seguro con Stripe</p>
     </div>
@@ -472,7 +472,7 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
     <div class="couple-section fade-in">
       <div class="couple-toggle" onclick="toggleCouple()">
         <div class="couple-toggle-text">
-          <h3>💑 Modo Pareja</h3>
+          <h3>💑 Modo Pareja <span id="coupleLock" style="font-size:12px;background:linear-gradient(135deg,var(--rose),var(--lilac));border-radius:10px;padding:2px 8px;font-weight:500;vertical-align:middle;display:inline-block;">✦ PRO</span></h3>
           <p>Previsión de sincronía de hasta 180 días</p>
         </div>
         <div class="couple-toggle-icon" id="coupleIcon">▾</div>
@@ -745,6 +745,8 @@ function calculate() {
   userData = calcBio(bd, userProfile, pd, 0);
   userData.bd = bd; userData.pd = pd;
 
+  // Hide couple PRO badge if already Pro
+  if (isPro) { const cl=document.getElementById('coupleLock'); if(cl) cl.style.display='none'; }
   // Show results
   document.getElementById('step0').style.display='none';
   document.getElementById('step1').style.display='none';
@@ -968,6 +970,13 @@ function setDuration(d) {
 
 function calculateCouple() {
   if (!userData || !profile2) return;
+  // Gate: couple mode is Pro only
+  if (!isPro) {
+    document.getElementById('coupleResults').style.display = 'none';
+    document.getElementById('proBanner').style.display = 'block';
+    document.getElementById('proBanner').scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
   const bd2=getWheelDateVal('bd2');
   if (!bd2) return;
   const pd2=parseInt(document.getElementById('pd2').value)||0;
