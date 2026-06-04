@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LibiRhythm — Informe Personal de Bienestar · Junio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose:   #b8455f;
+  --rose2:  #d4687e;
+  --gold:   #a67c4a;
+  --gold2:  #c9a96e;
+  --lilac:  #7a5fa8;
+  --lilac2: #a892cc;
+  --teal:   #4a9090;
+  --teal2:  #7abfbf;
+  --ink:    #1e1428;
+  --ink2:   #3d2f4a;
+  --muted:  #8a7a8a;
+  --soft:   #f8f4f0;
+  --softer: #faf7f4;
+  --line:   #e8e0ec;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;}
+body{
+  background:#e8e0ec;
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  color:var(--ink);
+  padding:32px 24px;
+  line-height:1.6;
+}
+.page{
+  background:white;
+  max-width:820px;
+  margin:0 auto;
+  border-radius:20px;
+  overflow:visible;
+  box-shadow:0 24px 80px rgba(30,20,40,0.2);
+}
+
+/* ══ COVER ══════════════════════════════════════════════════════════════════ */
+.cover{
+  background:linear-gradient(160deg, #1a0f28 0%, #2d1e3d 40%, #1a0f28 100%);
+  padding:60px 56px 52px;
+  position:relative;
+  clip-path:inset(0 round 0);
+  min-height:340px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.cover-orb1{position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(180,69,95,0.18),transparent 70%);
+  top:-100px;right:-60px;pointer-events:none;}
+.cover-orb2{position:absolute;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(122,95,168,0.15),transparent 70%);
+  bottom:-80px;left:-40px;pointer-events:none;}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;}
+.cover-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;letter-spacing:5px;
+  background:linear-gradient(135deg,#e8849a,#c9a96e);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.cover-badge{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:20px;padding:5px 16px;
+  font-size:10px;color:rgba(255,255,255,0.6);letter-spacing:3px;text-transform:uppercase;
+}
+.cover-main{position:relative;z-index:1;margin-top:36px;}
+.cover-eyebrow{font-size:10px;letter-spacing:5px;color:rgba(201,169,110,0.7);text-transform:uppercase;margin-bottom:14px;}
+.cover-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(38px,5vw,54px);
+  font-weight:300;color:white;line-height:1.25;margin-bottom:12px;
+}
+.cover-title em{font-style:italic;color:#e8849a;}
+.cover-subtitle{font-size:14px;color:rgba(255,255,255,0.45);letter-spacing:1px;}
+.cover-meta{
+  display:flex;gap:0;margin-top:40px;
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:24px;position:relative;z-index:1;
+}
+.cover-meta-item{flex:1;padding-right:24px;border-right:1px solid rgba(255,255,255,0.08);}
+.cover-meta-item:last-child{border-right:none;padding-right:0;padding-left:24px;}
+.cover-meta-item:not(:first-child):not(:last-child){padding-left:24px;}
+.cover-meta-label{font-size:9px;letter-spacing:3px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:5px;}
+.cover-meta-value{font-size:14px;color:rgba(255,255,255,0.85);font-weight:400;}
+
+/* ══ BODY ═══════════════════════════════════════════════════════════════════ */
+.body{padding:48px 56px;}
+
+/* ══ SECTION ════════════════════════════════════════════════════════════════ */
+.section{margin-bottom:44px;}
+.section-head{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:20px;
+}
+.section-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:11px;font-weight:600;color:var(--rose2);
+  letter-spacing:2px;flex-shrink:0;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:400;color:var(--ink);
+  line-height:1.3;padding:2px 0;
+}
+.section-line{flex:1;height:1px;background:linear-gradient(to right,var(--line),transparent);}
+.body-text{font-size:13.5px;color:var(--ink2);line-height:1.85;margin-bottom:14px;}
+.body-text strong{font-weight:500;color:var(--ink);}
+
+/* ══ TODAY PANEL ════════════════════════════════════════════════════════════ */
+.today-panel{
+  display:grid;grid-template-columns:200px 1fr;
+  gap:0;background:var(--softer);
+  border-radius:18px;overflow:visible;
+  border:1px solid var(--line);margin-bottom:28px;
+}
+.today-left{
+  background:linear-gradient(160deg,rgba(184,69,95,0.08),rgba(122,95,168,0.06));
+  padding:28px 24px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;border-right:1px solid var(--line);
+}
+.today-gauge-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:72px;font-weight:600;line-height:1.1;color:var(--rose);
+  text-shadow:0 0 30px rgba(184,69,95,0.2);
+  padding:4px 0;
+}
+.today-gauge-of{font-size:11px;color:var(--muted);letter-spacing:2px;margin-top:2px;}
+.today-phase{
+  display:inline-flex;align-items:center;gap:6px;
+  background:white;border:1px solid var(--line);
+  border-radius:20px;padding:6px 14px;
+  font-size:12px;font-weight:500;color:var(--ink);
+  margin-top:12px;
+}
+.today-right{padding:24px 28px;}
+.today-bio-row{
+  display:grid;grid-template-columns:90px 1fr 40px;
+  align-items:center;gap:10px;margin-bottom:10px;
+}
+.today-bio-label{font-size:11px;color:var(--muted);text-align:right;}
+.bio-track{height:5px;background:rgba(0,0,0,0.06);border-radius:3px;overflow:hidden;}
+.bio-fill-light{height:100%;border-radius:3px;}
+.today-bio-val{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:right;}
+.today-insight{
+  background:white;border-radius:12px;border:1px solid var(--line);
+  padding:14px 16px;margin-top:16px;
+}
+.today-insight-label{font-size:9px;letter-spacing:3px;color:var(--gold2);text-transform:uppercase;margin-bottom:6px;}
+.today-insight-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-style:italic;color:var(--ink2);line-height:1.6;
+}
+
+/* ══ PULL QUOTE ═════════════════════════════════════════════════════════════ */
+.pull-quote{
+  border-left:3px solid var(--rose2);
+  padding:16px 24px;margin:24px 0;
+  background:linear-gradient(to right,rgba(184,69,95,0.04),transparent);
+}
+.pull-quote p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-style:italic;font-weight:300;
+  color:var(--ink2);line-height:1.7;
+}
+.pull-quote cite{font-size:11px;color:var(--muted);letter-spacing:1px;margin-top:6px;display:block;font-style:normal;}
+
+/* ══ CURVE ══════════════════════════════════════════════════════════════════ */
+.curve-box{
+  background:var(--softer);border:1px solid var(--line);
+  border-radius:16px;padding:20px 16px 14px;
+  margin-bottom:20px;
+}
+.curve-title-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.curve-box-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--ink);}
+.curve-period{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
+.curve-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);}
+.leg-line{width:22px;height:2.5px;border-radius:2px;}
+
+/* ══ CALENDAR ═══════════════════════════════════════════════════════════════ */
+.cal-month-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:300;color:var(--ink);
+  margin-bottom:12px;letter-spacing:1px;line-height:1.3;padding:2px 0;
+}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:28px;}
+.dow{text-align:center;font-size:9px;color:var(--muted);letter-spacing:1px;padding-bottom:6px;text-transform:uppercase;}
+.cal-day{
+  border-radius:9px;padding:6px 2px;
+  display:flex;flex-direction:column;align-items:center;
+  border:1px solid transparent;
+}
+.cal-day.today{box-shadow:0 0 0 2px var(--rose);}
+.cdn{font-size:11px;font-weight:500;line-height:1;}
+.cdi{font-size:9px;font-family:'DM Mono',monospace;margin-top:1px;}
+.cdp{font-size:8px;margin-top:1px;}
+
+/* ══ CALENDAR LEGEND ════════════════════════════════════════════════════════ */
+.cal-legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;}
+.cal-leg{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);}
+.cal-leg-dot{width:10px;height:10px;border-radius:3px;}
+
+/* ══ TOP DAYS ═══════════════════════════════════════════════════════════════ */
+.top-days-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;}
+.top-day-card{
+  background:var(--softer);border:1px solid var(--line);
+  border-radius:14px;padding:14px 16px;
+  display:flex;align-items:center;gap:12px;
+}
+.tdr{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:600;flex-shrink:0;width:32px;line-height:1.2;padding:2px 0;
+}
+.tdd{font-size:12px;font-weight:500;color:var(--ink);}
+.tdi{font-size:10px;color:var(--muted);margin-top:2px;}
+.tds{
+  margin-left:auto;
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:600;line-height:1.2;padding:2px 0;
+}
+
+/* ══ WEEKLY ANALYSIS ════════════════════════════════════════════════════════ */
+.week-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;}
+.week-card{
+  background:var(--softer);border:1px solid var(--line);
+  border-radius:14px;padding:18px 18px;
+}
+.week-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.week-label{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:3px;
+}
+.week-dates{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--ink);line-height:1.3;padding:1px 0;}
+.week-score-pill{
+  border-radius:20px;padding:4px 12px;
+  font-family:'DM Mono',monospace;font-size:12px;font-weight:400;
+}
+.week-body{font-size:12px;color:var(--ink2);line-height:1.7;}
+.week-phase{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.week-phase-badge{
+  font-size:10px;border-radius:20px;padding:3px 10px;
+  background:rgba(0,0,0,0.05);color:var(--ink2);
+}
+.week-tips{margin-top:10px;display:flex;flex-direction:column;gap:4px;}
+.week-tip{font-size:11px;color:var(--muted);padding-left:12px;position:relative;}
+.week-tip::before{content:'·';position:absolute;left:2px;color:var(--rose2);}
+
+/* ══ PHASE GUIDE ════════════════════════════════════════════════════════════ */
+.phase-table{width:100%;border-collapse:collapse;margin-bottom:24px;}
+.phase-table th{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);font-weight:400;padding:8px 12px;
+  border-bottom:1px solid var(--line);text-align:left;
+}
+.phase-table td{padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:12px;color:var(--ink2);}
+.phase-table tr:last-child td{border-bottom:none;}
+.phase-name-cell{display:flex;align-items:center;gap:8px;}
+.phase-name-text{font-weight:500;color:var(--ink);font-size:13px;}
+.phase-days-text{font-size:11px;color:var(--muted);margin-top:2px;}
+
+/* ══ BIORHYTHM SCIENCE ══════════════════════════════════════════════════════ */
+.science-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;}
+.sci-card{
+  background:var(--softer);border:1px solid var(--line);
+  border-radius:14px;padding:16px 14px 18px;text-align:center;
+  overflow:visible;
+}
+.sci-icon{font-size:28px;margin-bottom:8px;display:block;}
+.sci-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-weight:600;margin-bottom:3px;
+}
+.sci-period{font-size:10px;color:var(--muted);letter-spacing:2px;margin-bottom:8px;}
+.sci-desc{font-size:11px;color:var(--ink2);line-height:1.6;}
+
+/* ══ FORMULA BOX ════════════════════════════════════════════════════════════ */
+.formula-box{
+  background:linear-gradient(135deg,rgba(184,69,95,0.05),rgba(122,95,168,0.04));
+  border:1px solid rgba(184,69,95,0.15);
+  border-radius:16px;padding:22px 24px;margin-bottom:24px;
+}
+.formula-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--ink);margin-bottom:14px;}
+.formula-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px;}
+.formula-pill{
+  border-radius:20px;padding:9px 16px 10px;
+  display:flex;flex-direction:column;align-items:center;
+  border:1px solid;overflow:visible;
+}
+.formula-pct{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;line-height:1.2;padding:2px 0;}
+.formula-name{font-size:10px;color:var(--muted);margin-top:2px;}
+.formula-op{font-size:20px;color:rgba(0,0,0,0.2);margin:0 4px;}
+.formula-note{font-size:12px;color:var(--ink2);line-height:1.7;margin-top:8px;}
+
+/* ══ SELF CARE ══════════════════════════════════════════════════════════════ */
+.care-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;}
+.care-card{
+  background:var(--softer);border:1px solid var(--line);
+  border-radius:14px;padding:16px;
+}
+.care-icon{font-size:22px;margin-bottom:8px;display:block;}
+.care-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:6px;}
+.care-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.care-list li{font-size:11px;color:var(--ink2);padding-left:14px;position:relative;line-height:1.5;}
+.care-list li::before{content:'✦';position:absolute;left:0;font-size:8px;color:var(--rose2);top:1px;}
+
+/* ══ DISCLAIMER ═════════════════════════════════════════════════════════════ */
+.disclaimer-box{
+  background:rgba(0,0,0,0.025);border:1px solid var(--line);
+  border-radius:12px;padding:16px 18px;margin-top:32px;
+}
+.disclaimer-text{font-size:11px;color:var(--muted);line-height:1.7;}
+
+/* ══ FOOTER ═════════════════════════════════════════════════════════════════ */
+.footer{
+  background:linear-gradient(135deg,#1a0f28,#2d1e3d);
+  padding:24px 56px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;letter-spacing:4px;
+  background:linear-gradient(135deg,#e8849a,#c9a96e);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.footer-url{font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px;}
+.footer-note{font-size:10px;color:rgba(255,255,255,0.25);text-align:right;line-height:1.6;}
+
+/* ══ DIVIDER ════════════════════════════════════════════════════════════════ */
+.divider{height:1px;background:linear-gradient(to right,transparent,var(--line),transparent);margin:32px 0;}
+
+/* ══ TWO COL ════════════════════════════════════════════════════════════════ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+
+/* ══ PRINT ══════════════════════════════════════════════════════════════════ */
+@media print{
+  .no-print{display:none!important;}
+  body{background:white;padding:0;}
+  .page{box-shadow:none;border-radius:0;max-width:100%;}
+  .cover{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .footer{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══ COVER ══════════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-orb1"></div>
+  <div class="cover-orb2"></div>
+  <div class="cover-top">
+    <div class="cover-logo">LibiRhythm</div>
+    <div class="cover-badge">INFORME PRO ✦</div>
+  </div>
+  <div class="cover-main">
+    <div class="cover-eyebrow">Informe personal de bienestar</div>
+    <div class="cover-title">Tu ritmo <em>interior</em><br>en junio 2026</div>
+    <div class="cover-subtitle" id="coverSubtitle">Bioritmos personalizados · Ciclo menstrual · Previsión 30 días</div>
+  </div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Generado</div>
+      <div class="cover-meta-value" id="metaGenDate">1 junio 2026</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Fecha de nacimiento</div>
+      <div class="cover-meta-value" id="metaBD">—</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Fase actual</div>
+      <div class="cover-meta-value" id="metaPhase">🌕 Fase lútea · Día 20</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Próxima ovulación</div>
+      <div class="cover-meta-value" id="metaOvul">—</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BODY ═════════════════════════════════════════════════════════════════ -->
+<div class="body">
+
+<!-- 1. HOY -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">01</div>
+    <div class="section-title">Tu energía de hoy</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="today-panel">
+    <div class="today-left">
+      <div style="font-size:9px;letter-spacing:3px;color:rgba(184,69,95,0.6);text-transform:uppercase;margin-bottom:8px">ÍNDICE TOTAL</div>
+      <div class="today-gauge-num" id="todayNum">62</div>
+      <div class="today-gauge-of">de 100</div>
+      <div class="today-phase" id="todayPhase">🌕 Fase lútea</div>
+    </div>
+    <div class="today-right">
+      <div style="font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:14px">BIORITMOS PERSONALES</div>
+      <div id="todayBars"></div>
+      <div class="today-insight">
+        <div class="today-insight-label">✦ Tu momento de hoy</div>
+        <div class="today-insight-text" id="todayInsight">"Tu bioritmo intelectual está en su punto más alto esta semana. Un día excelente para conversaciones profundas y tomar decisiones importantes con serenidad."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. CURVA -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">02</div>
+    <div class="section-title">Tus bioritmos — próximos 30 días</div>
+    <div class="section-line"></div>
+  </div>
+  <p class="body-text">Las curvas de bioritmo muestran cómo tu energía emocional, física e intelectual fluctúa a lo largo del mes. Cuando las tres curvas coinciden en su punto alto — los días marcados en rosa — es cuando te sientes más completa y conectada.</p>
+  <div class="curve-box">
+    <div class="curve-title-row">
+      <div class="curve-box-title">Curva de energía personal</div>
+      <div class="curve-period">30 DÍAS · JUNIO 2026</div>
+    </div>
+    <svg id="mainCurve" width="100%" height="130" viewBox="0 0 720 130" preserveAspectRatio="none"></svg>
+    <div class="curve-legend">
+      <div class="leg-item"><div class="leg-line" style="background:#b8455f"></div>Emocional (28 días)</div>
+      <div class="leg-item"><div class="leg-line" style="background:#4a9090"></div>Físico (23 días)</div>
+      <div class="leg-item"><div class="leg-line" style="background:#a67c4a"></div>Intelectual (33 días)</div>
+      <div class="leg-item"><div class="leg-line" style="background:#7a5fa8;height:4px"></div>Índice combinado</div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p>"Las mujeres que comprenden sus bioritmos toman mejores decisiones, tienen más energía y disfrutan de relaciones más satisfactorias — no porque sean diferentes, sino porque actúan en el momento correcto."</p>
+    <cite>— Principio del ciclo-sincronización, Alisa Vitti, 2013</cite>
+  </div>
+</div>
+
+<!-- 3. CALENDARIO -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">03</div>
+    <div class="section-title">Calendario de junio 2026</div>
+    <div class="section-line"></div>
+  </div>
+  <p class="body-text">Cada día del mes muestra tu índice de energía combinado (0–100) y la fase del ciclo en la que te encuentras. Usa este calendario para planificar con antelación tus compromisos más importantes.</p>
+  <div class="cal-grid" id="mainCal"></div>
+  <div class="cal-legend">
+    <div class="cal-leg"><div class="cal-leg-dot" style="background:rgba(184,69,95,0.25)"></div>🔥 Pico (78+)</div>
+    <div class="cal-leg"><div class="cal-leg-dot" style="background:rgba(166,124,74,0.2)"></div>✨ Alto (60+)</div>
+    <div class="cal-leg"><div class="cal-leg-dot" style="background:rgba(74,144,144,0.15)"></div>💧 Medio (42+)</div>
+    <div class="cal-leg"><div class="cal-leg-dot" style="background:rgba(0,0,0,0.04)"></div>🌙 Bajo</div>
+  </div>
+</div>
+
+<!-- 4. TOP 10 -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">04</div>
+    <div class="section-title">Los 10 mejores días del mes</div>
+    <div class="section-line"></div>
+  </div>
+  <p class="body-text">Estos son los días en que tu energía vital, emocional e intelectual alcanzan su mayor convergencia. Úsalos para planificar entrevistas importantes, citas especiales, presentaciones o cualquier momento que requiera tu mejor versión.</p>
+  <div class="top-days-grid" id="topDaysGrid"></div>
+</div>
+
+<!-- 5. ANÁLISIS SEMANAL -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">05</div>
+    <div class="section-title">Análisis semana a semana</div>
+    <div class="section-line"></div>
+  </div>
+  <p class="body-text">Cada semana tiene su propia energía predominante. Aquí encontrarás el perfil de cada una para que puedas planificarte con mayor precisión.</p>
+  <div class="week-grid" id="weekGrid"></div>
+</div>
+
+<!-- 6. CIENCIA -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">06</div>
+    <div class="section-title">Cómo se calcula tu índice</div>
+    <div class="section-line"></div>
+  </div>
+  <p class="body-text">Tu índice diario combina cuatro factores científicamente respaldados, cada uno con un peso proporcional a su influencia sobre el bienestar y la energía femenina:</p>
+
+  <div class="formula-box">
+    <div class="formula-title">Fórmula de cálculo LibiRhythm</div>
+    <div class="formula-row">
+      <div class="formula-pill" style="background:rgba(184,69,95,0.07);border-color:rgba(184,69,95,0.25)">
+        <div class="formula-pct" style="color:#b8455f">50%</div>
+        <div class="formula-name">🌸 Ciclo</div>
+      </div>
+      <div class="formula-op">+</div>
+      <div class="formula-pill" style="background:rgba(184,69,95,0.05);border-color:rgba(184,69,95,0.15)">
+        <div class="formula-pct" style="color:#c8556f">25%</div>
+        <div class="formula-name">💜 Emocional</div>
+      </div>
+      <div class="formula-op">+</div>
+      <div class="formula-pill" style="background:rgba(74,144,144,0.07);border-color:rgba(74,144,144,0.2)">
+        <div class="formula-pct" style="color:#4a9090">15%</div>
+        <div class="formula-name">💚 Físico</div>
+      </div>
+      <div class="formula-op">+</div>
+      <div class="formula-pill" style="background:rgba(166,124,74,0.07);border-color:rgba(166,124,74,0.2)">
+        <div class="formula-pct" style="color:#a67c4a">10%</div>
+        <div class="formula-name">💛 Intelectual</div>
+      </div>
+    </div>
+    <div class="formula-note">El <strong>ciclo menstrual</strong> tiene mayor peso porque es el factor hormonal más medible y determinante en la energía femenina. Los <strong>bioritmos</strong> son ciclos sinusoidales calculados desde tu fecha de nacimiento con períodos de 28, 23 y 33 días respectivamente, según el modelo de Fliess-Swoboda-Teltscher (1897–1920).</div>
+  </div>
+
+  <div class="science-grid">
+    <div class="sci-card">
+      <span class="sci-icon">💜</span>
+      <div class="sci-title" style="color:#b8455f">Emocional</div>
+      <div class="sci-period">Ciclo de 28 días</div>
+      <div class="sci-desc">Regula la sensibilidad, la empatía, la receptividad emocional y la disposición para conectar con otras personas.</div>
+    </div>
+    <div class="sci-card">
+      <span class="sci-icon">⚡</span>
+      <div class="sci-title" style="color:#4a9090">Físico</div>
+      <div class="sci-period">Ciclo de 23 días</div>
+      <div class="sci-desc">Refleja los niveles de energía corporal, resistencia física, coordinación y vitalidad general del organismo.</div>
+    </div>
+    <div class="sci-card">
+      <span class="sci-icon">💡</span>
+      <div class="sci-title" style="color:#a67c4a">Intelectual</div>
+      <div class="sci-period">Ciclo de 33 días</div>
+      <div class="sci-desc">Influye en la concentración, la creatividad, la memoria y la capacidad de análisis y toma de decisiones.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. FASES DEL CICLO -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">07</div>
+    <div class="section-title">Las 4 fases de tu ciclo</div>
+    <div class="section-line"></div>
+  </div>
+  <p class="body-text">Tu ciclo menstrual es mucho más que la menstruación. Es un ciclo de cuatro fases con características hormonales únicas que influyen directamente en tu energía, humor, apetito, creatividad y deseo.</p>
+
+  <table class="phase-table">
+    <thead>
+      <tr>
+        <th>Fase</th>
+        <th>Hormonas</th>
+        <th>Energía</th>
+        <th>Ideal para</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="phase-name-cell"><span style="font-size:18px">🔴</span>
+          <div><div class="phase-name-text">Menstruación</div><div class="phase-days-text">Días 1–5</div></div></div>
+        </td>
+        <td>Estrógeno y progesterona bajos</td>
+        <td style="color:#b8455f">⬇ Baja</td>
+        <td>Descanso, reflexión, introspección</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="phase-name-cell"><span style="font-size:18px">🌱</span>
+          <div><div class="phase-name-text">Folicular</div><div class="phase-days-text">Días 6–13</div></div></div>
+        </td>
+        <td>Estrógeno en ascenso</td>
+        <td style="color:#4a9090">↗ Ascendente</td>
+        <td>Proyectos nuevos, socializar, ejercicio</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="phase-name-cell"><span style="font-size:18px">✨</span>
+          <div><div class="phase-name-text">Ovulación</div><div class="phase-days-text">Días 14–16</div></div></div>
+        </td>
+        <td>Pico de estrógeno + testosterona</td>
+        <td style="color:#a67c4a">⬆ Máxima</td>
+        <td>Presentaciones, citas, decisiones clave</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="phase-name-cell"><span style="font-size:18px">🌕</span>
+          <div><div class="phase-name-text">Lútea</div><div class="phase-days-text">Días 17–28</div></div></div>
+        </td>
+        <td>Progesterona dominante</td>
+        <td style="color:#7a5fa8">→ Serena</td>
+        <td>Completar proyectos, intimidad profunda</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 8. AUTOCUIDADO -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">08</div>
+    <div class="section-title">Guía de autocuidado por fase</div>
+    <div class="section-line"></div>
+  </div>
+  <p class="body-text">Cada fase de tu ciclo tiene necesidades específicas. Adaptar tu rutina a tu ciclo — en lugar de ignorarlo — puede transformar tu energía y bienestar de forma radical.</p>
+  <div class="care-grid">
+    <div class="care-card">
+      <span class="care-icon">🔴</span>
+      <div class="care-title">Durante la menstruación</div>
+      <ul class="care-list">
+        <li>Reduce la intensidad del ejercicio — yoga o caminatas suaves</li>
+        <li>Aumenta el hierro: legumbres, espinacas, frutos secos</li>
+        <li>Aplica calor en el abdomen para aliviar molestias</li>
+        <li>Prioriza el sueño y los momentos de silencio</li>
+        <li>Es un buen momento para journaling y reflexión</li>
+      </ul>
+    </div>
+    <div class="care-card">
+      <span class="care-icon">🌱</span>
+      <div class="care-title">En fase folicular</div>
+      <ul class="care-list">
+        <li>Introduce nuevos proyectos y desafíos creativos</li>
+        <li>El metabolismo es más eficiente — buen momento para dieta</li>
+        <li>Prueba entrenamientos de más intensidad</li>
+        <li>Socializa y haz networking — tu energía es magnética</li>
+        <li>Toma decisiones importantes sobre el futuro</li>
+      </ul>
+    </div>
+    <div class="care-card">
+      <span class="care-icon">✨</span>
+      <div class="care-title">En ovulación</div>
+      <ul class="care-list">
+        <li>Es tu momento de mayor carisma y presencia</li>
+        <li>Agenda presentaciones, entrevistas y citas importantes</li>
+        <li>Ejercicio de alta intensidad — tu cuerpo lo agradece</li>
+        <li>Aumenta la vitamina E y los antioxidantes</li>
+        <li>La conexión emocional y la intimidad son especialmente ricas</li>
+      </ul>
+    </div>
+    <div class="care-card">
+      <span class="care-icon">🌕</span>
+      <div class="care-title">En fase lútea</div>
+      <ul class="care-list">
+        <li>Completa tareas que empezaste — no inicies proyectos nuevos</li>
+        <li>Aumenta el magnesio para reducir síntomas premenstruales</li>
+        <li>Reduce el azúcar y la cafeína en la segunda mitad</li>
+        <li>El yoga restaurativo y el pilates son ideales</li>
+        <li>Honra tu necesidad de mayor soledad e introspección</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer-box">
+  <div class="today-insight-label" style="margin-bottom:6px">AVISO IMPORTANTE</div>
+  <div class="disclaimer-text">
+    Este informe ha sido generado por LibiRhythm basándose en cálculos matemáticos de bioritmo y los datos del ciclo menstrual facilitados. Los resultados son de carácter orientativo y no constituyen consejo médico, psicológico ni de ninguna otra índole profesional. El modelo de bioritmo utilizado se basa en el trabajo de Wilhelm Fliess (1897), Hermann Swoboda (1904) y Friedrich Teltscher (1920). Si tienes dudas sobre tu salud reproductiva o ciclo menstrual, consulta siempre con un profesional médico. · LibiRhythm no almacena ni transmite tus datos personales.
+  </div>
+</div>
+
+</div><!-- /body -->
+
+<!-- PRINT BAR (hidden on print) -->
+<div style="background:#f0ebe6;padding:16px 32px;text-align:center;border-top:1px solid #ddd;" class="no-print">
+  <button onclick="window.print()" style="background:linear-gradient(135deg,#b8455f,#7a5fa8);color:#fff;border:none;border-radius:30px;padding:14px 48px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 20px rgba(184,69,95,0.3);">
+    📄 Guardar como PDF
+  </button>
+  <div style="font-size:12px;color:#999;margin-top:8px;">Chrome → Imprimir → Guardar como PDF · Activar "Gráficos de fondo"</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div class="footer-logo">LibiRhythm</div>
+    <div class="footer-url">libirhythm.com</div>
+  </div>
+  <div class="footer-note">
+    Informe personal generado el 1 de junio de 2026<br>
+    © 2026 LibiRhythm · Todos los derechos reservados
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+// ── DATA ─────────────────────────────────────────────────────────────────────
+// Read from URL params (passed from app.html)
+const _params = new URLSearchParams(window.location.search);
+const _bdStr  = _params.get('bd') || '1985-06-15';
+const lastPD  = parseInt(_params.get('pd') || '14');
+const _profile = _params.get('profile') || 'cycle';
+const _hasCycle = _profile === 'cycle';
+const birthDate = new Date(_bdStr);
+
+
+function daysSince(d){ return Math.floor((Date.now()-d.getTime())/86400000); }
+function bio(days,p){ return Math.sin(2*Math.PI*days/p); }
+
+function getCyclePhase(d){
+  if(d<=5)  return {name:'Menstruación',  emoji:'🔴', score:0.15, c:'#b8455f', cLight:'rgba(184,69,95,0.15)'};
+  if(d<=13) return {name:'Folicular',     emoji:'🌱', score:0.55, c:'#4a9090', cLight:'rgba(74,144,144,0.12)'};
+  if(d<=16) return {name:'Ovulación',     emoji:'✨', score:1.00, c:'#a67c4a', cLight:'rgba(166,124,74,0.12)'};
+  if(d<=24) return {name:'Lútea',         emoji:'🌕', score:0.50, c:'#7a5fa8', cLight:'rgba(122,95,168,0.12)'};
+  return          {name:'Premenstrual',  emoji:'🌧', score:0.20, c:'#b8455f', cLight:'rgba(184,69,95,0.08)'};
+}
+
+
+function getCeiling(hasCycle) { return hasCycle ? 95 : 85; }
+function normalizeIdx(rawIdx, hasCycle) {
+  return Math.min(100, Math.round(rawIdx / getCeiling(hasCycle) * 100));
+}
+function calcDay(offset){
+  const days=daysSince(birthDate)+offset;
+  const emo=bio(days,28),fis=bio(days,23),int_=bio(days,33);
+  const cDay=((lastPD+offset)%28+28)%28||28;
+  const phase=getCyclePhase(cDay);
+  const raw = _hasCycle
+    ? phase.score*0.50 + ((emo+1)/2)*0.25 + ((fis+1)/2)*0.15 + ((int_+1)/2)*0.10
+    : ((emo+1)/2)*0.45 + ((fis+1)/2)*0.30 + ((int_+1)/2)*0.25;
+  return {
+    idx:  Math.round(raw*100),
+    emo:  Math.round(((emo+1)/2)*100),
+    fis:  Math.round(((fis+1)/2)*100),
+    int:  Math.round(((int_+1)/2)*100),
+    raw,
+    emoR: emo,
+    fisR: fis,
+    intR: int_,
+    phase, cDay,
+    date: new Date(Date.now()+offset*86400000)
+  };
+}
+
+const data30=Array.from({length:30},(_,i)=>calcDay(i));
+const today0=data30[0];
+
+// ── TODAY ────────────────────────────────────────────────────────────────────
+// Fill cover meta — null-safe
+const bd = birthDate.toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'});
+const elBD = document.getElementById('metaBD');
+if(elBD) elBD.textContent = bd;
+
+// Ovulation: next day 14 from last period start
+const daysUntilOvul = ((14 - lastPD) % 28 + 28) % 28;
+const ovulDate = new Date(Date.now() + daysUntilOvul * 86400000);
+const ovulStr = daysUntilOvul === 0 ? '¡Hoy! ✨' :
+  daysUntilOvul === 1 ? 'Mañana ✨' :
+  `en ${daysUntilOvul} días · ${ovulDate.toLocaleDateString('es-ES',{day:'numeric',month:'short'})}`;
+const elOvul = document.getElementById('metaOvul');
+if(elOvul) elOvul.textContent = ovulStr;
+const elPhase = document.getElementById('metaPhase');
+if(elPhase) elPhase.textContent = _hasCycle
+  ? `${today0.phase.emoji} ${today0.phase.name} · Día ${today0.cDay}`
+  : `${today0.phase.emoji} ${today0.phase.name}`;
+// Update generated date
+const elGen = document.getElementById('metaGenDate');
+if(elGen) elGen.textContent = new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
+// Update subtitle based on profile
+const elSub = document.getElementById('coverSubtitle');
+if(elSub) elSub.textContent = _hasCycle
+  ? 'Bioritmos personalizados · Ciclo menstrual · Previsión 30 días'
+  : 'Bioritmos personalizados · Energía personal · Previsión 30 días';
+
+document.getElementById('todayNum').textContent=today0.idx;
+document.getElementById('todayNum').style.color=today0.phase.c;
+document.getElementById('todayPhase').innerHTML=`${today0.phase.emoji} ${today0.phase.name} · Día ${today0.cDay}`;
+
+const bars=[
+  {n:'Emocional',v:today0.emo,c:'#b8455f'},
+  {n:'Físico',   v:today0.fis,c:'#4a9090'},
+  {n:'Intelectual',v:today0.int,c:'#a67c4a'},
+];
+document.getElementById('todayBars').innerHTML=bars.map(b=>`
+  <div class="today-bio-row">
+    <div class="today-bio-label">${b.n}</div>
+    <div class="bio-track"><div class="bio-fill-light" style="background:${b.c};width:${b.v}%;height:100%;border-radius:3px"></div></div>
+    <div class="today-bio-val">${b.v}%</div>
+  </div>`).join('');
+
+// ── SMOOTH BEZIER ────────────────────────────────────────────────────────────
+function smoothPath(pts,W,H,padY=14){
+  const uH=H-padY*2;
+  const cs=pts.map((v,i)=>({x:(i/(pts.length-1))*W,y:padY+uH-v*uH}));
+  let d=`M${cs[0].x.toFixed(1)},${cs[0].y.toFixed(1)}`;
+  for(let i=1;i<cs.length;i++){
+    const p=cs[i-1],c=cs[i],cx=(p.x+c.x)/2;
+    d+=` C${cx.toFixed(1)},${p.y.toFixed(1)} ${cx.toFixed(1)},${c.y.toFixed(1)} ${c.x.toFixed(1)},${c.y.toFixed(1)}`;
+  }
+  return d;
+}
+function areaPath(pts,W,H){return smoothPath(pts,W,H)+` L${W},${H} L0,${H} Z`;}
+
+// ── RENDER CURVE ─────────────────────────────────────────────────────────────
+const W=720,H=130;
+const emos=data30.map(d=>d.emo/100);
+const fiss=data30.map(d=>d.fis/100);
+const ints=data30.map(d=>d.int/100);
+const idxs=data30.map(d=>d.idx/100);
+
+let svg=`<defs>
+  <linearGradient id="gE2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b8455f" stop-opacity="0.12"/><stop offset="100%" stop-color="#b8455f" stop-opacity="0"/></linearGradient>
+  <linearGradient id="gI2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7a5fa8" stop-opacity="0.1"/><stop offset="100%" stop-color="#7a5fa8" stop-opacity="0"/></linearGradient>
+</defs>`;
+
+// grid
+for(let i=0;i<=4;i++){const y=(i/4)*H;svg+=`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>`;}
+// week markers
+for(let i=7;i<30;i+=7){
+  const x=(i/29)*W;
+  svg+=`<line x1="${x}" y1="0" x2="${x}" y2="${H-14}" stroke="rgba(0,0,0,0.06)" stroke-width="1" stroke-dasharray="3 3"/>`;
+  svg+=`<text x="${x}" y="${H-2}" text-anchor="middle" font-size="9" fill="rgba(0,0,0,0.25)" font-family="DM Sans,sans-serif">+${i}d</text>`;
+}
+// today marker
+svg+=`<line x1="3" y1="0" x2="3" y2="${H}" stroke="#b8455f" stroke-width="2" stroke-dasharray="4 3" opacity="0.5"/>`;
+svg+=`<text x="5" y="10" font-size="9" fill="#b8455f" font-family="DM Sans,sans-serif" opacity="0.7">hoy</text>`;
+
+svg+=`<path d="${areaPath(emos,W,H)}" fill="url(#gE2)"/>`;
+svg+=`<path d="${areaPath(idxs,W,H)}" fill="url(#gI2)"/>`;
+svg+=`<path d="${smoothPath(emos,W,H)}" fill="none" stroke="#b8455f" stroke-width="1.8" opacity="0.9"/>`;
+svg+=`<path d="${smoothPath(fiss,W,H)}" fill="none" stroke="#4a9090" stroke-width="1.6" opacity="0.75"/>`;
+svg+=`<path d="${smoothPath(ints,W,H)}" fill="none" stroke="#a67c4a" stroke-width="1.5" opacity="0.7"/>`;
+svg+=`<path d="${smoothPath(idxs,W,H)}" fill="none" stroke="#7a5fa8" stroke-width="2.5" opacity="0.95"/>`;
+document.getElementById('mainCurve').innerHTML=svg;
+
+// ── CALENDAR ─────────────────────────────────────────────────────────────────
+function dayStyle(idx){
+  if(idx>=78)return{bg:'rgba(184,69,95,0.14)',border:'rgba(184,69,95,0.3)',c:'#b8455f'};
+  if(idx>=60)return{bg:'rgba(166,124,74,0.12)',border:'rgba(166,124,74,0.28)',c:'#a67c4a'};
+  if(idx>=42)return{bg:'rgba(74,144,144,0.1)',border:'rgba(74,144,144,0.22)',c:'#4a9090'};
+  return          {bg:'rgba(0,0,0,0.03)',border:'rgba(0,0,0,0.08)',c:'#8a7a8a'};
+}
+
+const DOWS=['L','M','X','J','V','S','D'];
+const today=new Date(); today.setHours(0,0,0,0);
+let cal=DOWS.map(d=>`<div class="dow">${d}</div>`).join('');
+const firstDow=(data30[0].date.getDay()+6)%7;
+for(let i=0;i<firstDow;i++) cal+=`<div></div>`;
+data30.forEach(d=>{
+  const s=dayStyle(d.idx);
+  const isT=d.date.toDateString()===today.toDateString();
+  cal+=`<div class="cal-day${isT?' today':''}" style="background:${s.bg};border-color:${s.border}">
+    <div class="cdn" style="color:${s.c}">${d.date.getDate()}</div>
+    <div class="cdi" style="color:${s.c}">${d.idx}</div>
+    <div class="cdp">${d.phase.emoji}</div>
+  </div>`;
+});
+document.getElementById('mainCal').innerHTML=cal;
+
+// ── TOP 10 ────────────────────────────────────────────────────────────────────
+const top10=[...data30].sort((a,b)=>b.idx-a.idx).slice(0,10);
+const DESCS={78:'Pico máximo',60:'Muy favorable',42:'Favorable',0:'Tranquilo'};
+function getDesc(idx){return idx>=78?'Pico máximo':idx>=60?'Muy favorable':idx>=42?'Favorable':'Tranquilo';}
+// Hide cycle-only sections if no cycle profile
+if (!_hasCycle) {
+  const cycleSections = document.querySelectorAll('.phase-table, .care-grid');
+  cycleSections.forEach(el => {
+    const parent = el.closest('.section');
+    if (parent) parent.style.display = 'none';
+  });
+}
+document.getElementById('topDaysGrid').innerHTML=top10.map((d,i)=>{
+  const s=dayStyle(d.idx);
+  const label=d.date.toLocaleDateString('es-ES',{weekday:'short',day:'numeric',month:'short'});
+  return `<div class="top-day-card" style="border-color:${s.border}">
+    <div class="tdr" style="color:${s.c}">${i+1}</div>
+    <div><div class="tdd">${label}</div><div class="tdi">${d.phase.emoji} ${d.phase.name} · ${getDesc(d.idx)}</div></div>
+    <div class="tds" style="color:${s.c}">${d.idx}</div>
+  </div>`;
+}).join('');
+
+// ── WEEKLY ANALYSIS ───────────────────────────────────────────────────────────
+const weeks=[
+  {days:data30.slice(0,7),  label:'Semana 1', dates:'1 – 7 junio'},
+  {days:data30.slice(7,14), label:'Semana 2', dates:'8 – 14 junio'},
+  {days:data30.slice(14,21),label:'Semana 3', dates:'15 – 21 junio'},
+  {days:data30.slice(21,30),label:'Semana 4', dates:'22 – 30 junio'},
+];
+
+const weekInsights=[
+  {desc:'Tu ciclo está en fase lútea avanzada. La progesterona desciende gradualmente. Semana de completar proyectos y preparar el terreno para el descanso menstrual que se acerca.',
+   tips:['Prioriza descanso y sueño reparador','Reduce compromisos sociales innecesarios','Dedica tiempo a actividades creativas tranquilas']},
+  {desc:'Comienzo del nuevo ciclo menstrual. Tus bioritmos emocional e intelectual empiezan a subir con fuerza. La energía física aún está recuperándose.',
+   tips:['Introduce nuevas ideas y proyectos en tu agenda','Aprovecha la claridad mental post-menstrual','Excelente semana para networking y conexiones']},
+  {desc:'La fase folicular trae tu mayor energía del mes. Tus tres bioritmos convergen en positivo. Esta es tu semana de mayor potencial.',
+   tips:['Agenda tus reuniones más importantes','Prueba entrenamientos de alta intensidad','Es la mejor semana para primera citas o propuestas']},
+  {desc:'Estás en fase lútea. La energía baja progresivamente pero la profundidad emocional aumenta. Semana de conexión íntima y trabajo interior.',
+   tips:['Profundiza en relaciones existentes','Completa tareas pendientes antes del nuevo ciclo','Yoga restaurativo y baños relajantes son especialmente beneficiosos']},
+];
+
+document.getElementById('weekGrid').innerHTML=weeks.map((w,i)=>{
+  const avgIdx=Math.round(w.days.reduce((a,d)=>a+d.idx,0)/w.days.length);
+  const s=dayStyle(avgIdx);
+  const topDay=w.days.reduce((a,b)=>a.idx>b.idx?a:b);
+  const wi=weekInsights[i];
+  return `<div class="week-card">
+    <div class="week-header">
+      <div>
+        <div class="week-label">${w.label}</div>
+        <div class="week-dates">${w.dates}</div>
+      </div>
+      <div class="week-score-pill" style="background:${s.bg};color:${s.c};border:1px solid ${s.border}">${avgIdx} media</div>
+    </div>
+    <div class="week-phase">
+      <div class="week-phase-badge">${topDay.phase.emoji} ${topDay.phase.name}</div>
+    </div>
+    <div class="week-body">${wi.desc}</div>
+    <div class="week-tips">${wi.tips.map(t=>`<div class="week-tip">${t}</div>`).join('')}</div>
+  </div>`;
+}).join('');
+</script>
+</body>
+</html>
