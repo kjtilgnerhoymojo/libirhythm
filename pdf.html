@@ -708,7 +708,7 @@ function getCyclePhase(d){
 }
 
 
-function getCeiling(hasCycle) { return hasCycle ? 95 : 85; }
+function getCeiling(hasCycle) { return hasCycle ? 98 : 95; }
 function normalizeIdx(rawIdx, hasCycle) {
   return Math.min(100, Math.round(rawIdx / getCeiling(hasCycle) * 100));
 }
@@ -721,7 +721,7 @@ function calcDay(offset){
     ? phase.score*0.50 + ((emo+1)/2)*0.25 + ((fis+1)/2)*0.15 + ((int_+1)/2)*0.10
     : ((emo+1)/2)*0.45 + ((fis+1)/2)*0.30 + ((int_+1)/2)*0.25;
   return {
-    idx:  Math.round(raw*100),
+    idx:  normalizeIdx(Math.round(raw*100), _hasCycle),
     emo:  Math.round(((emo+1)/2)*100),
     fis:  Math.round(((fis+1)/2)*100),
     int:  Math.round(((int_+1)/2)*100),
