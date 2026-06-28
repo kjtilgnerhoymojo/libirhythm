@@ -219,6 +219,11 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
 .couple-toggle-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; margin-bottom: 3px; }
 .couple-toggle-text p { font-size: 12px; color: var(--muted); }
 .couple-toggle-icon { font-size: 24px; transition: transform 0.3s; }
+.couple-benefits { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0 18px; }
+.couple-benefit { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--soft);
+  background: linear-gradient(135deg, rgba(200,85,111,0.1), rgba(155,127,200,0.08));
+  border: 1px solid var(--border2); border-radius: 30px; padding: 7px 14px; }
+.couple-benefit span { font-size: 15px; }
 .couple-toggle-icon.open { transform: rotate(180deg); }
 .couple-form { display: none; margin-top: 12px; }
 .couple-form.open { display: block; }
@@ -479,14 +484,19 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
       <div class="couple-toggle" onclick="toggleCouple()">
         <div class="couple-toggle-text">
           <h3>💑 Modo Pareja <span id="coupleLock" style="font-size:12px;background:linear-gradient(135deg,var(--rose),var(--lilac));border-radius:10px;padding:2px 8px;font-weight:500;vertical-align:middle;display:inline-block;">✦ PRO</span></h3>
-          <p>Previsión de sincronía de hasta 180 días</p>
+          <p>¿Y si pudierais planificar el finde perfecto... con ciencia?</p>
         </div>
         <div class="couple-toggle-icon" id="coupleIcon">▾</div>
       </div>
       <div class="couple-form" id="coupleForm">
+        <div class="couple-benefits">
+          <div class="couple-benefit"><span>✈️</span> Vacaciones en sintonía</div>
+          <div class="couple-benefit"><span>🌅</span> El finde perfecto</div>
+          <div class="couple-benefit"><span>💞</span> La cita ideal</div>
+        </div>
         <div class="card" style="margin-top:0">
           <div class="card-title">Datos de tu pareja</div>
-          <div class="card-sub">Calcula los mejores momentos juntos</div>
+          <div class="card-sub">Descubre cuándo vuestra energía se alinea — y aprovéchalo</div>
           <div class="field">
             <label class="field-label">Fecha de nacimiento</label>
             <div id="bd2Cont"></div>
@@ -514,7 +524,7 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
             </div>
           </div>
         </div>
-        <button class="btn-primary" onclick="calculateCouple()">Calcular sincronía ✦</button>
+        <button class="btn-primary" onclick="calculateCouple()">Descubrir nuestros mejores días ✦</button>
       </div>
     </div>
 
