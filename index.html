@@ -1030,7 +1030,7 @@ function pickWheel(el, wid, val) {
     var idx = Array.from(sc.querySelectorAll('.wheel-item')).indexOf(el);
     sc.scrollTo({top: idx * itemH, behavior: 'smooth'});
   }
-  updateCalcBtn();
+  checkForm();
 }
 
 function getWheelDateVal(prefix) {
