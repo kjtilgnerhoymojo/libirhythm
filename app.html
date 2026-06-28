@@ -572,6 +572,18 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
 
 </main>
 
+
+<!-- FOOTER -->
+<div style="border-top:1px solid rgba(255,255,255,0.07);padding:20px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+  <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;letter-spacing:3px;background:linear-gradient(135deg,#e8849a,#c9a96e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">LibiRhythm</div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+    <a href="https://billing.stripe.com/p/login/bJe3cu4QNgje5GB2bk0Ba00" target="_blank" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:underline;">¿Eres Pro? Gestionar suscripción →</a>
+    <a href="legal.html" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">Privacidad</a>
+    <a href="index.html" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">Inicio</a>
+  </div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.18);">© 2026 LibiRhythm · Hecho con 🌙</div>
+</div>
+
 <div class="tooltip" id="tooltip"></div>
 
 <script>
@@ -596,20 +608,17 @@ function getIndexColor(idx) {
 
 function calcBio(bd, profile, pd, offset) {
   const days = daysSince(bd) + offset;
-  const emo = bio(days, 28), fis = bio(days, 23), int_ = bio(days, 33);
+  const emo = bio(days, 28), fis = bio(days, 23), int = bio(days, 33);
   const hasCycle = profile === 'cycle';
   const cDay = hasCycle ? (((pd + offset) % 28 + 28) % 28 || 28) : null;
   const phase = hasCycle ? getCyclePhase(cDay) : { name:'Bioritmos personales', emoji:'🌙', score:0, hint:'Guiada por tu energía interior.', color:'rgba(155,127,200,0.2)' };
   const raw = hasCycle
-    ? phase.score*0.50 + ((emo+1)/2)*0.25 + ((fis+1)/2)*0.15 + ((int_+1)/2)*0.10
-    : ((emo+1)/2)*0.45 + ((fis+1)/2)*0.30 + ((int_+1)/2)*0.25;
+    ? phase.score*0.50 + ((emo+1)/2)*0.25 + ((fis+1)/2)*0.15 + ((int+1)/2)*0.10
+    : ((emo+1)/2)*0.45 + ((fis+1)/2)*0.30 + ((int+1)/2)*0.25;
   const rawI = Math.round(raw*100);
   return {
     idx: normalizeIdx(rawI, hasCycle),
-    emo: Math.round(((emo+1)/2)*100),
-    fis: Math.round(((fis+1)/2)*100),
-    int: Math.round(((int_+1)/2)*100),
-    raw, emo, fis, int_, phase, cDay,
+    raw, emo, fis, int, phase, cDay,
     date: new Date(Date.now() + offset*86400000)
   };
 }
@@ -777,6 +786,7 @@ function calculate() {
         +'<div style="font-size:28px;margin-bottom:8px">🌙</div>'
         +'<div style="font-family:Cormorant Garamond,serif;font-size:22px;font-weight:600;color:#e8849a;margin-bottom:6px">Estás en modo Pro</div>'
         +'<div style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6">Calendario 30 días · Modo pareja 180 días · PDF ✦</div>'
+        +'<div style="margin-top:12px"><a href="https://billing.stripe.com/p/login/bJe3cu4QNgje5GB2bk0Ba00" target="_blank" style="font-size:12px;color:rgba(255,255,255,0.3);text-decoration:underline;">Gestionar o cancelar suscripción →</a></div>'
         +'</div>';
     }
   }
@@ -818,14 +828,17 @@ function renderToday(d) {
     { name:'Físico',    val:d.fis, color:'var(--teal)' },
     { name:'Intelectual',val:d.int,color:'var(--gold)' },
   ];
-  document.getElementById('bioBars').innerHTML = bars.map(b=>`
+  document.getElementById('bioBars').innerHTML = bars.map(b=>{
+    const pct = Math.round((b.val+1)/2*100);
+    return `
     <div class="bio-row">
       <div class="bio-name">${b.name}</div>
       <div class="bio-track"><div class="bio-fill" id="bf_${b.name}" style="background:${b.color};width:0%"></div></div>
-      <div class="bio-val" style="color:${b.color}">${b.val}%</div>
-    </div>`).join('');
+      <div class="bio-val" style="color:${b.color}">${pct}%</div>
+    </div>`;
+  }).join('');
   setTimeout(()=>{
-    bars.forEach(b=>{ document.getElementById('bf_'+b.name).style.width=b.val+'%'; });
+    bars.forEach(b=>{ const pct = Math.round((b.val+1)/2*100); document.getElementById('bf_'+b.name).style.width=pct+'%'; });
   },100);
 
   // Insight
