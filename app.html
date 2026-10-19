@@ -458,16 +458,24 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
       <div class="pro-tag">✦ PRO</div>
       <div class="pro-title">Desbloquea tu ritmo <em>completo</em></div>
       <p style="font-size:13px;color:var(--muted);margin-bottom:4px">30 días de previsión completa · Modo pareja 180 días · Sin límites</p>
+      <div style="display:flex;gap:12px;align-items:flex-start;text-align:left;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.25);border-radius:16px;padding:14px 16px;margin:14px 0 0;">
+        <span style="font-size:24px;line-height:1">📄</span>
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--gold);margin-bottom:2px">Tu informe PDF mensual</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5">Previsión de 30 días con análisis semana a semana, curvas de energía y guía de autocuidado. Lista para imprimir.</div>
+        </div>
+      </div>
       <div class="pro-features">
         <span class="pro-feat">📅 30 días completos</span>
         <span class="pro-feat">💑 Modo pareja 180d</span>
-        <span class="pro-feat">📄 Descarga PDF</span>
+        <span class="pro-feat">📄 Informe PDF</span>
         <span class="pro-feat">🚫 Sin anuncios</span>
       </div>
       <button class="btn-gold" onclick="window.location.href='https://buy.stripe.com/bJe4gybfbc2Y0mhg2a0Ba01'">
         ✦ DESBLOQUEAR POR €3.99/MES
       </button>
       <p class="pro-price">Cancela cuando quieras · Pago seguro con Stripe</p>
+      <p class="pro-price" id="annualOffer" style="display:none"><a class="annual-cta" style="color:var(--gold)">o Pro anual por €29.99/año · ahorra un 37 % →</a></p>
     </div>
 
     <!-- PDF DOWNLOAD -->
@@ -485,7 +493,7 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
       <div class="couple-toggle" onclick="toggleCouple()">
         <div class="couple-toggle-text">
           <h3>💑 Modo Pareja <span id="coupleLock" style="font-size:12px;background:linear-gradient(135deg,var(--rose),var(--lilac));border-radius:10px;padding:2px 8px;font-weight:500;vertical-align:middle;display:inline-block;">✦ PRO</span></h3>
-          <p>¿Y si pudierais planificar el finde perfecto... con ciencia?</p>
+          <p id="coupleTeaser">Gratis: vuestro mejor día del semestre y el mapa de un mes. Todo lo demás, con Pro.</p>
         </div>
         <div class="couple-toggle-icon" id="coupleIcon">▾</div>
       </div>
@@ -539,7 +547,7 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
       </div>
 
       <!-- Couple curve -->
-      <div class="curve-card fade-in">
+      <div class="curve-card fade-in" id="coupleCurveCard">
         <div class="curve-header">
           <div class="curve-title">Ritmo de dos</div>
           <div style="font-size:10px;letter-spacing:2px;color:var(--gold)" id="couplePeriodLabel"></div>
@@ -566,6 +574,7 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
         <div class="cal-header">
           <div class="cal-title">Mapa de sincronía</div>
         </div>
+        <div class="card-sub" id="coupleMapLabel" style="margin-bottom:12px"></div>
         <div id="coupleCalContainer"></div>
         <div class="cal-legend">
           <div class="cal-leg"><div class="cal-leg-dot" style="background:rgba(200,85,111,0.5)"></div>💞 Pico</div>
@@ -573,6 +582,14 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
           <div class="cal-leg"><div class="cal-leg-dot" style="background:rgba(155,127,200,0.3)"></div>💜 Medio</div>
           <div class="cal-leg"><div class="cal-leg-dot" style="background:rgba(255,255,255,0.06)"></div>🌙 Bajo</div>
         </div>
+      </div>
+
+      <!-- Couple preview lock (free users) -->
+      <div class="pro-banner fade-in" id="couplePreviewLock" style="display:none">
+        <div class="pro-tag">✦ PRO</div>
+        <div class="pro-title">Desbloquea <em>vuestros 180 días</em></div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Compatibilidad media, curva de sincronía, los 10 mejores días y el mapa completo de seis meses.</p>
+        <button class="btn-gold" onclick="scrollToPro()">✦ VER PLANES PRO</button>
       </div>
     </div>
 
@@ -774,7 +791,10 @@ function calculate() {
   userData.bd = bd; userData.pd = pd;
 
   // Hide couple PRO badge if already Pro
-  if (isPro) { const cl=document.getElementById('coupleLock'); if(cl) cl.style.display='none'; }
+  if (isPro) {
+    const cl=document.getElementById('coupleLock'); if(cl) cl.style.display='none';
+    document.getElementById('coupleTeaser').textContent='¿Y si pudierais planificar el finde perfecto juntos?';
+  }
   // Show results
   document.getElementById('step0').style.display='none';
   document.getElementById('step1').style.display='none';
@@ -992,6 +1012,15 @@ function downloadPDF() {
   // Data goes in the #fragment so it never reaches the server (fragments aren't sent in HTTP requests)
   window.open('pdf.html#' + params.toString(), '_blank');
 }
+// TODO(Klaus): pega aquí el Payment Link de Stripe del plan anual (29,99 €/año).
+// Mientras esté vacío, la oferta anual no se muestra.
+const STRIPE_ANNUAL_LINK = '';
+document.addEventListener('DOMContentLoaded', () => {
+  if (!STRIPE_ANNUAL_LINK) return;
+  document.querySelectorAll('.annual-cta').forEach(a => a.href = STRIPE_ANNUAL_LINK);
+  document.getElementById('annualOffer').style.display = '';
+});
+
 function scrollToPro() {
   document.getElementById('proBanner')?.scrollIntoView({behavior:'smooth'});
 }
@@ -1019,19 +1048,15 @@ function setDuration(d) {
 
 function calculateCouple() {
   if (!userData || !profile2) return;
-  // Gate: couple mode is Pro only
-  if (!isPro) {
-    document.getElementById('coupleResults').style.display = 'none';
-    document.getElementById('proBanner').style.display = 'block';
-    document.getElementById('proBanner').scrollIntoView({behavior:'smooth', block:'center'});
-    return;
-  }
+  // Free preview: best day of the next 180 days + map of the next 30 days; the rest is Pro
+  const preview = !isPro;
+  const days = preview ? 180 : duration;
   const bd2=getWheelDateVal('bd2');
   if (!bd2) return;
   const pd2=parseInt(document.getElementById('pd2').value)||0;
 
-  const data1=Array.from({length:duration},(_,i)=>calcBio(userData.bd,userProfile,userData.pd,i));
-  const data2=Array.from({length:duration},(_,i)=>calcBio(bd2,profile2,pd2,i));
+  const data1=Array.from({length:days},(_,i)=>calcBio(userData.bd,userProfile,userData.pd,i));
+  const data2=Array.from({length:days},(_,i)=>calcBio(bd2,profile2,pd2,i));
   const combined=data1.map((d,i)=>{
     const s=(d.raw+data2[i].raw)/2;
     const bonus=(d.raw>=0.68&&data2[i].raw>=0.68)?1.15:1;
@@ -1043,20 +1068,24 @@ function calculateCouple() {
   });
 
   const avg=Math.round(combined.reduce((a,d)=>a+d.compat,0)/combined.length);
-  document.getElementById('compatScore').textContent=avg;
-  document.getElementById('couplePeriodLabel').textContent=`${duration} DÍAS`;
+  document.getElementById('compatScore').textContent=preview?'🔒':avg;
+  document.getElementById('couplePeriodLabel').textContent=`${days} DÍAS`;
 
-  const desc=avg>=70?'Vuestra sincronía es extraordinaria. Muchos momentos de conexión profunda.':
+  const desc=preview?'La compatibilidad media de vuestros próximos 180 días está incluida en Pro.':
+    avg>=70?'Vuestra sincronía es extraordinaria. Muchos momentos de conexión profunda.':
     avg>=55?'Buena compatibilidad. Encontraréis momentos especiales a lo largo del período.':
     'Ritmos distintos que se complementan. La diferencia es también riqueza.';
   document.getElementById('compatDesc').textContent=desc;
 
-  // Couple curve
-  renderCoupleCurve(combined, data1, data2);
+  // Couple curve (Pro)
+  document.getElementById('coupleCurveCard').style.display=preview?'none':'';
+  if (!preview) renderCoupleCurve(combined, data1, data2);
 
-  // Top 10
-  const top10=[...combined].sort((a,b)=>b.compat-a.compat).slice(0,10);
-  document.getElementById('topDaysLabel').textContent=`Los 10 mejores momentos de los próximos ${duration} días`;
+  // Top 10 (preview: only the best day)
+  const top10=[...combined].sort((a,b)=>b.compat-a.compat).slice(0,preview?1:10);
+  document.getElementById('topDaysLabel').textContent=preview
+    ? 'Vuestro mejor día de los próximos 180 días · los 10 mejores, con Pro'
+    : `Los 10 mejores momentos de los próximos ${days} días`;
   document.getElementById('topDaysList').innerHTML=top10.map((d,i)=>{
     const s=getDayStyle(d.compat);
     const label=d.date.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
@@ -1067,8 +1096,10 @@ function calculateCouple() {
     </div>`;
   }).join('');
 
-  // Couple heatmap
-  renderCoupleHeatmap(combined);
+  // Couple heatmap (preview: next 30 days)
+  document.getElementById('coupleMapLabel').textContent=preview?'Próximos 30 días · el mapa de 6 meses, con Pro':'';
+  renderCoupleHeatmap(preview?combined.slice(0,30):combined);
+  document.getElementById('couplePreviewLock').style.display=preview?'block':'none';
 
   document.getElementById('coupleResults').style.display='block';
   setTimeout(()=>document.getElementById('coupleResults').scrollIntoView({behavior:'smooth',block:'start'}),100);

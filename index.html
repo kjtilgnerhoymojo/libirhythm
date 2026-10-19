@@ -418,7 +418,8 @@ section{padding:100px 24px;}
   background:rgba(255,255,255,0.02);
   border-top:1px solid rgba(255,255,255,0.05);
 }
-.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px;max-width:700px;margin-left:auto;margin-right:auto;}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;max-width:1040px;margin-left:auto;margin-right:auto;}
+@media(max-width:960px){.pricing-grid{grid-template-columns:1fr;max-width:440px;}}
 .price-card{border-radius:28px;padding:36px 30px;position:relative;overflow:hidden;}
 .price-card.free{
   background:rgba(255,255,255,0.03);
@@ -471,6 +472,19 @@ section{padding:100px 24px;}
   box-shadow:0 4px 20px rgba(200,85,111,0.3);
 }
 .price-btn.pro-btn:hover{transform:translateY(-1px);box-shadow:0 7px 28px rgba(200,85,111,0.4);}
+.price-btn.pro-btn.soon{opacity:0.5;pointer-events:none;box-shadow:none;}
+.price-save{
+  display:inline-block;background:rgba(201,169,110,0.15);border:1px solid rgba(201,169,110,0.35);
+  border-radius:20px;padding:2px 10px;font-size:11px;font-weight:500;color:var(--gold);margin-bottom:20px;
+}
+.price-pdf{
+  display:flex;gap:12px;align-items:flex-start;text-align:left;
+  background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.25);
+  border-radius:16px;padding:14px 16px;margin-bottom:20px;
+}
+.price-pdf-icon{font-size:24px;line-height:1;}
+.price-pdf-title{font-size:14px;font-weight:500;color:var(--gold);margin-bottom:2px;}
+.price-pdf-text{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;}
 
 /* ── FOOTER ── */
 footer{
@@ -772,6 +786,7 @@ footer{
           </div>
         </div>
         <a href="#calcular" class="btn-primary">Probar modo pareja 💑</a>
+        <p style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:14px;">Gratis: vuestro mejor día del semestre y el mapa de un mes. El análisis completo de 180 días, con Pro.</p>
       </div>
 
       <div class="couple-visual reveal reveal-d2">
@@ -931,17 +946,25 @@ footer{
           <div class="price-feat">Calendario 14 días</div>
           <div class="price-feat">3 biorritmos personales</div>
           <div class="price-feat muted">Calendario 30 días</div>
-          <div class="price-feat muted">Modo pareja 180 días</div>
+          <div class="price-feat">Adelanto del modo pareja</div>
+          <div class="price-feat muted">Modo pareja completo 180 días</div>
           <div class="price-feat muted">Informe PDF mensual</div>
         </div>
         <a href="#calcular" class="price-btn free-btn">Empezar gratis</a>
       </div>
 
       <div class="price-card pro reveal reveal-d2">
-        <div class="price-badge">✦ RECOMENDADO</div>
+        <div class="price-badge">✦ PRO MENSUAL</div>
         <div class="price-name">Pro</div>
         <div class="price-amount">€3.99</div>
         <div class="price-per">/ mes · Cancela cuando quieras</div>
+        <div class="price-pdf">
+          <span class="price-pdf-icon">📄</span>
+          <div>
+            <div class="price-pdf-title">Informe PDF mensual</div>
+            <div class="price-pdf-text">Tu previsión de 30 días con análisis semana a semana, curvas de energía y guía de autocuidado. Lista para imprimir.</div>
+          </div>
+        </div>
         <div class="price-features">
           <div class="price-feat">Todo lo gratuito</div>
           <div class="price-feat">📅 Calendario 30 días completo</div>
@@ -951,6 +974,29 @@ footer{
           <div class="price-feat">✦ Acceso anticipado a novedades</div>
         </div>
         <a href="https://buy.stripe.com/bJe4gybfbc2Y0mhg2a0Ba01" class="price-btn pro-btn">Desbloquear Pro ✦</a>
+        <div style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:10px;">Pago seguro con Stripe · <a href="privacidad.html#stripe" style="color:inherit;">Privacidad</a></div>
+      </div>
+
+      <div class="price-card pro reveal reveal-d3">
+        <div class="price-badge">✦ RECOMENDADO · ANUAL</div>
+        <div class="price-name">Pro anual</div>
+        <div class="price-amount">€29.99</div>
+        <div class="price-per">/ año · ≈ €2.50 al mes</div>
+        <div class="price-save">Ahorra un 37 % frente al plan mensual</div>
+        <div class="price-pdf">
+          <span class="price-pdf-icon">📄</span>
+          <div>
+            <div class="price-pdf-title">12 informes PDF al año</div>
+            <div class="price-pdf-text">Tu previsión de 30 días con análisis semana a semana, curvas de energía y guía de autocuidado, cada mes.</div>
+          </div>
+        </div>
+        <div class="price-features">
+          <div class="price-feat">Todo lo de Pro mensual</div>
+          <div class="price-feat">📅 Calendario 30 días completo</div>
+          <div class="price-feat">💑 Modo pareja 180 días</div>
+          <div class="price-feat">Un solo pago al año</div>
+        </div>
+        <a href="#" class="price-btn pro-btn annual-cta">Elegir Pro anual ✦</a>
         <div style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:10px;">Pago seguro con Stripe · <a href="privacidad.html#stripe" style="color:inherit;">Privacidad</a></div>
       </div>
     </div>
@@ -1130,6 +1176,15 @@ function resetCalc(){
     if(el) el.className = 'chip';
   });
 }
+
+// ── PLAN ANUAL ──────────────────────────────────────────────────────────────
+// TODO(Klaus): pega aquí el Payment Link de Stripe del plan anual (29,99 €/año).
+// Mientras esté vacío, el botón aparece como "Disponible muy pronto" y no lleva a ningún sitio.
+const STRIPE_ANNUAL_LINK = '';
+document.querySelectorAll('.annual-cta').forEach(function(a){
+  if (STRIPE_ANNUAL_LINK) { a.href = STRIPE_ANNUAL_LINK; }
+  else { a.removeAttribute('href'); a.classList.add('soon'); a.textContent = 'Disponible muy pronto'; }
+});
 
 // ── DEMO HEATMAP ─────────────────────────────────────────────────────────────
 (function(){
