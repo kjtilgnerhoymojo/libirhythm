@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LibiRhythm — Tu ritmo, tu poder</title>
-<meta name="description" content="Descubre tu ciclo, tus bioritmos y tu energía personal. Predicción de 30 días, modo pareja de 180 días y descarga tu calendario mensual.">
+<meta name="description" content="Descubre tu ciclo, tus biorritmos y tu energía personal. Predicción de 30 días, modo pareja de 180 días y descarga tu calendario mensual.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -548,8 +548,8 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
           <svg id="coupleSvg" width="100%" height="140" viewBox="0 0 560 140" preserveAspectRatio="none"></svg>
         </div>
         <div class="curve-legend">
-          <div class="curve-leg-item"><div class="curve-leg-dot" style="background:var(--rose)"></div>Ella</div>
-          <div class="curve-leg-item"><div class="curve-leg-dot" style="background:var(--lilac)"></div>Él / Pareja 2</div>
+          <div class="curve-leg-item"><div class="curve-leg-dot" style="background:var(--rose)"></div>Tú</div>
+          <div class="curve-leg-item"><div class="curve-leg-dot" style="background:var(--lilac)"></div>Tu pareja</div>
           <div class="curve-leg-item"><div class="curve-leg-dot" style="background:var(--gold);height:4px"></div>Sincronía</div>
         </div>
       </div>
@@ -624,7 +624,7 @@ function calcBio(bd, profile, pd, offset) {
   const emo = bio(days, 28), fis = bio(days, 23), int = bio(days, 33);
   const hasCycle = profile === 'cycle';
   const cDay = hasCycle ? (((pd + offset) % 28 + 28) % 28 || 28) : null;
-  const phase = hasCycle ? getCyclePhase(cDay) : { name:'Bioritmos personales', emoji:'🌙', score:0, hint:'Guiada por tu energía interior.', color:'rgba(155,127,200,0.2)' };
+  const phase = hasCycle ? getCyclePhase(cDay) : { name:'Biorritmos personales', emoji:'🌙', score:0, hint:'Guiada por tu energía interior.', color:'rgba(155,127,200,0.2)' };
   const raw = hasCycle
     ? phase.score*0.50 + ((emo+1)/2)*0.25 + ((fis+1)/2)*0.15 + ((int+1)/2)*0.10
     : ((emo+1)/2)*0.45 + ((fis+1)/2)*0.30 + ((int+1)/2)*0.25;
@@ -745,7 +745,7 @@ function setProfile(p) {
   // Update step 1
   const hasCycle = p==='cycle';
   document.getElementById('cycleField').style.display = hasCycle?'block':'none';
-  const titles = { cycle:'Tu ciclo y bioritmos', no_cycle:'Tus bioritmos personales', other:'Tu energía personal' };
+  const titles = { cycle:'Tu ciclo y biorritmos', no_cycle:'Tus biorritmos personales', other:'Tu energía personal' };
   document.getElementById('step1Title').textContent = titles[p] || 'Cuéntame sobre ti';
 }
 
@@ -761,7 +761,7 @@ const INSIGHTS = {
   high: ["Tu energía vital está en su punto más alto. Es un momento para conectar, crear y brillar. ✨","Los astros y tu biología coinciden hoy. Aprovecha esta energía radiante. 🌸","Pocas veces el cuerpo y la mente están tan alineados. Hoy todo fluye. 💫","Tu magnetismo personal está elevado. Confía en tu intuición. 🌟"],
   mid:  ["Energía en ascenso. Tu cuerpo te invita a explorar y conectar. 🌺","Un día equilibrado con potencial para la conexión genuina. 💜","Tu ritmo interno acompaña. Escucha lo que necesitas hoy. 🍃","La energía es favorable. Un momento de calma activa. 🌿"],
   low:  ["Tu cuerpo pide descanso y cuidado. Es tiempo de recargar. 🛁","La introspección te nutre hoy. Honra tu necesidad de quietud. 🌙","No todo es acción. Los días tranquilos también son necesarios. ☕","Cuídate con ternura hoy. El descanso es productivo. 💙"],
-  meno: ["Tu energía fluye libremente, guiada por tus bioritmos únicos. 🌙","Sin ciclo que seguir, tu intuición es tu brújula. ✨","Cada día tiene su propia vibración. Escucha la de hoy. 💜"],
+  meno: ["Tu energía fluye libremente, guiada por tus biorritmos únicos. 🌙","Sin ciclo que seguir, tu intuición es tu brújula. ✨","Cada día tiene su propia vibración. Escucha la de hoy. 💜"],
 };
 function pickInsight(pool) { return pool[Math.floor(Math.random()*pool.length)]; }
 
