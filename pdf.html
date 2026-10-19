@@ -349,8 +349,25 @@ body{
   .footer{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 }
 </style>
+<style>
+#proLock{display:none;}
+html.pro-locked body > *:not(#proLock){display:none !important;}
+html.pro-locked #proLock{display:block;}
+</style>
+<script src="/pro.js"></script>
+<script>
+// The monthly report is Pro: hide it until the Pro check passes
+if (!LibiPro.isPro()) document.documentElement.classList.add('pro-locked');
+LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-locked', !ok); });
+</script>
 </head>
 <body>
+<div id="proLock" style="max-width:520px;margin:15vh auto;padding:40px 28px;text-align:center;font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#1e1530,#16101f);color:#fff;border-radius:28px;border:1px solid rgba(200,85,111,0.3);">
+  <div style="font-size:36px;margin-bottom:12px">📄</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:30px;margin-bottom:8px">Tu informe PDF mensual es <em style="color:#e8849a">Pro</em></div>
+  <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:24px">Previsión de 30 días con análisis semana a semana, curvas de energía y guía de autocuidado, lista para imprimir.</p>
+  <a href="index.html#precios" style="display:inline-block;background:linear-gradient(135deg,#c8556f,#9b7fc8);color:#fff;text-decoration:none;border-radius:30px;padding:14px 32px;font-size:15px;font-weight:500">Ver planes Pro ✦</a>
+</div>
 <div class="page">
 
 <!-- ══ COVER ══════════════════════════════════════════════════════════════════ -->

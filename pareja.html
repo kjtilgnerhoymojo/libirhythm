@@ -317,6 +317,7 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
 
 <div class="tooltip" id="tooltip"></div>
 
+<script src="/pro.js"></script>
 <script>
 // ── ENGINE ──────────────────────────────────────────────────────────────────
 function daysSince(d){return Math.floor((Date.now()-new Date(d).getTime())/86400000);}
@@ -356,9 +357,9 @@ function getTypeLabel(s1,s2,combined){
 
 // ── STATE ────────────────────────────────────────────────────────────────────
 let profile1='', profile2='', duration=180;
-// Same Pro check as app.html
-const isPro = localStorage.getItem('libipro')==='true' &&
-  Date.now()-parseInt(localStorage.getItem('libipro_ts')||'0') < 32*86400000;
+// Pro check (see /pro.js)
+let isPro = LibiPro.isPro();
+LibiPro.ready.then(v => { isPro = v; });
 const MONTHS_ES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const DOWS=['L','M','X','J','V','S','D'];
 

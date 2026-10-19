@@ -1246,6 +1246,11 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 
+<script src="/pro.js"></script>
+<script>
+// Stripe may redirect here after paying: activate and continue to the app
+if (LibiPro.activating) LibiPro.ready.then(function(ok){ if (ok) location.href = 'app.html'; });
+</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

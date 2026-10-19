@@ -137,7 +137,7 @@
       <h2>Resumen</h2>
 
       <div class="highlight-box">
-        <p><strong>En pocas palabras:</strong> los datos que introduces en la calculadora (fecha de nacimiento y datos del ciclo, tuyos o de tu pareja) se procesan en tu navegador y no se envían a LibiRhythm ni a ningún servidor. Para que la web funcione intervienen terceros: Vercel (alojamiento y estadísticas de visitas sin cookies), Google Fonts (tipografías) y, solo si contratas Pro, Stripe (pagos). Los detalles, a continuación.</p>
+        <p><strong>En pocas palabras:</strong> los datos que introduces en la calculadora (fecha de nacimiento y datos del ciclo, tuyos o de tu pareja) se procesan en tu navegador y no se envían a LibiRhythm ni a ningún servidor. Para que la web funcione intervienen terceros: Vercel (alojamiento y estadísticas de visitas sin cookies), Google Fonts (tipografías) y, solo si contratas Pro, Stripe (pagos y verificación de tu suscripción). Los detalles, a continuación.</p>
       </div>
 
       <h3>Responsable del tratamiento</h3>
@@ -201,6 +201,8 @@
         <li><strong>Conservación:</strong> mientras la suscripción esté activa y, después, durante los plazos que exige la normativa fiscal y mercantil.</li>
         <li>Más información en la <a href="https://stripe.com/es/privacy" target="_blank" rel="noopener">política de privacidad de Stripe</a>.</li>
       </ul>
+      <h3>Verificación de Pro</h3>
+      <p>Como no hay cuentas de usuario, Pro se activa en tu navegador. Al volver de la página de pago, tu navegador envía a una función de LibiRhythm alojada en Vercel el identificador de esa sesión de pago. La función pregunta a Stripe si la suscripción está pagada y activa y, si lo está, devuelve un justificante firmado que contiene el identificador de la suscripción y su fecha de validez. Ese justificante se guarda en tu navegador (ver sección 7) y se vuelve a comprobar con Stripe como máximo una vez al día. LibiRhythm no guarda estos datos en ninguna base de datos; Vercel puede registrar temporalmente las peticiones (sección 3).</p>
       <p>Ni Stripe ni LibiRhythm reciben los datos de la calculadora: el pago y el cálculo están completamente separados.</p>
     </div>
 
@@ -213,7 +215,9 @@
       <table class="data-table">
         <thead><tr><th>Nombre</th><th>Tipo</th><th>Finalidad</th><th>Duración</th></tr></thead>
         <tbody>
-          <tr><td><code>libipro</code>, <code>libipro_ts</code></td><td>Almacenamiento local (localStorage)</td><td>Recordar en este navegador que has activado Pro y desde cuándo</td><td>Hasta que lo borres</td></tr>
+          <tr><td><code>libipro_token</code></td><td>Almacenamiento local (localStorage)</td><td>Justificante firmado de tu suscripción Pro (identificador de suscripción de Stripe y fecha de validez)</td><td>Hasta que lo borres o la suscripción deje de estar activa</td></tr>
+          <tr><td><code>libipro_checked</code></td><td>Almacenamiento local (localStorage)</td><td>Fecha de la última comprobación de la suscripción</td><td>Igual que el anterior</td></tr>
+          <tr><td><code>libipro</code>, <code>libipro_ts</code></td><td>Almacenamiento local (localStorage)</td><td>Activaciones de Pro anteriores a octubre de 2026</td><td>Dejan de tener efecto a los 32 días de la activación</td></tr>
         </tbody>
       </table>
       </div>

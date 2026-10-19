@@ -350,6 +350,8 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
 
 <main>
 
+  <div class="card" id="proNotice" style="display:none;margin-top:24px"></div>
+
   <!-- HERO -->
   <div class="hero">
     <span class="hero-moon">🌙</span>
@@ -631,6 +633,7 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
 
 <div class="tooltip" id="tooltip"></div>
 
+<script src="/pro.js"></script>
 <script>
 // ── ENGINE ───────────────────────────────────────────────────────────────────
 const daysSince = d => Math.floor((Date.now() - new Date(d).getTime()) / 86400000);
@@ -682,13 +685,18 @@ function normalizeCoupled(rawIdx, p1Cycle, p2Cycle) {
 let userProfile='', profile2='', duration=180, curvePeriod=14;
 let userData=null;
 
-// Check Pro
-const isPro = localStorage.getItem('libipro')==='true' &&
-  Date.now()-parseInt(localStorage.getItem('libipro_ts')||'0') < 32*86400000;
-if (new URLSearchParams(location.search).get('pro')==='ok') {
-  localStorage.setItem('libipro','true');
-  localStorage.setItem('libipro_ts',Date.now().toString());
-  history.replaceState({},'',' /');
+// Check Pro (see /pro.js): read from the stored token now, updated once the server check finishes
+let isPro = LibiPro.isPro();
+LibiPro.ready.then(v => {
+  isPro = v;
+  if (LibiPro.activating) showProNotice(v);
+});
+function showProNotice(ok) {
+  const n = document.getElementById('proNotice');
+  n.innerHTML = ok
+    ? '<div class="card-title">✦ Pro activado</div><div class="card-sub" style="margin:0">¡Gracias! Pro queda activado en este navegador. Calcula tu ritmo para ver los 30 días, el modo pareja completo y tu informe PDF.</div>'
+    : '<div class="card-title">No hemos podido confirmar tu pago</div><div class="card-sub" style="margin:0">Si acabas de pagar, recarga la página en unos segundos. Si sigue sin activarse, escríbenos a <a href="mailto:hola@libirhythm.com" style="color:var(--rose2)">hola@libirhythm.com</a> y lo activamos.</div>';
+  n.style.display = 'block';
 }
 
 
