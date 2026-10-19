@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LibiRhythm — Informe Personal de Bienestar · Junio 2026</title>
+<title>LibiRhythm — Informe Personal de Bienestar</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -362,13 +362,13 @@ body{
   </div>
   <div class="cover-main">
     <div class="cover-eyebrow">Informe personal de bienestar</div>
-    <div class="cover-title">Tu ritmo <em>interior</em><br>en junio 2026</div>
-    <div class="cover-subtitle" id="coverSubtitle">Bioritmos personalizados · Ciclo menstrual · Previsión 30 días</div>
+    <div class="cover-title">Tu ritmo <em>interior</em><br><span id="coverRange">próximos 30 días</span></div>
+    <div class="cover-subtitle" id="coverSubtitle">Biorritmos personalizados · Ciclo menstrual · Previsión 30 días</div>
   </div>
   <div class="cover-meta">
     <div class="cover-meta-item">
       <div class="cover-meta-label">Generado</div>
-      <div class="cover-meta-value" id="metaGenDate">1 junio 2026</div>
+      <div class="cover-meta-value" id="metaGenDate">—</div>
     </div>
     <div class="cover-meta-item">
       <div class="cover-meta-label">Fecha de nacimiento</div>
@@ -404,11 +404,11 @@ body{
       <div class="today-phase" id="todayPhase">🌕 Fase lútea</div>
     </div>
     <div class="today-right">
-      <div style="font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:14px">BIORITMOS PERSONALES</div>
+      <div style="font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:14px">BIORRITMOS PERSONALES</div>
       <div id="todayBars"></div>
       <div class="today-insight">
         <div class="today-insight-label">✦ Tu momento de hoy</div>
-        <div class="today-insight-text" id="todayInsight">"Tu bioritmo intelectual está en su punto más alto esta semana. Un día excelente para conversaciones profundas y tomar decisiones importantes con serenidad."</div>
+        <div class="today-insight-text" id="todayInsight">"Tu biorritmo intelectual está en su punto más alto esta semana. Un día excelente para conversaciones profundas y tomar decisiones importantes con serenidad."</div>
       </div>
     </div>
   </div>
@@ -418,14 +418,14 @@ body{
 <div class="section">
   <div class="section-head">
     <div class="section-num">02</div>
-    <div class="section-title">Tus bioritmos — próximos 30 días</div>
+    <div class="section-title">Tus biorritmos — próximos 30 días</div>
     <div class="section-line"></div>
   </div>
-  <p class="body-text">Las curvas de bioritmo muestran cómo tu energía emocional, física e intelectual fluctúa a lo largo del mes. Cuando las tres curvas coinciden en su punto alto — los días marcados en rosa — es cuando te sientes más completa y conectada.</p>
+  <p class="body-text">Las curvas de biorritmo muestran cómo tu energía emocional, física e intelectual fluctúa a lo largo del mes. Cuando las tres curvas coinciden en su punto alto — los días marcados en rosa — es cuando te sientes más completa y conectada.</p>
   <div class="curve-box">
     <div class="curve-title-row">
       <div class="curve-box-title">Curva de energía personal</div>
-      <div class="curve-period">30 DÍAS · JUNIO 2026</div>
+      <div class="curve-period" id="curveRange">30 DÍAS</div>
     </div>
     <svg id="mainCurve" width="100%" height="130" viewBox="0 0 720 130" preserveAspectRatio="none"></svg>
     <div class="curve-legend">
@@ -437,7 +437,7 @@ body{
   </div>
 
   <div class="pull-quote">
-    <p>"Las mujeres que comprenden sus bioritmos toman mejores decisiones, tienen más energía y disfrutan de relaciones más satisfactorias — no porque sean diferentes, sino porque actúan en el momento correcto."</p>
+    <p>"Las mujeres que comprenden sus biorritmos toman mejores decisiones, tienen más energía y disfrutan de relaciones más satisfactorias — no porque sean diferentes, sino porque actúan en el momento correcto."</p>
     <cite>— Principio del ciclo-sincronización, Alisa Vitti, 2013</cite>
   </div>
 </div>
@@ -446,7 +446,7 @@ body{
 <div class="section">
   <div class="section-head">
     <div class="section-num">03</div>
-    <div class="section-title">Calendario de junio 2026</div>
+    <div class="section-title" id="calTitle">Calendario de los próximos 30 días</div>
     <div class="section-line"></div>
   </div>
   <p class="body-text">Cada día del mes muestra tu índice de energía combinado (0–100) y la fase del ciclo en la que te encuentras. Usa este calendario para planificar con antelación tus compromisos más importantes.</p>
@@ -513,7 +513,7 @@ body{
         <div class="formula-name">💛 Intelectual</div>
       </div>
     </div>
-    <div class="formula-note">El <strong>ciclo menstrual</strong> tiene mayor peso porque es el factor hormonal más medible y determinante en la energía femenina. Los <strong>bioritmos</strong> son ciclos sinusoidales calculados desde tu fecha de nacimiento con períodos de 28, 23 y 33 días respectivamente, según el modelo de Fliess-Swoboda-Teltscher (1897–1920).</div>
+    <div class="formula-note">El <strong>ciclo menstrual</strong> tiene mayor peso porque es el factor hormonal más medible y determinante en la energía femenina. Los <strong>biorritmos</strong> son ciclos sinusoidales calculados desde tu fecha de nacimiento con períodos de 28, 23 y 33 días respectivamente, según el modelo de Fliess-Swoboda-Teltscher (1897–1920).</div>
   </div>
 
   <div class="science-grid">
@@ -657,7 +657,7 @@ body{
 <div class="disclaimer-box">
   <div class="today-insight-label" style="margin-bottom:6px">AVISO IMPORTANTE</div>
   <div class="disclaimer-text">
-    Este informe ha sido generado por LibiRhythm basándose en cálculos matemáticos de bioritmo y los datos del ciclo menstrual facilitados. Los resultados son de carácter orientativo y no constituyen consejo médico, psicológico ni de ninguna otra índole profesional. El modelo de bioritmo utilizado se basa en el trabajo de Wilhelm Fliess (1897), Hermann Swoboda (1904) y Friedrich Teltscher (1920). Si tienes dudas sobre tu salud reproductiva o ciclo menstrual, consulta siempre con un profesional médico. LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento. · Este informe se ha generado en tu navegador: los datos introducidos no se envían a LibiRhythm.
+    Este informe ha sido generado por LibiRhythm basándose en cálculos matemáticos de biorritmo y los datos del ciclo menstrual facilitados. Los resultados son de carácter orientativo y no constituyen consejo médico, psicológico ni de ninguna otra índole profesional. El modelo de biorritmo utilizado se basa en el trabajo de Wilhelm Fliess (1897), Hermann Swoboda (1904) y Friedrich Teltscher (1920). Si tienes dudas sobre tu salud reproductiva o ciclo menstrual, consulta siempre con un profesional médico. LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento. · Este informe se ha generado en tu navegador: los datos introducidos no se envían a LibiRhythm.
   </div>
 </div>
 
@@ -678,7 +678,7 @@ body{
     <div class="footer-url">libirhythm.com</div>
   </div>
   <div class="footer-note">
-    Informe personal generado el 1 de junio de 2026<br>
+    Informe personal generado el <span id="footerGenDate">—</span><br>
     © 2026 LibiRhythm · Todos los derechos reservados
   </div>
 </div>
@@ -735,6 +735,13 @@ function calcDay(offset){
 }
 
 const data30=Array.from({length:30},(_,i)=>calcDay(i));
+// "19 – 25 oct" / "27 oct – 2 nov"
+function fmtRange(a,b){
+  const m=d=>d.toLocaleDateString('es-ES',{month:'short'}).replace('.','');
+  return a.getMonth()===b.getMonth()
+    ? `${a.getDate()} – ${b.getDate()} ${m(b)}`
+    : `${a.getDate()} ${m(a)} – ${b.getDate()} ${m(b)}`;
+}
 const today0=data30[0];
 
 // ── TODAY ────────────────────────────────────────────────────────────────────
@@ -755,14 +762,24 @@ const elPhase = document.getElementById('metaPhase');
 if(elPhase) elPhase.textContent = _hasCycle
   ? `${today0.phase.emoji} ${today0.phase.name} · Día ${today0.cDay}`
   : `${today0.phase.emoji} ${today0.phase.name}`;
-// Update generated date
+// Update generated date and the 30-day range shown on the cover, curve, calendar and footer
+const genDate = new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
 const elGen = document.getElementById('metaGenDate');
-if(elGen) elGen.textContent = new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
+if(elGen) elGen.textContent = genDate;
+const elFooterGen = document.getElementById('footerGenDate');
+if(elFooterGen) elFooterGen.textContent = genDate;
+const range30 = fmtRange(data30[0].date, data30[29].date);
+const elCoverRange = document.getElementById('coverRange');
+if(elCoverRange) elCoverRange.textContent = range30;
+const elCurveRange = document.getElementById('curveRange');
+if(elCurveRange) elCurveRange.textContent = '30 DÍAS · ' + range30.toUpperCase();
+const elCalTitle = document.getElementById('calTitle');
+if(elCalTitle) elCalTitle.textContent = 'Calendario · ' + range30;
 // Update subtitle based on profile
 const elSub = document.getElementById('coverSubtitle');
 if(elSub) elSub.textContent = _hasCycle
-  ? 'Bioritmos personalizados · Ciclo menstrual · Previsión 30 días'
-  : 'Bioritmos personalizados · Energía personal · Previsión 30 días';
+  ? 'Biorritmos personalizados · Ciclo menstrual · Previsión 30 días'
+  : 'Biorritmos personalizados · Energía personal · Previsión 30 días';
 
 document.getElementById('todayNum').textContent=today0.idx;
 document.getElementById('todayNum').style.color=today0.phase.c;
@@ -873,18 +890,18 @@ document.getElementById('topDaysGrid').innerHTML=top10.map((d,i)=>{
 
 // ── WEEKLY ANALYSIS ───────────────────────────────────────────────────────────
 const weeks=[
-  {days:data30.slice(0,7),  label:'Semana 1', dates:'1 – 7 junio'},
-  {days:data30.slice(7,14), label:'Semana 2', dates:'8 – 14 junio'},
-  {days:data30.slice(14,21),label:'Semana 3', dates:'15 – 21 junio'},
-  {days:data30.slice(21,30),label:'Semana 4', dates:'22 – 30 junio'},
-];
+  {days:data30.slice(0,7),  label:'Semana 1'},
+  {days:data30.slice(7,14), label:'Semana 2'},
+  {days:data30.slice(14,21),label:'Semana 3'},
+  {days:data30.slice(21,30),label:'Semana 4'},
+].map(w=>({...w, dates:fmtRange(w.days[0].date, w.days[w.days.length-1].date)}));
 
 const weekInsights=[
   {desc:'Tu ciclo está en fase lútea avanzada. La progesterona desciende gradualmente. Semana de completar proyectos y preparar el terreno para el descanso menstrual que se acerca.',
    tips:['Prioriza descanso y sueño reparador','Reduce compromisos sociales innecesarios','Dedica tiempo a actividades creativas tranquilas']},
-  {desc:'Comienzo del nuevo ciclo menstrual. Tus bioritmos emocional e intelectual empiezan a subir con fuerza. La energía física aún está recuperándose.',
+  {desc:'Comienzo del nuevo ciclo menstrual. Tus biorritmos emocional e intelectual empiezan a subir con fuerza. La energía física aún está recuperándose.',
    tips:['Introduce nuevas ideas y proyectos en tu agenda','Aprovecha la claridad mental post-menstrual','Excelente semana para networking y conexiones']},
-  {desc:'La fase folicular trae tu mayor energía del mes. Tus tres bioritmos convergen en positivo. Esta es tu semana de mayor potencial.',
+  {desc:'La fase folicular trae tu mayor energía del mes. Tus tres biorritmos convergen en positivo. Esta es tu semana de mayor potencial.',
    tips:['Agenda tus reuniones más importantes','Prueba entrenamientos de alta intensidad','Es la mejor semana para primera citas o propuestas']},
   {desc:'Estás en fase lútea. La energía baja progresivamente pero la profundidad emocional aumenta. Semana de conexión íntima y trabajo interior.',
    tips:['Profundiza en relaciones existentes','Completa tareas pendientes antes del nuevo ciclo','Yoga restaurativo y baños relajantes son especialmente beneficiosos']},

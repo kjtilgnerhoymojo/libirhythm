@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LibiRhythm — Tu cuerpo sabe más de lo que crees</title>
-<meta name="description" content="Descubre tu ciclo, tus bioritmos y tu energía personal. Predicción 30 días, modo pareja 180 días. Para mujeres que quieren entenderse de verdad.">
+<meta name="description" content="Descubre tu ciclo, tus biorritmos y tu energía personal. Predicción 30 días, modo pareja 180 días. Para mujeres que quieren entenderse de verdad.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
@@ -561,7 +561,7 @@ footer{
 <!-- HERO -->
 <div class="hero">
   <span class="hero-moon">🌙</span>
-  <div class="hero-tag">✦ Bioritmos · Ciclo · Bienestar</div>
+  <div class="hero-tag">✦ Biorritmos · Ciclo · Bienestar</div>
   <h1 class="hero-title">
     Tu cuerpo sabe<br>más de lo que <em>crees</em>
   </h1>
@@ -659,13 +659,13 @@ footer{
         <span class="eyebrow">Tu dashboard personal</span>
         <div class="divider"></div>
         <h2 class="section-title">Tu energía,<br><em>en tiempo real</em></h2>
-        <p class="section-sub">Un índice personalizado que combina tu fase del ciclo con tus tres bioritmos personales. Cada día diferente, cada día tuyo.</p>
+        <p class="section-sub">Un índice personalizado que combina tu fase del ciclo con tus tres biorritmos personales. Cada día diferente, cada día tuyo.</p>
         <div class="preview-features">
           <div class="feat-row">
             <div class="feat-icon rose">🌸</div>
             <div class="feat-content">
               <h4>Índice diario personalizado</h4>
-              <p>Combina ciclo menstrual + bioritmo emocional, físico e intelectual en una puntuación de 0 a 100.</p>
+              <p>Combina ciclo menstrual + biorritmo emocional, físico e intelectual en una puntuación de 0 a 100.</p>
             </div>
           </div>
           <div class="feat-row">
@@ -746,7 +746,7 @@ footer{
       <div class="reveal">
         <span class="eyebrow">Modo pareja exclusivo</span>
         <div class="divider"></div>
-        <h2 class="section-title">¿Y si él también<br>pudiera <em>entenderte</em>?</h2>
+        <h2 class="section-title">¿Y si tu pareja también<br>pudiera <em>entenderte</em>?</h2>
         <p class="section-sub" style="margin-bottom:32px;">El modo pareja calcula los momentos de máxima sincronía entre vosotros en los próximos 180 días. Planifica vacaciones, escapadas y momentos especiales cuando el universo os dice que sí.</p>
         <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:36px;">
           <div style="display:flex;align-items:flex-start;gap:14px;">
@@ -786,19 +786,19 @@ footer{
         <div style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:10px;">🏆 Mejores momentos</div>
         <div class="couple-top-days">
           <div class="couple-day">
-            <div class="couple-day-date">💞 Sáb 14 jun · Sincronía total</div>
+            <div class="couple-day-date" data-demo-day="0" data-demo-label="💞 · Sincronía total">💞 Sincronía total</div>
             <div class="couple-day-score" style="color:var(--rose2)">96</div>
           </div>
           <div class="couple-day">
-            <div class="couple-day-date">✨ Dom 22 jun · Muy favorable</div>
+            <div class="couple-day-date" data-demo-day="8" data-demo-label="✨ · Muy favorable">✨ Muy favorable</div>
             <div class="couple-day-score" style="color:var(--gold)">91</div>
           </div>
           <div class="couple-day">
-            <div class="couple-day-date">💜 Vie 4 jul · Conexión profunda</div>
+            <div class="couple-day-date" data-demo-day="20" data-demo-label="💜 · Conexión profunda">💜 Conexión profunda</div>
             <div class="couple-day-score" style="color:var(--lilac2)">88</div>
           </div>
         </div>
-        <div style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin:16px 0 10px;">MAPA DE SINCRONÍA · JUNIO</div>
+        <div style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin:16px 0 10px;">MAPA DE SINCRONÍA · <span id="demoMonth">PRÓXIMOS 30 DÍAS</span></div>
         <div class="couple-heatmap" id="demoHeatmap"></div>
       </div>
     </div>
@@ -929,7 +929,7 @@ footer{
           <div class="price-feat">Tu índice de hoy</div>
           <div class="price-feat">Las 4 fases del ciclo</div>
           <div class="price-feat">Calendario 14 días</div>
-          <div class="price-feat">3 bioritmos personales</div>
+          <div class="price-feat">3 biorritmos personales</div>
           <div class="price-feat muted">Calendario 30 días</div>
           <div class="price-feat muted">Modo pareja 180 días</div>
           <div class="price-feat muted">Informe PDF mensual</div>
@@ -1056,7 +1056,7 @@ function getCeiling(hasCycle){ return hasCycle ? 98 : 95; }
 function normalizeIdx(raw, hasCycle){ return Math.min(100, Math.round(raw/getCeiling(hasCycle)*100)); }
 
 const INSIGHTS = [
-  'Tu bioritmo intelectual está elevado. Día ideal para tomar decisiones importantes. ✨',
+  'Tu biorritmo intelectual está elevado. Día ideal para tomar decisiones importantes. ✨',
   'La energía emocional acompaña. Un momento para conectar de verdad con quienes importan. 💜',
   'Tu cuerpo y tu mente están en sintonía. Confía en tu intuición hoy. 🌙',
   'Excelente día para proyectos creativos. La inspiración fluye con naturalidad. 🌸',
@@ -1095,7 +1095,7 @@ function doCalc(){
   const emo = bio(days,28), fis = bio(days,23), int_ = bio(days,33);
   const cDay = hasCycle ? ((pd%28+28)%28||28) : null;
   const phase = hasCycle ? getCyclePhase(cDay)
-    : {name:'Bioritmos personales',emoji:'🌙',score:0,hint:'Guiada por tu energía interior.'};
+    : {name:'Biorritmos personales',emoji:'🌙',score:0,hint:'Guiada por tu energía interior.'};
   const raw = hasCycle
     ? phase.score*0.50 + ((emo+1)/2)*0.25 + ((fis+1)/2)*0.15 + ((int_+1)/2)*0.10
     : ((emo+1)/2)*0.45 + ((fis+1)/2)*0.30 + ((int_+1)/2)*0.25;
@@ -1140,6 +1140,20 @@ function resetCalc(){
     63,70,76,80,86,92,95,
     88,76
   ];
+  // Example dates relative to today: next Saturday, +8 days (Sunday), +20 days (Friday)
+  const base = new Date(); base.setHours(0,0,0,0);
+  base.setDate(base.getDate() + ((6 - base.getDay() + 7) % 7 || 7));
+  const cap = t => t.charAt(0).toUpperCase() + t.slice(1);
+  document.querySelectorAll('[data-demo-day]').forEach(el=>{
+    const d = new Date(base); d.setDate(d.getDate() + parseInt(el.dataset.demoDay));
+    const w = cap(d.toLocaleDateString('es-ES',{weekday:'short'}).replace('.',''));
+    const m = d.toLocaleDateString('es-ES',{month:'short'}).replace('.','');
+    const [icon, label] = el.dataset.demoLabel.split(' · ');
+    el.textContent = `${icon} ${w} ${d.getDate()} ${m} · ${label}`;
+  });
+  const dm = document.getElementById('demoMonth');
+  if(dm) dm.textContent = new Date().toLocaleDateString('es-ES',{month:'long'}).toUpperCase();
+
   const hm = document.getElementById('demoHeatmap');
   if(!hm) return;
   scores.forEach(s=>{

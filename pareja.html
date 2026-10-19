@@ -158,7 +158,7 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
     <!-- Person 1 -->
     <div class="person-card p1">
       <span class="person-avatar">🌸</span>
-      <div class="person-label">Ella</div>
+      <div class="person-label">Tú</div>
       <div class="field-group">
         <label class="field-label">Fecha de nacimiento</label>
         <input type="date" class="field-input" id="bd1" max="2007-01-01" min="1950-01-01">
@@ -190,7 +190,7 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
     <!-- Person 2 -->
     <div class="person-card p2">
       <span class="person-avatar">⚡</span>
-      <div class="person-label">Él</div>
+      <div class="person-label">Tu pareja</div>
       <div class="field-group">
         <label class="field-label">Fecha de nacimiento</label>
         <input type="date" class="field-input" id="bd2" max="2007-01-01" min="1950-01-01">
@@ -257,8 +257,8 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
     <div class="curve-wrap">
       <svg id="curveChart" width="100%" height="160" style="overflow:visible"></svg>
       <div class="curve-labels">
-        <div class="curve-label"><div class="curve-dot" style="background:var(--rose)"></div>Ella</div>
-        <div class="curve-label"><div class="curve-dot" style="background:var(--lilac)"></div>Él</div>
+        <div class="curve-label"><div class="curve-dot" style="background:var(--rose)"></div>Tú</div>
+        <div class="curve-label"><div class="curve-dot" style="background:var(--lilac)"></div>Tu pareja</div>
         <div class="curve-label"><div class="curve-dot" style="background:var(--gold);height:4px"></div>Compatibilidad</div>
       </div>
     </div>
@@ -324,8 +324,8 @@ function getColor(score){
 function getTypeLabel(s1,s2,combined){
   const avg=(s1+s2)/2;
   if(s1>=0.75&&s2>=0.75) return{icon:'💞',label:'Sincronía total',desc:'Ambos en su mejor momento. Ideal para escapadas especiales.'};
-  if(s1>=0.7&&combined>=0.72) return{icon:'🌺',label:'Energía de ella',desc:'Ella en su pico. Perfecto para celebrarlo juntos.'};
-  if(s2>=0.7&&combined>=0.72) return{icon:'⚡',label:'Energía de él',desc:'Él en su mejor momento. Aprovechad su energía.'};
+  if(s1>=0.7&&combined>=0.72) return{icon:'🌺',label:'Tu energía',desc:'Estás en tu pico. Perfecto para celebrarlo juntos.'};
+  if(s2>=0.7&&combined>=0.72) return{icon:'⚡',label:'Energía de tu pareja',desc:'Tu pareja está en su mejor momento. Aprovechad su energía.'};
   if(combined>=0.65) return{icon:'🌟',label:'Buen momento',desc:'Condiciones favorables para disfrutar juntos.'};
   return{icon:'🌿',label:'Momento tranquilo',desc:'Ideal para descanso y conexión calmada.'};
 }
@@ -510,7 +510,7 @@ function renderHeatmap(data){
       cell.addEventListener('mouseenter',e=>{
         const t=getTypeLabel(d.s1,d.s2,d.combined);
         const tt=document.getElementById('tooltip');
-        tt.innerHTML=`<div style="color:${c.text};font-weight:600;margin-bottom:4px">${t.icon} ${d.date.toLocaleDateString('es-ES',{weekday:'short',day:'numeric',month:'short'})}</div><div style="color:rgba(255,255,255,0.7)">${t.label}<br>${t.desc}</div><div style="margin-top:6px;font-size:11px;color:rgba(255,255,255,0.4)">Ella: ${Math.round(d.s1*100)} · Él: ${Math.round(d.s2*100)} · Compat: ${Math.round(d.combined*100)}</div>`;
+        tt.innerHTML=`<div style="color:${c.text};font-weight:600;margin-bottom:4px">${t.icon} ${d.date.toLocaleDateString('es-ES',{weekday:'short',day:'numeric',month:'short'})}</div><div style="color:rgba(255,255,255,0.7)">${t.label}<br>${t.desc}</div><div style="margin-top:6px;font-size:11px;color:rgba(255,255,255,0.4)">Tú: ${Math.round(d.s1*100)} · Pareja: ${Math.round(d.s2*100)} · Compat: ${Math.round(d.combined*100)}</div>`;
         tt.style.display='block';
         tt.style.left=(e.clientX+12)+'px';
         tt.style.top=(e.clientY-10)+'px';
