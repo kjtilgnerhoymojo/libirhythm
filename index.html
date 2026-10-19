@@ -354,6 +354,15 @@ section{padding:100px 24px;}
 }
 .test-name{font-size:13px;font-weight:500;}
 .test-detail{font-size:11px;color:rgba(255,255,255,0.35);margin-top:1px;}
+.trust-icon{font-size:24px;display:block;margin-bottom:14px;}
+.trust-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;margin-bottom:8px;}
+.trust-text{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;}
+
+/* ── DISCLAIMER ── */
+.health-note{
+  font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6;
+  border-left:2px solid rgba(200,85,111,0.4);padding:4px 0 4px 12px;
+}
 
 /* ── CALCULATOR ── */
 .calc-section{}
@@ -480,6 +489,7 @@ footer{
 .footer-links a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
 .footer-links a:hover{color:#fff;}
 .footer-copy{font-size:11px;color:rgba(255,255,255,0.2);}
+.footer-disclaimer{width:100%;font-size:11px;color:rgba(255,255,255,0.35);}
 
 /* ── RESULT (hidden initially) ── */
 #resultWrap{display:none;margin-top:28px;}
@@ -582,14 +592,11 @@ footer{
       <div class="reveal reveal-d2">
         <div style="background:rgba(200,85,111,0.06);border:1px solid rgba(200,85,111,0.15);border-radius:24px;padding:28px;">
           <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:16px;">
-            "Por fin entiendo por qué hay semanas que conquisto el mundo y semanas en que solo quiero una manta y silencio. No es humor — es mi ciclo."
+            Hay semanas en las que te comes el mundo y semanas en las que solo quieres una manta y silencio. Ponerles nombre ayuda a entenderlas.
           </p>
           <div style="display:flex;align-items:center;gap:10px;">
             <div style="width:36px;height:36px;border-radius:50%;background:rgba(200,85,111,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;">🌸</div>
-            <div>
-              <div style="font-size:13px;font-weight:500;">María, 32 años</div>
-              <div style="font-size:11px;color:rgba(255,255,255,0.35);">Barcelona · Usuaria Pro</div>
-            </div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.45);">LibiRhythm te acompaña fase a fase</div>
           </div>
         </div>
       </div>
@@ -678,8 +685,8 @@ footer{
           <div class="feat-row">
             <div class="feat-icon teal">🔒</div>
             <div class="feat-content">
-              <h4>100% privada</h4>
-              <p>Tus datos nunca salen de tu dispositivo. Sin cuenta, sin servidor, sin rastreo.</p>
+              <h4>Privada por diseño</h4>
+              <p>Tus datos del ciclo se calculan en tu navegador y no se envían a ningún servidor. Sin cuenta y sin cookies.</p>
             </div>
           </div>
         </div>
@@ -802,40 +809,25 @@ footer{
 <section class="testimonials-section">
   <div class="container">
     <div style="text-align:center;">
-      <span class="eyebrow reveal">Lo que dicen ellas</span>
+      <span class="eyebrow reveal">Cómo funciona</span>
       <div class="divider" style="margin:0 auto 16px;"></div>
       <h2 class="section-title reveal"><em>Reconocerse</em> cambia todo</h2>
     </div>
     <div class="testimonials-grid">
       <div class="testimonial reveal">
-        <div class="test-quote">"Llevo 3 meses usando LibiRhythm y por primera vez entiendo mis propios cambios de humor. Ya no me siento rara — me siento cíclica."</div>
-        <div class="test-author">
-          <div class="test-avatar" style="background:rgba(200,85,111,0.15)">🌸</div>
-          <div>
-            <div class="test-name">Laura M.</div>
-            <div class="test-detail">Madrid · 28 años</div>
-          </div>
-        </div>
+        <span class="trust-icon">🔒</span>
+        <div class="trust-title">Se calcula en tu navegador</div>
+        <p class="trust-text">Tu fecha de nacimiento y los datos de tu ciclo no se envían a ningún servidor. Al cerrar la página, desaparecen.</p>
       </div>
       <div class="testimonial reveal reveal-d2">
-        <div class="test-quote">"El modo pareja fue una revelación. Mi novio lo usa también y por primera vez planificamos bien nuestros fines de semana. Parece una tontería pero funciona."</div>
-        <div class="test-author">
-          <div class="test-avatar" style="background:rgba(155,127,200,0.15)">💜</div>
-          <div>
-            <div class="test-name">Ana G.</div>
-            <div class="test-detail">Valencia · 34 años</div>
-          </div>
-        </div>
+        <span class="trust-icon">🌙</span>
+        <div class="trust-title">Sin cuenta ni registro</div>
+        <p class="trust-text">No necesitas email ni contraseña para usar la calculadora. Empiezas en segundos.</p>
       </div>
       <div class="testimonial reveal reveal-d3">
-        <div class="test-quote">"El PDF mensual lo imprimo y lo tengo en la nevera. Mi jefa piensa que soy una máquina de productividad. La realidad es que trabajo más en fase folicular. 😂"</div>
-        <div class="test-author">
-          <div class="test-avatar" style="background:rgba(201,169,110,0.15)">✨</div>
-          <div>
-            <div class="test-name">Sofía R.</div>
-            <div class="test-detail">Sevilla · 31 años</div>
-          </div>
-        </div>
+        <span class="trust-icon">✨</span>
+        <div class="trust-title">Para conocerte mejor</div>
+        <p class="trust-text">Una guía orientativa para observar tu energía a lo largo del mes. No es un método anticonceptivo ni una herramienta médica.</p>
       </div>
     </div>
   </div>
@@ -854,8 +846,8 @@ footer{
           <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(255,255,255,0.03);border-radius:16px;border:1px solid rgba(255,255,255,0.07);">
             <span style="font-size:22px">🔒</span>
             <div>
-              <div style="font-size:13px;font-weight:500;">100% privado</div>
-              <div style="font-size:12px;color:rgba(255,255,255,0.4);">Tus datos nunca salen de tu dispositivo</div>
+              <div style="font-size:13px;font-weight:500;">Privado</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.4);">Tus datos del ciclo no salen de tu dispositivo</div>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(255,255,255,0.03);border-radius:16px;border:1px solid rgba(255,255,255,0.07);">
@@ -899,6 +891,7 @@ footer{
         </div>
 
         <button class="btn-full" id="calcBtn" onclick="doCalc()" disabled>Calcular mi ritmo ✦</button>
+        <p class="health-note" style="margin-top:16px;">LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento.</p>
 
         <div id="resultWrap">
           <div style="height:1px;background:rgba(255,255,255,0.07);margin:24px 0;"></div>
@@ -958,7 +951,7 @@ footer{
           <div class="price-feat">✦ Acceso anticipado a novedades</div>
         </div>
         <a href="https://buy.stripe.com/bJe4gybfbc2Y0mhg2a0Ba01" class="price-btn pro-btn">Desbloquear Pro ✦</a>
-        <div style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:10px;">Pago seguro con Stripe · GDPR compliant</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:10px;">Pago seguro con Stripe · <a href="privacidad.html#stripe" style="color:inherit;">Privacidad</a></div>
       </div>
     </div>
   </div>
@@ -971,12 +964,13 @@ footer{
     <div style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:4px;">libirhythm.com</div>
   </div>
   <div class="footer-links">
-    <a href="legal.html">Privacidad</a>
+    <a href="privacidad.html">Privacidad</a>
     <a href="legal.html">Aviso legal</a>
     <a href="pareja.html">Modo Pareja</a>
   </div>
   <a href="https://billing.stripe.com/p/login/bJe3cu4QNgje5GB2bk0Ba00" target="_blank" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:underline;">¿Eres Pro? Gestionar suscripción →</a>
   <div class="footer-copy">© 2026 LibiRhythm · Hecho con 🌙</div>
+  <p class="footer-disclaimer">LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento.</p>
 </footer>
 
 <script>

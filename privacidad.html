@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de privacidad — LibiRhythm</title>
+<meta name="description" content="Qué datos trata LibiRhythm, dónde se procesan y qué servicios de terceros intervienen (Vercel, Google Fonts y Stripe).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:    #16101f;
+    --rose:   #c8556f;
+    --rose2:  #e8849a;
+    --lilac:  #9b7fc8;
+    --lilac2: #c4addf;
+    --border: rgba(255,255,255,0.09);
+    --muted:  rgba(255,255,255,0.5);
+    --text:   rgba(255,255,255,0.82);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--ink); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    padding: 16px 32px; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(22,16,31,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; letter-spacing: 2px; background: linear-gradient(135deg, var(--rose2), var(--lilac2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+  .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: #fff; }
+
+  .hero { padding: 60px 24px 40px; text-align: center; border-bottom: 1px solid var(--border); }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(36px, 6vw, 60px); background: linear-gradient(135deg, var(--rose2), var(--lilac2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+  .hero p { color: var(--muted); font-size: 14px; }
+  .updated { display: inline-block; margin-top: 10px; background: rgba(200,85,111,0.1); border: 1px solid rgba(200,85,111,0.25); border-radius: 20px; padding: 4px 14px; font-size: 12px; color: var(--rose2); }
+
+  /* SIDEBAR NAV */
+  .layout { display: flex; max-width: 1100px; margin: 0 auto; gap: 40px; padding: 40px 24px 80px; }
+  .sidebar { width: 220px; flex-shrink: 0; position: sticky; top: 80px; align-self: flex-start; }
+  .sidebar-title { font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.25); text-transform: uppercase; margin-bottom: 14px; }
+  .sidebar a { display: block; font-size: 13px; color: var(--muted); text-decoration: none; padding: 6px 0; border-left: 2px solid transparent; padding-left: 12px; transition: all 0.2s; }
+  .sidebar a:hover { color: #fff; border-color: var(--rose); }
+  .sidebar a.active { color: var(--rose2); border-color: var(--rose); }
+
+  /* CONTENT */
+  .content { flex: 1; min-width: 0; }
+  .section { margin-bottom: 56px; scroll-margin-top: 90px; }
+  .section-tag { font-size: 10px; letter-spacing: 4px; color: var(--rose2); text-transform: uppercase; margin-bottom: 8px; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 32px; color: #fff; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .section h3 { font-size: 16px; font-weight: 600; color: #fff; margin: 24px 0 10px; }
+  .section p { font-size: 14px; color: var(--text); margin-bottom: 14px; }
+  .section ul { list-style: none; margin-bottom: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .section ul li { font-size: 14px; color: var(--text); padding-left: 18px; position: relative; }
+  .section ul li::before { content: '·'; position: absolute; left: 4px; color: var(--rose2); }
+  .section a { color: var(--rose2); text-decoration: none; }
+  .section a:hover { text-decoration: underline; }
+  .section code { font-family: monospace; font-size: 12px; background: rgba(255,255,255,0.06); border-radius: 6px; padding: 1px 6px; }
+
+  .highlight-box { background: rgba(200,85,111,0.06); border: 1px solid rgba(200,85,111,0.18); border-radius: 14px; padding: 18px 20px; margin: 20px 0; }
+  .highlight-box p { margin: 0; font-size: 13px; color: rgba(255,255,255,0.7); }
+  .highlight-box strong { color: var(--rose2); }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; }
+  .data-table th { padding: 10px 14px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.4); text-align: left; border-bottom: 1px solid var(--border); }
+  .data-table td { padding: 12px 14px; font-size: 13px; color: var(--text); border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .table-wrap { overflow-x: auto; }
+
+  footer { border-top: 1px solid var(--border); padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; letter-spacing: 2px; background: linear-gradient(135deg, var(--rose2), var(--lilac2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; }
+  .footer-disclaimer { width: 100%; font-size: 11px; color: rgba(255,255,255,0.35); }
+
+  @media(max-width: 768px) {
+    .sidebar { display: none; }
+    .layout { padding: 24px 20px 60px; }
+    .data-table td, .data-table th { padding: 10px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">LibiRhythm</a>
+  <a href="/" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<div class="hero">
+  <h1>Política de privacidad</h1>
+  <p>Qué datos se tratan en libirhythm.com, dónde y por qué</p>
+  <span class="updated">Última actualización: octubre 2026</span>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Contenido</div>
+    <a href="#privacidad">1. Resumen</a>
+    <a href="#calculadora">2. Datos de la calculadora</a>
+    <a href="#hosting">3. Alojamiento</a>
+    <a href="#analitica">4. Estadísticas de visitas</a>
+    <a href="#fuentes">5. Tipografías</a>
+    <a href="#stripe">6. Pagos (Stripe)</a>
+    <a href="#cookies">7. Cookies y almacenamiento</a>
+    <a href="#transferencias">8. Transferencias</a>
+    <a href="#derechos">9. Tus derechos</a>
+    <a href="legal.html">Aviso legal →</a>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- 1. RESUMEN -->
+    <div class="section" id="privacidad">
+      <div class="section-tag">Sección 1</div>
+      <h2>Resumen</h2>
+
+      <div class="highlight-box">
+        <p><strong>En pocas palabras:</strong> los datos que introduces en la calculadora (fecha de nacimiento y datos del ciclo, tuyos o de tu pareja) se procesan en tu navegador y no se envían a LibiRhythm ni a ningún servidor. Para que la web funcione intervienen terceros: Vercel (alojamiento y estadísticas de visitas sin cookies), Google Fonts (tipografías) y, solo si contratas Pro, Stripe (pagos). Los detalles, a continuación.</p>
+      </div>
+
+      <h3>Responsable del tratamiento</h3>
+      <p>Klaus Tilgner (NIF: X1144225K) — <a href="mailto:legal@libirhythm.com">legal@libirhythm.com</a>. Más datos en el <a href="legal.html">aviso legal</a>.</p>
+    </div>
+
+    <!-- 2. CALCULADORA -->
+    <div class="section" id="calculadora">
+      <div class="section-tag">Sección 2</div>
+      <h2>Datos que introduces en la calculadora</h2>
+
+      <p>La calculadora, el modo pareja y el informe PDF funcionan íntegramente en tu navegador. La fecha de nacimiento, los días desde la última regla y el perfil elegido:</p>
+      <ul>
+        <li>Se procesan solo en tu dispositivo, con código que se ejecuta en tu navegador</li>
+        <li>No se envían a ningún servidor de LibiRhythm ni de terceros</li>
+        <li>No se guardan en ninguna base de datos ni en el almacenamiento de tu navegador</li>
+        <li>Desaparecen al cerrar o recargar la página</li>
+      </ul>
+      <p>Para generar el informe PDF, estos datos se pasan de una página a otra dentro de tu navegador mediante la parte de la dirección que va tras el símbolo <code>#</code>. Esa parte no se transmite al servidor, aunque puede quedar en el historial de tu navegador.</p>
+
+      <h3>Datos de salud — categoría especial (art. 9 RGPD)</h3>
+      <p>Los datos del ciclo menstrual son datos de salud. Como no salen de tu dispositivo, LibiRhythm no los recibe, no los almacena y no tiene acceso a ellos.</p>
+
+      <h3>Datos de tu pareja</h3>
+      <p>Si usas el modo pareja, introduces datos de otra persona. Se tratan igual que los tuyos (solo en tu navegador). Te pedimos que lo hagas con su conocimiento.</p>
+    </div>
+
+    <!-- 3. HOSTING -->
+    <div class="section" id="hosting">
+      <div class="section-tag">Sección 3</div>
+      <h2>Alojamiento de la web</h2>
+      <p>La web está alojada en <strong>Vercel Inc.</strong> (EE. UU.). Como en cualquier web, al visitarla tu navegador envía al servidor datos técnicos necesarios para entregarte las páginas: dirección IP, fecha y hora, página solicitada y tipo de navegador. Vercel puede registrarlos temporalmente por motivos de seguridad y funcionamiento.</p>
+      <p><strong>Base legal:</strong> interés legítimo en ofrecer una web segura y operativa (art. 6.1.f RGPD).</p>
+    </div>
+
+    <!-- 4. ANALÍTICA -->
+    <div class="section" id="analitica">
+      <div class="section-tag">Sección 4</div>
+      <h2>Estadísticas de visitas</h2>
+      <p>Usamos <strong>Vercel Web Analytics</strong> para saber cuántas personas visitan cada página. No usa cookies ni guarda nada en tu dispositivo. Recoge la página visitada, la página de procedencia y datos técnicos aproximados (país, tipo de dispositivo, navegador y sistema operativo). Para contar visitas distintas, Vercel genera un identificador anónimo a partir de la petición que se descarta cada 24 horas. Solo vemos cifras agregadas; no podemos identificarte.</p>
+      <p>La analítica no se carga en la página del informe PDF y nunca recibe los datos de la calculadora.</p>
+      <p><strong>Base legal:</strong> interés legítimo en conocer el uso agregado de la web para mejorarla (art. 6.1.f RGPD). Puedes bloquearla con cualquier bloqueador de contenido de tu navegador.</p>
+    </div>
+
+    <!-- 5. FUENTES -->
+    <div class="section" id="fuentes">
+      <div class="section-tag">Sección 5</div>
+      <h2>Tipografías (Google Fonts)</h2>
+      <p>Las tipografías de la web se cargan desde los servidores de <strong>Google</strong> (Google Fonts). Para ello, tu navegador se conecta a Google, que recibe tu dirección IP y datos técnicos del navegador. Más información en la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>.</p>
+      <p><strong>Base legal:</strong> interés legítimo en una presentación uniforme de la web (art. 6.1.f RGPD).</p>
+    </div>
+
+    <!-- 6. STRIPE -->
+    <div class="section" id="stripe">
+      <div class="section-tag">Sección 6</div>
+      <h2>Pagos de LibiRhythm Pro (Stripe)</h2>
+      <p>Si contratas Pro, el pago se realiza en páginas de <strong>Stripe</strong> (Stripe Payments Europe, Ltd., Irlanda), no en libirhythm.com. Stripe trata los datos necesarios para el cobro: nombre, email, país, datos de la tarjeta u otro medio de pago. Los datos completos de la tarjeta nunca llegan a LibiRhythm.</p>
+      <p>A través de Stripe, LibiRhythm puede ver tu nombre, email, país, importe, fecha y estado de tu suscripción, y los utiliza para gestionar la suscripción, emitir facturas y atender consultas.</p>
+      <ul>
+        <li><strong>Base legal:</strong> ejecución del contrato (art. 6.1.b RGPD) y cumplimiento de obligaciones fiscales y contables (art. 6.1.c RGPD).</li>
+        <li><strong>Conservación:</strong> mientras la suscripción esté activa y, después, durante los plazos que exige la normativa fiscal y mercantil.</li>
+        <li>Más información en la <a href="https://stripe.com/es/privacy" target="_blank" rel="noopener">política de privacidad de Stripe</a>.</li>
+      </ul>
+      <p>Ni Stripe ni LibiRhythm reciben los datos de la calculadora: el pago y el cálculo están completamente separados.</p>
+    </div>
+
+    <!-- 7. COOKIES -->
+    <div class="section" id="cookies">
+      <div class="section-tag">Sección 7</div>
+      <h2>Cookies y almacenamiento en tu dispositivo</h2>
+      <p>libirhythm.com <strong>no instala cookies</strong>, ni propias ni de publicidad. Lo único que guarda en tu navegador es lo imprescindible para recordar que tienes Pro activado:</p>
+      <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Nombre</th><th>Tipo</th><th>Finalidad</th><th>Duración</th></tr></thead>
+        <tbody>
+          <tr><td><code>libipro</code>, <code>libipro_ts</code></td><td>Almacenamiento local (localStorage)</td><td>Recordar en este navegador que has activado Pro y desde cuándo</td><td>Hasta que lo borres</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Es almacenamiento técnico estrictamente necesario para prestar el servicio que has pedido, por lo que no requiere consentimiento (art. 22.2 LSSI-CE). Las páginas de pago de Stripe, que están en dominios de Stripe, usan sus propias cookies, sujetas a su política.</p>
+      <p>Puedes borrar este almacenamiento desde la configuración de tu navegador (datos de sitios web). Si lo haces, Pro dejará de aparecer activado en ese navegador.</p>
+    </div>
+
+    <!-- 8. TRANSFERENCIAS -->
+    <div class="section" id="transferencias">
+      <div class="section-tag">Sección 8</div>
+      <h2>Transferencias internacionales</h2>
+      <p>Vercel Inc., Google LLC y Stripe, Inc. (matriz de Stripe Payments Europe) son empresas de EE. UU., por lo que algunos de los datos descritos en las secciones 3 a 6 pueden tratarse fuera del Espacio Económico Europeo. Estas transferencias se amparan en el Marco de Privacidad de Datos UE-EE. UU. y/o en las cláusulas contractuales tipo aprobadas por la Comisión Europea.</p>
+    </div>
+
+    <!-- 9. DERECHOS -->
+    <div class="section" id="derechos">
+      <div class="section-tag">Sección 9</div>
+      <h2>Tus derechos</h2>
+      <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a <a href="mailto:legal@libirhythm.com">legal@libirhythm.com</a>. Responderemos en el plazo de un mes. Ten en cuenta que no tenemos acceso a los datos de la calculadora, porque nunca salen de tu dispositivo.</p>
+      <p>Si consideras que el tratamiento no es correcto, puedes presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener">aepd.es</a>).</p>
+
+      <h3>Cambios en esta política</h3>
+      <p>Si cambia la forma en que funciona la web, actualizaremos esta política y la fecha de la parte superior.</p>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="footer-logo">LibiRhythm</div>
+  <div class="footer-links">
+    <a href="/">Inicio</a>
+    <a href="app.html">Calculadora</a>
+    <a href="privacidad.html">Privacidad</a>
+    <a href="legal.html">Aviso legal</a>
+  </div>
+  <div class="footer-copy">© 2026 libirhythm.com · Klaus Tilgner</div>
+  <p class="footer-disclaimer">LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento.</p>
+</footer>
+
+<script>
+  // Highlight active sidebar link on scroll
+  const sections = document.querySelectorAll('.section');
+  const links = document.querySelectorAll('.sidebar a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    links.forEach(l => {
+      l.classList.remove('active');
+      if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+    });
+  });
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

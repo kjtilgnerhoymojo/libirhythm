@@ -657,7 +657,7 @@ body{
 <div class="disclaimer-box">
   <div class="today-insight-label" style="margin-bottom:6px">AVISO IMPORTANTE</div>
   <div class="disclaimer-text">
-    Este informe ha sido generado por LibiRhythm basándose en cálculos matemáticos de bioritmo y los datos del ciclo menstrual facilitados. Los resultados son de carácter orientativo y no constituyen consejo médico, psicológico ni de ninguna otra índole profesional. El modelo de bioritmo utilizado se basa en el trabajo de Wilhelm Fliess (1897), Hermann Swoboda (1904) y Friedrich Teltscher (1920). Si tienes dudas sobre tu salud reproductiva o ciclo menstrual, consulta siempre con un profesional médico. · LibiRhythm no almacena ni transmite tus datos personales.
+    Este informe ha sido generado por LibiRhythm basándose en cálculos matemáticos de bioritmo y los datos del ciclo menstrual facilitados. Los resultados son de carácter orientativo y no constituyen consejo médico, psicológico ni de ninguna otra índole profesional. El modelo de bioritmo utilizado se basa en el trabajo de Wilhelm Fliess (1897), Hermann Swoboda (1904) y Friedrich Teltscher (1920). Si tienes dudas sobre tu salud reproductiva o ciclo menstrual, consulta siempre con un profesional médico. LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento. · Este informe se ha generado en tu navegador: los datos introducidos no se envían a LibiRhythm.
   </div>
 </div>
 
@@ -687,8 +687,8 @@ body{
 
 <script>
 // ── DATA ─────────────────────────────────────────────────────────────────────
-// Read from URL params (passed from app.html)
-const _params = new URLSearchParams(window.location.search);
+// Read from the URL #fragment (passed from app.html; never sent to the server)
+const _params = new URLSearchParams(window.location.hash.slice(1));
 const _bdStr  = _params.get('bd') || '1985-06-15';
 const lastPD  = parseInt(_params.get('pd') || '14');
 const _profile = _params.get('profile') || 'cycle';

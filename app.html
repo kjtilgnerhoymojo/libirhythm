@@ -262,7 +262,7 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
   display: none; max-width: 200px; backdrop-filter: blur(10px); pointer-events: none; }
 
 /* ── DISCLAIMER ── */
-.disclaimer { text-align: center; font-size: 11px; color: rgba(255,255,255,0.2);
+.disclaimer { text-align: center; font-size: 11px; color: rgba(255,255,255,0.4);
   line-height: 1.7; padding: 0 16px; margin-top: 8px; }
 
 /* ── PRINT CSS ── */
@@ -381,6 +381,7 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
     </div>
     <button class="btn-primary" id="nextStep1" onclick="calculate()" disabled>Calcular mi ritmo ✦</button>
     <button class="btn-secondary" onclick="goStep(0)">← Atrás</button>
+    <p class="disclaimer">LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento.</p>
   </div>
 
   <!-- RESULTS -->
@@ -577,7 +578,7 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
 
     <!-- RESET -->
     <button class="btn-secondary" onclick="resetAll()" style="margin-top:8px">← Nueva consulta</button>
-    <p class="disclaimer">Resultado orientativo basado en cálculos matemáticos de bioritmo. No recoge ni almacena datos personales. Solo dispositivo local.</p>
+    <p class="disclaimer">Resultado orientativo basado en cálculos matemáticos de biorritmos. Tus datos se calculan en este navegador y no se envían a ningún servidor. LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento.</p>
   </div>
 
 </main>
@@ -588,10 +589,12 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
   <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;letter-spacing:3px;background:linear-gradient(135deg,#e8849a,#c9a96e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">LibiRhythm</div>
   <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
     <a href="https://billing.stripe.com/p/login/bJe3cu4QNgje5GB2bk0Ba00" target="_blank" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:underline;">¿Eres Pro? Gestionar suscripción →</a>
-    <a href="legal.html" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">Privacidad</a>
+    <a href="privacidad.html" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">Privacidad</a>
+    <a href="legal.html" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">Aviso legal</a>
     <a href="index.html" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;">Inicio</a>
   </div>
   <div style="font-size:10px;color:rgba(255,255,255,0.18);">© 2026 LibiRhythm · Hecho con 🌙</div>
+  <p style="width:100%;font-size:11px;color:rgba(255,255,255,0.35);">LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento.</p>
 </div>
 
 <div class="tooltip" id="tooltip"></div>
@@ -986,7 +989,8 @@ function downloadPDF() {
     pd:      userData.pd || 0,
     profile: userProfile || 'cycle'
   });
-  window.open('pdf.html?' + params.toString(), '_blank');
+  // Data goes in the #fragment so it never reaches the server (fragments aren't sent in HTTP requests)
+  window.open('pdf.html#' + params.toString(), '_blank');
 }
 function scrollToPro() {
   document.getElementById('proBanner')?.scrollIntoView({behavior:'smooth'});
