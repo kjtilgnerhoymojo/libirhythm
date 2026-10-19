@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+  PLANTILLA DE ARTÍCULO — LibiRhythm
+  1. Copia este archivo como /articulos/<slug>.html (slug en minúsculas, con guiones: fases-del-ciclo.html).
+  2. Sustituye todo lo que va entre {{ }} (título, descripción, slug, fecha, texto).
+  3. Quita la línea <meta name="robots" content="noindex">: solo está para que la plantilla no se indexe.
+  4. Añade la URL nueva a /sitemap.xml y enlázala desde "Más guías" en los otros artículos.
+  Reglas de contenido: nada de afirmaciones médicas ni promesas de resultados; mantén el aviso de la sección .callout.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>{{Título del artículo}} — LibiRhythm</title>
+<meta name="description" content="{{Resumen de 140-160 caracteres}}">
+<link rel="canonical" href="https://libirhythm.com/articulos/{{slug}}.html">
+<link rel="alternate" hreflang="es" href="https://libirhythm.com/articulos/{{slug}}.html">
+<link rel="alternate" hreflang="x-default" href="https://libirhythm.com/articulos/{{slug}}.html">
+<!-- hreflang de: activar cuando exista la versión alemana del artículo
+<link rel="alternate" hreflang="de" href="https://libirhythm.com/de/artikel/{{slug-de}}.html">
+-->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="LibiRhythm">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="{{Título del artículo}}">
+<meta property="og:description" content="{{Resumen corto}}">
+<meta property="og:url" content="https://libirhythm.com/articulos/{{slug}}.html">
+<!-- TODO: añadir og:image (1200×630) cuando haya imagen para compartir -->
+<meta property="article:published_time" content="{{AAAA-MM-DD}}">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#16101f">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{Título del artículo}}",
+  "description": "{{Resumen de 140-160 caracteres}}",
+  "inLanguage": "es",
+  "datePublished": "{{AAAA-MM-DD}}",
+  "dateModified": "{{AAAA-MM-DD}}",
+  "author": { "@type": "Organization", "name": "LibiRhythm", "url": "https://libirhythm.com/" },
+  "publisher": { "@type": "Organization", "name": "LibiRhythm", "url": "https://libirhythm.com/" },
+  "mainEntityOfPage": "https://libirhythm.com/articulos/{{slug}}.html"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/articulos/articulo.css">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">LibiRhythm</a>
+  <a href="/app.html" class="nav-cta">Calcular mi ritmo →</a>
+</nav>
+
+<header class="article-header">
+  <span class="eyebrow">Guía · {{Categoría}}</span>
+  <h1>{{Título con una <em>palabra</em> destacada}}</h1>
+  <p class="lead">{{Entradilla: 1-2 frases que resumen el artículo.}}</p>
+  <div class="article-meta">Equipo LibiRhythm · {{fecha legible}} · {{N}} min de lectura</div>
+</header>
+
+<article class="article-body">
+
+  <h2>{{Primer apartado}}</h2>
+  <p>{{Texto.}}</p>
+
+  <h2>{{Segundo apartado}}</h2>
+  <p>{{Texto.}}</p>
+  <ul>
+    <li><strong>{{Punto}}:</strong> {{explicación}}</li>
+    <li><strong>{{Punto}}:</strong> {{explicación}}</li>
+  </ul>
+
+  <!-- Aviso obligatorio en todos los artículos -->
+  <div class="callout">
+    <p><strong>LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento.</strong> Si tienes dudas sobre tu salud o tu ciclo, consulta con un profesional sanitario.</p>
+  </div>
+
+  <h2>{{Tercer apartado}}</h2>
+  <p>{{Texto.}}</p>
+
+</article>
+
+<section class="article-cta">
+  <div class="article-cta-box">
+    <h2>{{Llamada a la acción}}</h2>
+    <p>Se calcula en tu navegador y no se envía a ningún servidor.</p>
+    <a href="/app.html" class="btn-primary">Calcular mi ritmo 🌙</a>
+  </div>
+</section>
+
+<section class="related">
+  <div class="related-title">Más guías</div>
+  <div class="related-grid">
+    <a class="related-card" href="/articulos/que-son-los-biorritmos.html"><div class="t">Qué son los biorritmos</div><div class="s">Origen, cálculo y qué dice la ciencia</div></a>
+    <div class="related-card soon"><div class="t">{{Otro artículo}}</div><div class="s">Próximamente</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">LibiRhythm</div>
+  <div class="footer-links">
+    <a href="/">Inicio</a>
+    <a href="/app.html">Calculadora</a>
+    <a href="/privacidad.html">Privacidad</a>
+    <a href="/legal.html">Aviso legal</a>
+  </div>
+  <div class="footer-copy">© 2026 LibiRhythm · Hecho con 🌙</div>
+  <p class="footer-disclaimer">LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento.</p>
+</footer>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

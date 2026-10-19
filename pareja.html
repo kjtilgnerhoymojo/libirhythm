@@ -4,6 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ritmo de Dos — LibiRhythm Pro Pareja</title>
+<meta name="description" content="Modo pareja de LibiRhythm: descubre vuestros días de mayor sincronía en los próximos 180 días. Prueba gratis vuestro mejor día del semestre.">
+<link rel="canonical" href="https://libirhythm.com/pareja.html">
+<link rel="alternate" hreflang="es" href="https://libirhythm.com/pareja.html">
+<link rel="alternate" hreflang="x-default" href="https://libirhythm.com/pareja.html">
+<!-- hreflang de: activar cuando exista la versión alemana (también en la página alemana, apuntando de vuelta aquí)
+<link rel="alternate" hreflang="de" href="https://libirhythm.com/de/pareja.html">
+-->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LibiRhythm">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Ritmo de Dos — LibiRhythm Pro Pareja">
+<meta property="og:description" content="Modo pareja de LibiRhythm: descubre vuestros días de mayor sincronía en los próximos 180 días. Prueba gratis vuestro mejor día del semestre.">
+<meta property="og:url" content="https://libirhythm.com/pareja.html">
+<!-- TODO: añadir og:image (1200×630) cuando haya imagen para compartir -->
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#16101f">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -245,13 +261,13 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
   <!-- Top 10 days -->
   <div style="margin-bottom:12px">
     <p class="section-eyebrow">Los mejores momentos</p>
-    <h2 class="section-title">Top <em>10 días</em> perfectos</h2>
+    <h2 class="section-title" id="topDaysTitle">Top <em>10 días</em> perfectos</h2>
     <p class="section-sub" id="topDaysSub"></p>
   </div>
   <div class="top-days-grid" id="topDaysGrid"></div>
 
   <!-- Curve chart -->
-  <div class="curve-section">
+  <div class="curve-section" id="curveSection">
     <p class="section-eyebrow">Curva de sincronía</p>
     <h2 class="section-title">Vuestro <em>ritmo</em> juntos</h2>
     <div class="curve-wrap">
@@ -278,6 +294,14 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
     <div id="heatmapContainer"></div>
   </div>
 
+  <!-- Preview lock (free users) -->
+  <div id="previewLock" style="display:none;text-align:center;background:linear-gradient(135deg,rgba(212,88,122,0.08),rgba(183,148,200,0.06));border:1px solid rgba(212,88,122,0.25);border-radius:24px;padding:32px 24px;margin-bottom:24px;">
+    <div class="nav-badge" style="display:inline-block;margin-bottom:14px;">✦ PRO</div>
+    <h2 class="section-title">Desbloquea <em>vuestros 180 días</em></h2>
+    <p class="section-sub" style="margin-bottom:20px;">Compatibilidad media, curva de sincronía, los 10 mejores días y el calendario completo de seis meses.</p>
+    <a href="index.html#precios" class="calc-btn" style="display:inline-block;width:auto;padding:14px 36px;font-size:18px;text-decoration:none;opacity:1;animation:none;">✦ Ver planes Pro</a>
+  </div>
+
   <button class="reset-btn" onclick="resetAll()">← Nueva consulta</button>
 </div>
 
@@ -293,6 +317,7 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
 
 <div class="tooltip" id="tooltip"></div>
 
+<script src="/pro.js"></script>
 <script>
 // ── ENGINE ──────────────────────────────────────────────────────────────────
 function daysSince(d){return Math.floor((Date.now()-new Date(d).getTime())/86400000);}
@@ -332,6 +357,9 @@ function getTypeLabel(s1,s2,combined){
 
 // ── STATE ────────────────────────────────────────────────────────────────────
 let profile1='', profile2='', duration=180;
+// Pro check (see /pro.js)
+let isPro = LibiPro.isPro();
+LibiPro.ready.then(v => { isPro = v; });
 const MONTHS_ES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const DOWS=['L','M','X','J','V','S','D'];
 
@@ -380,9 +408,13 @@ function calculate(){
   const pd1=parseInt(document.getElementById('pd1').value)||0;
   const pd2=parseInt(document.getElementById('pd2').value)||0;
 
+  // Free preview: best day of the next 180 days + map of the next 30 days; the rest is Pro
+  const preview=!isPro;
+  const days=preview?180:duration;
+
   // Generate data for all days
   const data=[];
-  for(let i=0;i<duration;i++){
+  for(let i=0;i<days;i++){
     const s1=getIndex(bd1,profile1,pd1,i);
     const s2=getIndex(bd2,profile2,pd2,i);
     const combined=(s1*0.5+s2*0.5)*(s1>=0.7&&s2>=0.7?1.15:1);
@@ -397,22 +429,26 @@ function calculate(){
   const gc=document.getElementById('compatCircle');
   gc.style.transition='stroke-dasharray 1.5s cubic-bezier(.4,0,.2,1)';
   setTimeout(()=>{gc.style.strokeDasharray=`${(avgCompat/100)*circ} ${circ}`;},50);
-  document.getElementById('compatScore').textContent=avgCompat;
+  document.getElementById('compatScore').textContent=preview?'🔒':avgCompat;
 
   const peakDays=data.filter(d=>d.combined>=0.75).length;
   document.getElementById('summaryTitle').textContent=
     peakDays>15?'Una sintonía extraordinaria 💞':
     peakDays>8?'Muy buena compatibilidad ✨':
     'Momentos especiales por descubrir 🌙';
-  document.getElementById('summaryText').textContent=
-    `En los próximos ${duration} días encontráis ${peakDays} momentos de alta sincronía y `+
-    `${data.filter(d=>d.combined>=0.65).length} días favorables en total. `+
-    `Vuestro índice medio de compatibilidad es ${avgCompat}/100.`;
+  document.getElementById('summaryText').textContent=preview
+    ? 'Aquí tienes vuestro mejor día del semestre y el mapa de los próximos 30 días. La compatibilidad media y el resto del análisis están incluidos en Pro.'
+    : `En los próximos ${days} días encontráis ${peakDays} momentos de alta sincronía y `+
+      `${data.filter(d=>d.combined>=0.65).length} días favorables en total. `+
+      `Vuestro índice medio de compatibilidad es ${avgCompat}/100.`;
+  if(preview) document.getElementById('summaryTitle').textContent='Vuestro adelanto gratuito 💞';
+  document.getElementById('topDaysTitle').innerHTML=preview?'Vuestro <em>mejor día</em>':'Top <em>10 días</em> perfectos';
 
-  // Top 10
-  const top10=[...data].sort((a,b)=>b.combined-a.combined).slice(0,10);
-  document.getElementById('topDaysSub').textContent=
-    `Los ${Math.min(10,top10.length)} mejores días de los próximos ${duration} días para planificar juntos.`;
+  // Top 10 (preview: only the best day)
+  const top10=[...data].sort((a,b)=>b.combined-a.combined).slice(0,preview?1:10);
+  document.getElementById('topDaysSub').textContent=preview
+    ? 'Vuestro mejor día de los próximos 180 días. Los 10 mejores, con Pro.'
+    : `Los ${Math.min(10,top10.length)} mejores días de los próximos ${days} días para planificar juntos.`;
 
   const grid=document.getElementById('topDaysGrid');
   grid.innerHTML='';
@@ -431,11 +467,13 @@ function calculate(){
     grid.appendChild(card);
   });
 
-  // Curve chart
-  renderCurve(data);
+  // Curve chart (Pro)
+  document.getElementById('curveSection').style.display=preview?'none':'';
+  if(!preview) renderCurve(data);
 
-  // Heatmap
-  renderHeatmap(data);
+  // Heatmap (preview: next 30 days)
+  renderHeatmap(preview?data.slice(0,30):data);
+  document.getElementById('previewLock').style.display=preview?'block':'none';
 
   // Show results
   document.getElementById('results').style.display='block';
