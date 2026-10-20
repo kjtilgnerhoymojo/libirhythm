@@ -508,6 +508,12 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
       <button class="pdf-btn" onclick="downloadPDF()">⬇ Descargar</button>
     </div>
 
+    <!-- SHARE -->
+    <div style="text-align:center;margin:0 0 24px;">
+      <button type="button" data-share data-share-url="https://libirhythm.com/" style="background:transparent;border:1px solid rgba(232,132,154,0.4);border-radius:12px;padding:10px 24px;font-family:inherit;font-size:13px;color:var(--rose2);cursor:pointer;">↗ Compartir LibiRhythm</button>
+      <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:8px;">Solo se comparte el enlace a la web, no tus resultados.</p>
+    </div>
+
     <!-- COUPLE MODE -->
     <div class="couple-section fade-in">
       <div class="couple-toggle" onclick="toggleCouple()">
@@ -1204,6 +1210,7 @@ function resetAll() {
   window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
+<script defer src="/share.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
