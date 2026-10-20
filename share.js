@@ -1,7 +1,7 @@
 // LibiRhythm — "Compartir" buttons: any element with data-share opens the phone's share menu,
 // or, where that doesn't exist (most desktops), a small panel with WhatsApp, Telegram, email and copy link.
 // Only the page address and a fixed text are shared, never the user's dates or results.
-// Optional attributes: data-share-url (default: the page's canonical URL), data-share-text.
+// Optional attributes: data-share-url (default: the page's canonical URL), data-share-text, data-share-title.
 (function () {
   var DEFAULT_TEXT = 'Mira LibiRhythm: tu ciclo y tus biorritmos en un solo calendario, sin cuenta.';
 
@@ -22,7 +22,7 @@
     '.ls-copy{grid-column:1/-1;background:linear-gradient(135deg,#c8556f,#9b7fc8);border:none;font-weight:500;}' +
     '.ls-close{display:block;margin:14px auto 0;background:none;border:none;font:inherit;font-size:12px;color:rgba(255,255,255,.45);cursor:pointer;}';
 
-  function openPanel(url, text) {
+  function openPanel(url, text, title) {
     if (!document.getElementById('ls-style')) {
       var s = document.createElement('style');
       s.id = 'ls-style';
@@ -34,7 +34,7 @@
     back.className = 'ls-back';
     back.innerHTML =
       '<div class="ls-panel" role="dialog" aria-modal="true" aria-labelledby="ls-title">' +
-        '<div class="ls-title" id="ls-title">Compartir LibiRhythm</div>' +
+        '<div class="ls-title" id="ls-title">' + title + '</div>' +
         '<div class="ls-sub">Solo se comparte el enlace a la web, nunca tus fechas ni tus resultados.</div>' +
         '<div class="ls-opts">' +
           '<a class="ls-opt" target="_blank" rel="noopener" href="https://wa.me/?text=' + msg + '">WhatsApp</a>' +
@@ -66,10 +66,11 @@
     e.preventDefault();
     var url = el.getAttribute('data-share-url') || canonical();
     var text = el.getAttribute('data-share-text') || DEFAULT_TEXT;
+    var title = el.getAttribute('data-share-title') || 'Compartir LibiRhythm';
     if (navigator.share && matchMedia('(pointer:coarse)').matches) {
-      navigator.share({ title: 'LibiRhythm', text: text, url: url }).catch(function () {});
+      navigator.share({ title: title, text: text, url: url }).catch(function () {});
     } else {
-      openPanel(url, text);
+      openPanel(url, text, title);
     }
   });
 })();
