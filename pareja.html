@@ -143,6 +143,9 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
 .curve-dot{width:10px;height:3px;border-radius:2px;}
 
 /* Reset */
+.invite-btn{display:block;width:100%;background:rgba(232,132,154,0.08);border:1.5px solid rgba(232,132,154,0.45);border-radius:12px;padding:12px;font:inherit;font-size:14px;font-weight:500;color:#e8849a;cursor:pointer;transition:all 0.2s;}
+.invite-btn:hover{background:rgba(232,132,154,0.16);border-color:#e8849a;}
+.invite-hint{font-size:11px;color:rgba(255,255,255,0.4);text-align:center;margin-top:6px;}
 .reset-btn{width:100%;background:transparent;border:1.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:14px;font-size:14px;font-weight:500;color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.2s;font-family:'Outfit',sans-serif;margin-top:16px;}
 .reset-btn:hover{border-color:rgba(255,255,255,0.3);color:#fff;}
 
@@ -220,6 +223,10 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
         <input type="date" class="field-input" id="bd2" max="2007-01-01" min="1950-01-01">
       </div>
       <div class="field-group">
+        <button type="button" class="invite-btn" data-share data-share-url="https://libirhythm.com/pareja.html?inv=1" data-share-title="Envíaselo a tu pareja" data-share-text="Te invito a descubrir nuestros mejores días juntos 💞">💞 Envíaselo a tu pareja</button>
+        <div class="invite-hint">¿No sabes su fecha? Mándale la invitación y que meta su fecha.</div>
+      </div>
+      <div class="field-group">
         <label class="field-label">Perfil</label>
         <div class="profile-mini" id="profile2">
           <div class="profile-chip" onclick="setProfile(2,'cycle')" id="p2_cycle">🌸 Con ciclo</div>
@@ -245,7 +252,6 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
   </div>
 
   <button class="calc-btn" id="calcBtn" onclick="calculate()" disabled>✦ CALCULAR RITMO DE DOS</button>
-  <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:16px;">¿No sabes su fecha o no estáis juntos? <button type="button" data-share data-share-url="https://libirhythm.com/pareja.html?inv=1" data-share-title="Envíaselo a tu pareja" data-share-text="Te invito a descubrir nuestros mejores días juntos 💞" style="background:none;border:none;padding:0;font:inherit;color:#e8849a;text-decoration:underline;cursor:pointer;">💞 Envíaselo a tu pareja</button></p>
   <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.4);margin-top:14px;line-height:1.6;">LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento.</p>
 </div>
 
