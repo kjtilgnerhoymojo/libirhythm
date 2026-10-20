@@ -42,6 +42,7 @@ nav{position:sticky;top:0;z-index:100;padding:16px 32px;display:flex;justify-con
 .article-body strong{color:#fff;font-weight:500;}
 
 .cycle-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:8px 0 24px;}
+.cycle-cards.four{grid-template-columns:repeat(2,1fr);}
 .cycle-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:20px;padding:20px;}
 .cycle-card .num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;line-height:1;}
 .cycle-card .name{font-size:13px;font-weight:500;margin:6px 0 4px;}
@@ -49,6 +50,9 @@ nav{position:sticky;top:0;z-index:100;padding:16px 32px;display:flex;justify-con
 
 .callout{background:rgba(200,85,111,0.06);border:1px solid rgba(200,85,111,0.2);border-radius:18px;padding:20px 22px;margin:28px 0;}
 .callout p{margin:0;font-size:14px;color:rgba(255,255,255,0.75);}
+.article-body ul.sources{gap:6px;}
+.article-body ul.sources li{font-size:13px;color:var(--muted);}
+.article-body ul.sources a{color:var(--lilac2);}
 .callout.gold{background:rgba(201,169,110,0.07);border-color:rgba(201,169,110,0.25);}
 
 .formula{font-family:monospace;font-size:14px;background:rgba(255,255,255,0.05);border:1px solid var(--border);
