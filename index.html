@@ -1194,9 +1194,9 @@ function resetCalc(){
 }
 
 // ── PLAN ANUAL ──────────────────────────────────────────────────────────────
-// TODO(Klaus): pega aquí el Payment Link de Stripe del plan anual (29,99 €/año).
-// Mientras esté vacío, el botón aparece como "Disponible muy pronto" y no lleva a ningún sitio.
-const STRIPE_ANNUAL_LINK = '';
+// Payment Link de Stripe del plan anual (29,99 €/año).
+// Si se deja vacío, el botón aparece como "Disponible muy pronto" y no lleva a ningún sitio.
+const STRIPE_ANNUAL_LINK = 'https://buy.stripe.com/9B63cu1EB4AwfhbeY60Ba02';
 document.querySelectorAll('.annual-cta').forEach(function(a){
   if (STRIPE_ANNUAL_LINK) { a.href = STRIPE_ANNUAL_LINK; }
   else { a.removeAttribute('href'); a.classList.add('soon'); a.textContent = 'Disponible muy pronto'; }
