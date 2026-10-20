@@ -1035,9 +1035,9 @@ function downloadPDF() {
   // Data goes in the #fragment so it never reaches the server (fragments aren't sent in HTTP requests)
   window.open('pdf.html#' + params.toString(), '_blank');
 }
-// TODO(Klaus): pega aquí el Payment Link de Stripe del plan anual (29,99 €/año).
-// Mientras esté vacío, la oferta anual no se muestra.
-const STRIPE_ANNUAL_LINK = '';
+// Payment Link de Stripe del plan anual (29,99 €/año).
+// Si se deja vacío, la oferta anual no se muestra.
+const STRIPE_ANNUAL_LINK = 'https://buy.stripe.com/9B63cu1EB4AwfhbeY60Ba02';
 document.addEventListener('DOMContentLoaded', () => {
   if (!STRIPE_ANNUAL_LINK) return;
   document.querySelectorAll('.annual-cta').forEach(a => a.href = STRIPE_ANNUAL_LINK);
