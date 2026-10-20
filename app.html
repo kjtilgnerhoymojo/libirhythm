@@ -296,8 +296,9 @@ main { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding
 }
 
 /* ── ANIMATIONS ── */
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
-.fade-in { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+@media (prefers-reduced-motion: reduce){*{animation:none!important;}}
+@keyframes fadeUp { from{transform:translateY(20px)}to{transform:translateY(0)} }
+.fade-in { animation:fadeUp 0.6s ease both; }
 .fade-in:nth-child(2){animation-delay:0.1s}
 .fade-in:nth-child(3){animation-delay:0.2s}
 .fade-in:nth-child(4){animation-delay:0.3s}
