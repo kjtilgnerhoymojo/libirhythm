@@ -173,6 +173,11 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
 </div>
 
 <div class="form-section">
+  <!-- Shown when arriving from an invitation link (?inv=1) -->
+  <div id="inviteBanner" style="display:none;text-align:center;background:linear-gradient(135deg,rgba(212,88,122,0.1),rgba(183,148,200,0.08));border:1px solid rgba(212,88,122,0.3);border-radius:20px;padding:18px 20px;margin-bottom:24px;">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:24px;margin-bottom:4px;">💞 Te han invitado al modo pareja</div>
+    <div style="font-size:13px;color:var(--muted);">Meted vuestras dos fechas de nacimiento y descubrid vuestro mejor día de los próximos meses.</div>
+  </div>
   <div class="couple-form">
     <!-- Person 1 -->
     <div class="person-card p1">
@@ -240,6 +245,7 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
   </div>
 
   <button class="calc-btn" id="calcBtn" onclick="calculate()" disabled>✦ CALCULAR RITMO DE DOS</button>
+  <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:16px;">¿No sabes su fecha o no estáis juntos? <button type="button" data-share data-share-url="https://libirhythm.com/pareja.html?inv=1" data-share-title="Envíaselo a tu pareja" data-share-text="Te invito a descubrir nuestros mejores días juntos 💞" style="background:none;border:none;padding:0;font:inherit;color:#e8849a;text-decoration:underline;cursor:pointer;">💞 Envíaselo a tu pareja</button></p>
   <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.4);margin-top:14px;line-height:1.6;">LibiRhythm no es un método anticonceptivo ni una herramienta médica. Es una guía de bienestar y autoconocimiento.</p>
 </div>
 
@@ -305,7 +311,7 @@ nav{position:sticky;top:0;z-index:100;padding:18px 32px;display:flex;justify-con
     <a href="index.html#precios" class="calc-btn" style="display:inline-block;width:auto;padding:14px 36px;font-size:18px;text-decoration:none;opacity:1;animation:none;">✦ Ver planes Pro</a>
   </div>
 
-  <button type="button" class="reset-btn" data-share data-share-text="Descubre qué días estáis más en sintonía con el modo pareja de LibiRhythm." style="border-color:rgba(232,132,154,0.4);color:#e8849a;">↗ Compartir el modo pareja</button>
+  <button type="button" class="reset-btn" data-share data-share-url="https://libirhythm.com/pareja.html?inv=1" data-share-title="Envíaselo a tu pareja" data-share-text="Te invito a descubrir nuestros mejores días juntos 💞" style="border-color:rgba(232,132,154,0.4);color:#e8849a;">💞 Envíaselo a tu pareja</button>
   <button class="reset-btn" onclick="resetAll()">← Nueva consulta</button>
 </div>
 
@@ -404,6 +410,7 @@ function updateBtn(){
   document.getElementById('calcBtn').disabled=!(ok1&&ok2);
 }
 ['bd1','bd2','pd1','pd2'].forEach(id=>document.getElementById(id).addEventListener('input',updateBtn));
+if(new URLSearchParams(location.search).get('inv')) document.getElementById('inviteBanner').style.display='';
 
 // ── CALCULATE ────────────────────────────────────────────────────────────────
 function calculate(){
