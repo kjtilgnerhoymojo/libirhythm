@@ -397,8 +397,8 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
       <div class="cover-meta-value" id="metaPhase">🌕 Fase lútea · Día 20</div>
     </div>
     <div class="cover-meta-item">
-      <div class="cover-meta-label">Próxima ovulación</div>
-      <div class="cover-meta-value" id="metaOvul">—</div>
+      <div class="cover-meta-label">Día del ciclo</div>
+      <div class="cover-meta-value" id="metaCycleDay">—</div>
     </div>
   </div>
 </div>
@@ -426,7 +426,7 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
       <div id="todayBars"></div>
       <div class="today-insight">
         <div class="today-insight-label">✦ Tu momento de hoy</div>
-        <div class="today-insight-text" id="todayInsight">"Tu biorritmo intelectual está en su punto más alto esta semana. Un día excelente para conversaciones profundas y tomar decisiones importantes con serenidad."</div>
+        <div class="today-insight-text" id="todayInsight"></div>
       </div>
     </div>
   </div>
@@ -439,7 +439,7 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
     <div class="section-title">Tus biorritmos — próximos 30 días</div>
     <div class="section-line"></div>
   </div>
-  <p class="body-text">Las curvas de biorritmo muestran cómo tu energía emocional, física e intelectual fluctúa a lo largo del mes. Cuando las tres curvas coinciden en su punto alto — los días marcados en rosa — es cuando te sientes más completa y conectada.</p>
+  <p class="body-text">Las curvas de biorritmo muestran cómo tu energía emocional, física e intelectual fluctúa a lo largo del mes. Según la teoría de los biorritmos, los días en que las tres curvas coinciden en su punto alto serían los de más energía. Compáralo con cómo te sientes de verdad.</p>
   <div class="curve-box">
     <div class="curve-title-row">
       <div class="curve-box-title">Curva de energía personal</div>
@@ -455,8 +455,8 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
   </div>
 
   <div class="pull-quote">
-    <p>"Las mujeres que comprenden sus biorritmos toman mejores decisiones, tienen más energía y disfrutan de relaciones más satisfactorias — no porque sean diferentes, sino porque actúan en el momento correcto."</p>
-    <cite>— Principio del ciclo-sincronización, Alisa Vitti, 2013</cite>
+    <p>"Usa este informe como un espejo, no como un oráculo: lo que más te dirá sobre ti es lo que tú misma observes."</p>
+    <cite>— Equipo LibiRhythm</cite>
   </div>
 </div>
 
@@ -484,7 +484,7 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
     <div class="section-title">Los 10 mejores días del mes</div>
     <div class="section-line"></div>
   </div>
-  <p class="body-text">Estos son los días en que tu energía vital, emocional e intelectual alcanzan su mayor convergencia. Úsalos para planificar entrevistas importantes, citas especiales, presentaciones o cualquier momento que requiera tu mejor versión.</p>
+  <p class="body-text">Estos son los días con el índice más alto del mes según tu fase del ciclo y tus biorritmos. Si te encaja, úsalos para los planes que más te ilusionen.</p>
   <div class="top-days-grid" id="topDaysGrid"></div>
 </div>
 
@@ -495,7 +495,7 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
     <div class="section-title">Análisis semana a semana</div>
     <div class="section-line"></div>
   </div>
-  <p class="body-text">Cada semana tiene su propia energía predominante. Aquí encontrarás el perfil de cada una para que puedas planificarte con mayor precisión.</p>
+  <p class="body-text">Un resumen de cada semana según tu fase del ciclo y tus biorritmos, para que puedas planificarte.</p>
   <div class="week-grid" id="weekGrid"></div>
 </div>
 
@@ -506,7 +506,7 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
     <div class="section-title">Cómo se calcula tu índice</div>
     <div class="section-line"></div>
   </div>
-  <p class="body-text">Tu índice diario combina cuatro factores científicamente respaldados, cada uno con un peso proporcional a su influencia sobre el bienestar y la energía femenina:</p>
+  <p class="body-text">Tu índice diario es un cálculo orientativo de LibiRhythm que combina cuatro factores con estos pesos (si eliges «sin ciclo», solo cuentan los tres biorritmos):</p>
 
   <div class="formula-box">
     <div class="formula-title">Fórmula de cálculo LibiRhythm</div>
@@ -531,7 +531,7 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
         <div class="formula-name">💛 Intelectual</div>
       </div>
     </div>
-    <div class="formula-note">El <strong>ciclo menstrual</strong> tiene mayor peso porque es el factor hormonal más medible y determinante en la energía femenina. Los <strong>biorritmos</strong> son ciclos sinusoidales calculados desde tu fecha de nacimiento con períodos de 28, 23 y 33 días respectivamente, según el modelo de Fliess-Swoboda-Teltscher (1897–1920).</div>
+    <div class="formula-note">El <strong>ciclo menstrual</strong> tiene más peso porque es un proceso real de tu cuerpo. Los <strong>biorritmos</strong> son ciclos matemáticos calculados desde tu fecha de nacimiento, con períodos de 28, 23 y 33 días, según el modelo de Fliess, Swoboda y Teltscher (1897–1920). Los estudios no han encontrado que predigan el ánimo ni el rendimiento: tómalos como una herramienta de reflexión.</div>
   </div>
 
   <div class="science-grid">
@@ -539,19 +539,19 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
       <span class="sci-icon">💜</span>
       <div class="sci-title" style="color:#b8455f">Emocional</div>
       <div class="sci-period">Ciclo de 28 días</div>
-      <div class="sci-desc">Regula la sensibilidad, la empatía, la receptividad emocional y la disposición para conectar con otras personas.</div>
+      <div class="sci-desc">Según la teoría, se asocia con la sensibilidad, la empatía y las ganas de conectar con otras personas.</div>
     </div>
     <div class="sci-card">
       <span class="sci-icon">⚡</span>
       <div class="sci-title" style="color:#4a9090">Físico</div>
       <div class="sci-period">Ciclo de 23 días</div>
-      <div class="sci-desc">Refleja los niveles de energía corporal, resistencia física, coordinación y vitalidad general del organismo.</div>
+      <div class="sci-desc">Según la teoría, se asocia con la energía corporal, la resistencia y la coordinación.</div>
     </div>
     <div class="sci-card">
       <span class="sci-icon">💡</span>
       <div class="sci-title" style="color:#a67c4a">Intelectual</div>
       <div class="sci-period">Ciclo de 33 días</div>
-      <div class="sci-desc">Influye en la concentración, la creatividad, la memoria y la capacidad de análisis y toma de decisiones.</div>
+      <div class="sci-desc">Según la teoría, se asocia con la concentración, la creatividad y la memoria.</div>
     </div>
   </div>
 </div>
@@ -563,7 +563,7 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
     <div class="section-title">Las 4 fases de tu ciclo</div>
     <div class="section-line"></div>
   </div>
-  <p class="body-text">Tu ciclo menstrual es mucho más que la menstruación. Es un ciclo de cuatro fases con características hormonales únicas que influyen directamente en tu energía, humor, apetito, creatividad y deseo.</p>
+  <p class="body-text">Tu ciclo tiene cuatro fases con cambios hormonales distintos. Mucha gente nota que su energía y su humor cambian con ellas, aunque varía mucho de una persona a otra.</p>
 
   <table class="phase-table">
     <thead>
@@ -578,41 +578,42 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
       <tr>
         <td>
           <div class="phase-name-cell"><span style="font-size:18px">🔴</span>
-          <div><div class="phase-name-text">Menstruación</div><div class="phase-days-text">Días 1–5</div></div></div>
+          <div><div class="phase-name-text">Menstruación</div><div class="phase-days-text">Días 1–5, aprox.</div></div></div>
         </td>
         <td>Estrógeno y progesterona bajos</td>
-        <td style="color:#b8455f">⬇ Baja</td>
-        <td>Descanso, reflexión, introspección</td>
+        <td style="color:#b8455f">⬇ Suele bajar</td>
+        <td>Descanso, reflexión, tiempo para ti</td>
       </tr>
       <tr>
         <td>
           <div class="phase-name-cell"><span style="font-size:18px">🌱</span>
-          <div><div class="phase-name-text">Folicular</div><div class="phase-days-text">Días 6–13</div></div></div>
+          <div><div class="phase-name-text">Folicular</div><div class="phase-days-text">Del día 1 a la ovulación</div></div></div>
         </td>
         <td>Estrógeno en ascenso</td>
-        <td style="color:#4a9090">↗ Ascendente</td>
-        <td>Proyectos nuevos, socializar, ejercicio</td>
+        <td style="color:#4a9090">↗ Suele ir subiendo</td>
+        <td>Proyectos nuevos, planes y quedadas</td>
       </tr>
       <tr>
         <td>
           <div class="phase-name-cell"><span style="font-size:18px">✨</span>
-          <div><div class="phase-name-text">Ovulación</div><div class="phase-days-text">Días 14–16</div></div></div>
+          <div><div class="phase-name-text">Ovulación</div><div class="phase-days-text">Hacia el día 14</div></div></div>
         </td>
-        <td>Pico de estrógeno + testosterona</td>
-        <td style="color:#a67c4a">⬆ Máxima</td>
-        <td>Presentaciones, citas, decisiones clave</td>
+        <td>Subida de LH y pico de estrógeno</td>
+        <td style="color:#a67c4a">⬆ Alta para mucha gente</td>
+        <td>Planes sociales, citas en pareja</td>
       </tr>
       <tr>
         <td>
           <div class="phase-name-cell"><span style="font-size:18px">🌕</span>
-          <div><div class="phase-name-text">Lútea</div><div class="phase-days-text">Días 17–28</div></div></div>
+          <div><div class="phase-name-text">Lútea</div><div class="phase-days-text">Días 15–28, aprox.</div></div></div>
         </td>
         <td>Progesterona dominante</td>
-        <td style="color:#7a5fa8">→ Serena</td>
-        <td>Completar proyectos, intimidad profunda</td>
+        <td style="color:#7a5fa8">→ Más tranquila</td>
+        <td>Cerrar proyectos, planes tranquilos</td>
       </tr>
     </tbody>
   </table>
+  <p class="body-text" style="font-size:11.5px;color:var(--muted);">Días orientativos para un ciclo de 28 días: el tuyo puede ser distinto y variar de un mes a otro. Estas fechas no sirven para saber cuándo ovulas ni para evitar o buscar un embarazo.</p>
 </div>
 
 <!-- 8. AUTOCUIDADO -->
@@ -622,50 +623,46 @@ LibiPro.ready.then(function(ok){ document.documentElement.classList.toggle('pro-
     <div class="section-title">Guía de autocuidado por fase</div>
     <div class="section-line"></div>
   </div>
-  <p class="body-text">Cada fase de tu ciclo tiene necesidades específicas. Adaptar tu rutina a tu ciclo — en lugar de ignorarlo — puede transformar tu energía y bienestar de forma radical.</p>
+  <p class="body-text">Ideas sencillas para acompañar cada fase. Quédate con las que te sirvan: cada cuerpo es distinto.</p>
   <div class="care-grid">
     <div class="care-card">
       <span class="care-icon">🔴</span>
       <div class="care-title">Durante la menstruación</div>
       <ul class="care-list">
-        <li>Reduce la intensidad del ejercicio — yoga o caminatas suaves</li>
-        <li>Aumenta el hierro: legumbres, espinacas, frutos secos</li>
-        <li>Aplica calor en el abdomen para aliviar molestias</li>
-        <li>Prioriza el sueño y los momentos de silencio</li>
-        <li>Es un buen momento para journaling y reflexión</li>
+        <li>Movimiento suave si te apetece: paseos o estiramientos</li>
+        <li>Calor en el abdomen, si te reconforta</li>
+        <li>Prioriza el sueño y los ratos de calma</li>
+        <li>Buen momento para escribir y reflexionar</li>
       </ul>
     </div>
     <div class="care-card">
       <span class="care-icon">🌱</span>
       <div class="care-title">En fase folicular</div>
       <ul class="care-list">
-        <li>Introduce nuevos proyectos y desafíos creativos</li>
-        <li>El metabolismo es más eficiente — buen momento para dieta</li>
-        <li>Prueba entrenamientos de más intensidad</li>
-        <li>Socializa y haz networking — tu energía es magnética</li>
-        <li>Toma decisiones importantes sobre el futuro</li>
+        <li>Empieza proyectos o retos creativos</li>
+        <li>Haz planes y queda con gente</li>
+        <li>Prueba una actividad nueva</li>
+        <li>Ordena tus objetivos del mes</li>
       </ul>
     </div>
     <div class="care-card">
       <span class="care-icon">✨</span>
       <div class="care-title">En ovulación</div>
       <ul class="care-list">
-        <li>Es tu momento de mayor carisma y presencia</li>
-        <li>Agenda presentaciones, entrevistas y citas importantes</li>
-        <li>Ejercicio de alta intensidad — tu cuerpo lo agradece</li>
-        <li>Aumenta la vitamina E y los antioxidantes</li>
-        <li>La conexión emocional y la intimidad son especialmente ricas</li>
+        <li>Planes sociales y conversaciones pendientes</li>
+        <li>Agenda lo que te ilusiona</li>
+        <li>Movimiento que disfrutes</li>
+        <li>Tiempo de calidad en pareja</li>
       </ul>
     </div>
     <div class="care-card">
       <span class="care-icon">🌕</span>
       <div class="care-title">En fase lútea</div>
       <ul class="care-list">
-        <li>Completa tareas que empezaste — no inicies proyectos nuevos</li>
-        <li>Aumenta el magnesio para reducir síntomas premenstruales</li>
-        <li>Reduce el azúcar y la cafeína en la segunda mitad</li>
-        <li>El yoga restaurativo y el pilates son ideales</li>
-        <li>Honra tu necesidad de mayor soledad e introspección</li>
+        <li>Cierra lo que tienes empezado</li>
+        <li>Planes más tranquilos</li>
+        <li>Reserva ratos para ti</li>
+        <li>Sé amable contigo los días antes de la regla</li>
       </ul>
     </div>
   </div>
@@ -768,18 +765,12 @@ const bd = birthDate.toLocaleDateString('es-ES', {day:'numeric', month:'long', y
 const elBD = document.getElementById('metaBD');
 if(elBD) elBD.textContent = bd;
 
-// Ovulation: next day 14 from last period start
-const daysUntilOvul = ((14 - lastPD) % 28 + 28) % 28;
-const ovulDate = new Date(Date.now() + daysUntilOvul * 86400000);
-const ovulStr = daysUntilOvul === 0 ? '¡Hoy! ✨' :
-  daysUntilOvul === 1 ? 'Mañana ✨' :
-  `en ${daysUntilOvul} días · ${ovulDate.toLocaleDateString('es-ES',{day:'numeric',month:'short'})}`;
-const elOvul = document.getElementById('metaOvul');
-if(elOvul) elOvul.textContent = ovulStr;
+const elCycleDay = document.getElementById('metaCycleDay');
+if(elCycleDay) elCycleDay.textContent = _hasCycle ? `Día ${today0.cDay}` : '—';
 const elPhase = document.getElementById('metaPhase');
 if(elPhase) elPhase.textContent = _hasCycle
-  ? `${today0.phase.emoji} ${today0.phase.name} · Día ${today0.cDay}`
-  : `${today0.phase.emoji} ${today0.phase.name}`;
+  ? `${today0.phase.emoji} ${today0.phase.name}`
+  : '🌙 Sin ciclo';
 // Update generated date and the 30-day range shown on the cover, curve, calendar and footer
 const genDate = new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
 const elGen = document.getElementById('metaGenDate');
@@ -801,7 +792,15 @@ if(elSub) elSub.textContent = _hasCycle
 
 document.getElementById('todayNum').textContent=today0.idx;
 document.getElementById('todayNum').style.color=today0.phase.c;
-document.getElementById('todayPhase').innerHTML=`${today0.phase.emoji} ${today0.phase.name} · Día ${today0.cDay}`;
+document.getElementById('todayPhase').innerHTML=_hasCycle ? `${today0.phase.emoji} ${today0.phase.name} · Día ${today0.cDay}` : '🌙 Biorritmos';
+// Insight from today's highest biorhythm
+const BIO_TODAY={
+  emo:'Hoy tu biorritmo emocional es el más alto de los tres. Según la teoría, sería un buen día para conectar con otras personas: comprueba si tú lo notas así.',
+  fis:'Hoy tu biorritmo físico es el más alto de los tres. Según la teoría, sería un buen día para moverte y hacer planes activos: comprueba si tú lo notas así.',
+  int:'Hoy tu biorritmo intelectual es el más alto de los tres. Según la teoría, sería un buen día para tareas que piden concentración: comprueba si tú lo notas así.'
+};
+const topBio=['emo','fis','int'].reduce((a,b)=>today0[b]>today0[a]?b:a);
+document.getElementById('todayInsight').textContent=BIO_TODAY[topBio];
 
 const bars=[
   {n:'Emocional',v:today0.emo,c:'#b8455f'},
@@ -914,22 +913,36 @@ const weeks=[
   {days:data30.slice(21,30),label:'Semana 4'},
 ].map(w=>({...w, dates:fmtRange(w.days[0].date, w.days[w.days.length-1].date)}));
 
-const weekInsights=[
-  {desc:'Tu ciclo está en fase lútea avanzada. La progesterona desciende gradualmente. Semana de completar proyectos y preparar el terreno para el descanso menstrual que se acerca.',
-   tips:['Prioriza descanso y sueño reparador','Reduce compromisos sociales innecesarios','Dedica tiempo a actividades creativas tranquilas']},
-  {desc:'Comienzo del nuevo ciclo menstrual. Tus biorritmos emocional e intelectual empiezan a subir con fuerza. La energía física aún está recuperándose.',
-   tips:['Introduce nuevas ideas y proyectos en tu agenda','Aprovecha la claridad mental post-menstrual','Excelente semana para networking y conexiones']},
-  {desc:'La fase folicular trae tu mayor energía del mes. Tus tres biorritmos convergen en positivo. Esta es tu semana de mayor potencial.',
-   tips:['Agenda tus reuniones más importantes','Prueba entrenamientos de alta intensidad','Es la mejor semana para primera citas o propuestas']},
-  {desc:'Estás en fase lútea. La energía baja progresivamente pero la profundidad emocional aumenta. Semana de conexión íntima y trabajo interior.',
-   tips:['Profundiza en relaciones existentes','Completa tareas pendientes antes del nuevo ciclo','Yoga restaurativo y baños relajantes son especialmente beneficiosos']},
-];
+// Weekly text from the week's most frequent phase (with cycle) or its highest biorhythm (without)
+const PHASE_WEEK={
+  'Menstruación':{desc:'Semana con la regla. Mucha gente nota menos energía estos días: es un buen momento para bajar el ritmo.', tips:['Deja espacio para descansar','Movimiento suave, si te apetece','Menos compromisos, si puedes']},
+  'Folicular':{desc:'Semana de fase folicular. El estrógeno sube poco a poco y mucha gente nota que su energía va despertando.', tips:['Buen momento para empezar proyectos','Planes y quedadas','Prueba algo nuevo']},
+  'Ovulación':{desc:'Semana con la mitad del ciclo. Hay quien se siente más sociable y con más energía estos días.', tips:['Planes sociales','Conversaciones pendientes','Tiempo en pareja']},
+  'Lútea':{desc:'Semana de fase lútea. Sube la progesterona y el ritmo suele ser más tranquilo.', tips:['Cierra lo que tienes empezado','Planes tranquilos','Ordena y organiza']},
+  'Premenstrual':{desc:'Semana previa a la regla. Hay quien nota más sensibilidad o cambios de humor; otras personas no notan nada.', tips:['Sé amable contigo','Reserva ratos para ti','Duerme lo que necesites']},
+};
+const BIO_WEEK={
+  emo:{name:'💜 Emocional', desc:'Según tus biorritmos, el emocional es el más alto de esta semana. Observa cómo te sientes con los demás.', tips:['Queda con gente que te hace bien','Conversaciones pendientes','Apunta cómo te sientes']},
+  fis:{name:'⚡ Físico', desc:'Según tus biorritmos, el físico es el más alto de esta semana. Observa si notas más energía.', tips:['Planes activos','Paseos o el deporte que te guste','Apunta tu nivel de energía']},
+  int:{name:'💡 Intelectual', desc:'Según tus biorritmos, el intelectual es el más alto de esta semana. Observa tu concentración.', tips:['Tareas que piden concentración','Aprende algo nuevo','Ordena ideas y planes']},
+};
+function weekInsight(days){
+  if(_hasCycle){
+    const count={};
+    days.forEach(d=>{count[d.phase.name]=(count[d.phase.name]||0)+1;});
+    const top=Object.keys(count).reduce((a,b)=>count[b]>count[a]?b:a);
+    const ph=days.find(d=>d.phase.name===top).phase;
+    return {badge:`${ph.emoji} ${ph.name}`, ...PHASE_WEEK[top]};
+  }
+  const avg=k=>days.reduce((a,d)=>a+d[k],0)/days.length;
+  const k=['emo','fis','int'].reduce((a,b)=>avg(b)>avg(a)?b:a);
+  return {badge:BIO_WEEK[k].name, ...BIO_WEEK[k]};
+}
 
 document.getElementById('weekGrid').innerHTML=weeks.map((w,i)=>{
   const avgIdx=Math.round(w.days.reduce((a,d)=>a+d.idx,0)/w.days.length);
   const s=dayStyle(avgIdx);
-  const topDay=w.days.reduce((a,b)=>a.idx>b.idx?a:b);
-  const wi=weekInsights[i];
+  const wi=weekInsight(w.days);
   return `<div class="week-card">
     <div class="week-header">
       <div>
@@ -939,7 +952,7 @@ document.getElementById('weekGrid').innerHTML=weeks.map((w,i)=>{
       <div class="week-score-pill" style="background:${s.bg};color:${s.c};border:1px solid ${s.border}">${avgIdx} media</div>
     </div>
     <div class="week-phase">
-      <div class="week-phase-badge">${topDay.phase.emoji} ${topDay.phase.name}</div>
+      <div class="week-phase-badge">${wi.badge}</div>
     </div>
     <div class="week-body">${wi.desc}</div>
     <div class="week-tips">${wi.tips.map(t=>`<div class="week-tip">${t}</div>`).join('')}</div>
