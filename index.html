@@ -174,6 +174,7 @@ nav{
 
 /* ── SECTION BASE ── */
 section{padding:100px 24px;}
+.share-section{padding:0 24px 100px;}
 .container{max-width:1100px;margin:0 auto;}
 .container-sm{max-width:700px;margin:0 auto;}
 .eyebrow{
@@ -1021,6 +1022,15 @@ footer{
   </div>
 </section>
 
+<!-- SHARE -->
+<section class="share-section">
+  <div class="container" style="text-align:center;">
+    <h2 class="section-title">¿Conoces a alguien a quien le <em>encantaría</em>?</h2>
+    <p class="section-sub" style="margin:0 auto 28px;">Compártelo con una amiga o con tu pareja. Solo se envía el enlace a la web.</p>
+    <button type="button" class="btn-ghost" data-share style="font-family:'DM Sans',sans-serif;">Compartir LibiRhythm ↗</button>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div>
@@ -1254,6 +1264,7 @@ document.addEventListener('DOMContentLoaded', function(){
 // Stripe may redirect here after paying: activate and continue to the app
 if (LibiPro.activating) LibiPro.ready.then(function(ok){ if (ok) location.href = 'app.html'; });
 </script>
+<script defer src="/share.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
